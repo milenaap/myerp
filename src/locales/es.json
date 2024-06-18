@@ -111,7 +111,8 @@
   "vat_quote": "IVA",
   "total_without_vat": "Total sin IVA",
   "total_with_vat": "Total con IVA",
-  "has_paid": "Está Pagada"
+  "has_paid": "Pagada",
+  "providers": "Proveedores"
   
   
 }
