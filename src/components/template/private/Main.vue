@@ -232,8 +232,8 @@ const navigation = [
     icon: UsersIcon,
     current: false,
     children: [
-      { name: 'Cliente', href: 'settings/companies' },
-      // { name: 'Human Resources', href: 'human-resources' },
+      { name: 'Clientes', href: 'settings/companies' },
+      { name: 'Proveedores', href: 'settings/providers' },
       // { name: 'Customer Success', href: 'customer' },
     ],
   },

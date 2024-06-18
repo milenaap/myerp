@@ -62,8 +62,6 @@ const routes = [
         meta: { breadcrumb: 'Facturas' }
       },
 
-
-
       {
         path: '/settings',
         name: 'settings',
@@ -75,6 +73,12 @@ const routes = [
             name: 'settings/companies',
             component: () => import('@/modules/invoices/views/companies/CompanyList.vue'),
             meta: { breadcrumb: 'Cliente' }
+          },
+          {
+            path: '/settings/providers',
+            name: 'settings/providers',
+            component: () => import('@/modules/invoices/views/providers/ProviderList.vue'),
+            meta: { breadcrumb: 'Proveedores' }
           },
         ]
       },
