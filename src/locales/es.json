@@ -57,7 +57,8 @@
     "credential_error": "Claves de acceso no válidas"
   },
   "form": {
-    "required": "Requerido"
+    "required": "Requerido",
+    "select": "Seleccione"
   },
   "errors":{
     "error_internal": "Error Interno"
@@ -113,7 +114,9 @@
   "total_with_vat": "Total con IVA",
   "has_paid": "Pagada",
   "providers": "Proveedores",
-  "services": "Servicios"
+  "services": "Servicios",
+  "products": "Productos"
+
   
   
 }

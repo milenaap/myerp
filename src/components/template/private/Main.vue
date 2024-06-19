@@ -235,6 +235,7 @@ const navigation = [
       { name: 'Clientes', href: 'settings/companies' },
       { name: 'Proveedores', href: 'settings/providers' },
       { name: 'Servicios', href: 'settings/services' },
+      { name: 'Productos', href: 'settings/products' },
       // { name: 'Customer Success', href: 'customer' },
     ],
   },

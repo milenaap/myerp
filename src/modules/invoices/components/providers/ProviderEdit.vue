@@ -13,14 +13,33 @@
 						<label for="service_id" class="form-label w-full">
 							{{ $t("service_id") }} *
 						</label>
-						<input
+						<!-- <input
 							v-model.trim="validate.service_id.$model"
 							id="service_id"
 							type="text"
 							name="service_id"
 							class="form-control"
 							:class="{ 'border-danger': validate.service_id.$error }"
-						/>
+						/> -->
+
+						<select 
+							v-model.trim="validate.service_id.$model"
+							id="service_id"
+							name="service_id"
+							class="form-control"
+							:class="{ 'border-danger': validate.service_id.$error }"
+						
+						>
+							<option value="">{{ $t("form.select") }}</option>
+							<option 
+								v-for="item in services" 
+								:key="item.id" 
+								:value="item.id"
+							>
+								{{ item.name }}
+							</option>
+						</select>
+
 						<template v-if="validate.service_id.$error">
 							<div v-for="(error, index) in validate.service_id.$errors" :key="index" class="text-danger mt-2">
 						{{ error.$message }}
@@ -108,6 +127,11 @@
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
 
+
+	import useService from "../../composables/services";
+
+	const {services, getServices} = useService();
+
 	const { provider, getProvider } = useProviders();
 	const { t } = useI18n();
 	const props = defineProps(['providerId']);
@@ -143,6 +167,7 @@
 	};
 
 	onMounted(async () => {
+		await getServices();
 		await getProvider(props.providerId);
 		formData.service_id = provider.value.service_id;
 		formData.code = provider.value.code;

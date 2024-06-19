@@ -93,6 +93,12 @@ const routes = [
             component: () => import('@/modules/invoices/views/services/ServiceList.vue'),
             meta: { breadcrumb: 'Servicios' }
           },
+          {
+            path: '/settings/products',
+            name: 'settings/products',
+            component: () => import('@/modules/invoices/views/products/ProductList.vue'),
+            meta: { breadcrumb: 'Productos' }
+          },
         ]
       },
 

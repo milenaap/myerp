@@ -13,14 +13,35 @@
 						<label for="country_id" class="form-label w-full">
 							{{ $t("country_id") }} *
 						</label>
-						<input
+						<!-- <input
 							v-model.trim="validate.country_id.$model"
 							id="country_id"
 							type="text"
 							name="country_id"
 							class="form-control"
 							:class="{ 'border-danger': validate.country_id.$error }"
-						/>
+						/> -->
+
+						<select 
+							v-model.trim="validate.country_id.$model"
+							id="country_id"
+							name="country_id"
+							class="form-control"
+							:class="{ 'border-danger': validate.country_id.$error }"
+						>
+
+							<option value="">{{ $t("form.select") }}</option>
+							<option 
+								v-for="item in countries" 
+								:key="item.id" 
+								:value="item.id"
+							>
+								{{ item.common_name }}
+							</option>
+
+						</select>
+
+
 						<template v-if="validate.country_id.$error">
 							<div v-for="(error, index) in validate.country_id.$errors" :key="index" class="text-danger mt-2">
 						{{ error.$message }}
@@ -262,6 +283,11 @@
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
 
+	import useCountry from "../../composables/countries";
+
+
+	const {countries, getCountries} = useCountry();
+
 	const { company, getCompany } = useCompanies();
 	const { t } = useI18n();
 	const props = defineProps(['companyId']);
@@ -325,6 +351,7 @@
 	};
 
 	onMounted(async () => {
+		await getCountries();
 		await getCompany(props.companyId);
 		formData.country_id = company.value.country_id;
 		formData.name = company.value.name;
