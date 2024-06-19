@@ -112,7 +112,8 @@
   "total_without_vat": "Total sin IVA",
   "total_with_vat": "Total con IVA",
   "has_paid": "Pagada",
-  "providers": "Proveedores"
+  "providers": "Proveedores",
+  "services": "Servicios"
   
   
 }

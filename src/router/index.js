@@ -39,6 +39,13 @@ const routes = [
     name: 'login',
     component: () => import('@/modules/auth/views/login/Login.vue')
   },
+  {
+    path: '/prueba',
+    name: 'prueba',
+    component: () => import('@/views/Prueba.vue')
+  },
+
+
 
   /** Rutas protegidas */
   {
@@ -79,6 +86,12 @@ const routes = [
             name: 'settings/providers',
             component: () => import('@/modules/invoices/views/providers/ProviderList.vue'),
             meta: { breadcrumb: 'Proveedores' }
+          },
+          {
+            path: '/settings/services',
+            name: 'settings/services',
+            component: () => import('@/modules/invoices/views/services/ServiceList.vue'),
+            meta: { breadcrumb: 'Servicios' }
           },
         ]
       },

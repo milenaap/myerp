@@ -234,6 +234,7 @@ const navigation = [
     children: [
       { name: 'Clientes', href: 'settings/companies' },
       { name: 'Proveedores', href: 'settings/providers' },
+      { name: 'Servicios', href: 'settings/services' },
       // { name: 'Customer Success', href: 'customer' },
     ],
   },
