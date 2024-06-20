@@ -10,9 +10,7 @@
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
-						<label for="country_id" class="form-label w-full">
-							{{ $t("country_id") }} *
-						</label>
+						
 						<!-- <input
 							v-model.trim="validate.country_id.$model"
 							id="country_id"
@@ -22,6 +20,9 @@
 							:class="{ 'border-danger': validate.country_id.$error }"
 						/> -->
 
+						<!-- <label for="country_id" class="form-label w-full">
+							{{ $t("country_id") }} *
+						</label>
 						<select 
 							v-model.trim="validate.country_id.$model"
 							id="country_id"
@@ -39,7 +40,39 @@
 								{{ item.common_name }}
 							</option>
 
-						</select>
+						</select> -->
+
+
+
+						<Combobox as="div" v-model.trim="validate.country_id.$model" @update:modelValue="queryCountry = ''">
+							<ComboboxLabel class="form-label w-full">{{ $t("country_id") }} *</ComboboxLabel>
+							
+							<div class="relative mt-0">
+								<ComboboxInput 
+									class="w-full rounded-md border-0 bg-white py-2 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 form-control"
+									:class="{ 'border-danger': validate.country_id.$error }"
+									@change="queryCountry = $event.target.value" 
+									@blur="queryCountry = ''" :display-value="(person) => person?.common_name" 
+								/>
+								<ComboboxButton class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+									<ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+								</ComboboxButton>
+
+								<ComboboxOptions v-if="filteredPeople.length > 0" class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+									<ComboboxOption v-for="person in filteredPeople" :key="person.id" :value="person.id" as="template" v-slot="{ active, selected }">
+									<li :class="['relative cursor-default select-none py-2 pl-8 pr-4', active ? 'bg-indigo-600 text-white' : 'text-gray-900']">
+										<span :class="['block truncate', selected && 'font-semibold']">
+										{{ person.common_name }}
+										</span>
+
+										<span v-if="selected" :class="['absolute inset-y-0 left-0 flex items-center pl-1.5', active ? 'text-white' : 'text-indigo-600']">
+										<CheckIcon class="h-5 w-5" aria-hidden="true" />
+										</span>
+									</li>
+									</ComboboxOption>
+								</ComboboxOptions>
+							</div>
+						</Combobox>
 
 						<template v-if="validate.country_id.$error">
 							<div v-for="(error, index) in validate.country_id.$errors" :key="index" class="text-danger mt-2">
@@ -275,12 +308,49 @@
 
 <script setup>
 
-	import { onMounted, reactive, toRefs } from 'vue';
+	import { onMounted, reactive, toRefs, ref, computed } from 'vue';
 	import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
 	import useCountry from "../../composables/countries";
+
+
+
+
+	import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+	import {
+	Combobox,
+	ComboboxButton,
+	ComboboxInput,
+	ComboboxLabel,
+	ComboboxOption,
+	ComboboxOptions,
+	} from '@headlessui/vue';
+
+
+	// const people = ref([
+  	// 	{ id: 1, name: 'Leslie Alexander' },
+  	// 	{ id: 1, name: 'Leslie Alexander' },
+  	// 	{ id: 1, name: 'Leslie Alexander' },
+	// 	// More users...
+	// ])
+
+
+	const people = ref([]);
+
+	const queryCountry = ref('');
+	//const country_id = ref(null);
+	const filteredPeople = computed(() =>
+	queryCountry.value === ''
+		? people.value
+		: people.value.filter((person) => {
+			return person.common_name.toLowerCase().includes(queryCountry.value.toLowerCase())
+		}),
+	)
+
+
+
 
 
 	const {countries, getCountries} = useCountry();
@@ -337,6 +407,10 @@
 	const validate = useVuelidate(rules, toRefs(formData));
 
 	const save = () => {
+
+
+		console.log(formData.country_id);
+
 		validate.value.$touch();
 		if (validate.value.$invalid) {
 			//TODO
@@ -348,6 +422,7 @@
 	onMounted(async () => {
 		await getCountries();	
 		console.log(countries.value);
+		people.value = countries.value;
 	});
 
 </script>
