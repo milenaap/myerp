@@ -318,6 +318,7 @@
 
 
 
+	// Combobox
 
 	import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 	import {
@@ -328,10 +329,6 @@
 	ComboboxOption,
 	ComboboxOptions,
 	} from '@headlessui/vue';
-
-
-
-
 
 	const countriesList = ref([]);
 	const queryCountry = ref('');
@@ -347,6 +344,7 @@
 		return find ? find.common_name : '';
 	}
 
+	//----- Combobox
 
 
 
