@@ -107,7 +107,6 @@
 		{ label: t("amount_without_vat"), field: 'amount_without_vat' },
 		{ label: t("amount_with_vat"), field: 'amount_with_vat' },
 		{ label: t("vat"), field: 'vat' },
-		{ label: t("description"), field: 'description' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store
