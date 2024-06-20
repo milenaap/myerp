@@ -11,11 +11,11 @@ export default function useProduct() {
 
 	const getProducts = async () => {
 		productErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}products/list`,{
+		await fetch(`${import.meta.env.VITE_API_URL}products/list`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -34,11 +34,11 @@ export default function useProduct() {
 
 	const getProduct = async (id) => {
 		productErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}products/show/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}products/show/${id}`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -57,11 +57,11 @@ export default function useProduct() {
 
 	const storeProduct = async (data) => {
 		productErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}products/store`,{
+		await fetch(`${import.meta.env.VITE_API_URL}products/store`,{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -81,11 +81,11 @@ export default function useProduct() {
 
 	const updateProduct = async (id, data) => {
 		productErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}products/update/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}products/update/${id}`,{
 			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -105,11 +105,11 @@ export default function useProduct() {
 
 	const destroyProduct = async (id) => {
 		productErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}products/delete/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}products/delete/${id}`,{
 			method: 'DELETE',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
