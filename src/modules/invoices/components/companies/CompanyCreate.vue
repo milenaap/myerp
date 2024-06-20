@@ -52,7 +52,8 @@
 									class="w-full rounded-md border-0 bg-white py-2 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 form-control"
 									:class="{ 'border-danger': validate.country_id.$error }"
 									@change="queryCountry = $event.target.value" 
-									@blur="queryCountry = ''" :display-value="(person) => person?.common_name" 
+									@blur="queryCountry = ''" 
+									:display-value="getDisplayValue" 
 								/>
 								<ComboboxButton class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
 									<ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -337,17 +338,23 @@
 	// ])
 
 
-	const people = ref([]);
+	const countriesList = ref([]);
 
 	const queryCountry = ref('');
-	//const country_id = ref(null);
+	//const country_id = ref(64);
 	const filteredPeople = computed(() =>
 	queryCountry.value === ''
-		? people.value
-		: people.value.filter((person) => {
+		? countriesList.value
+		: countriesList.value.filter((person) => {
 			return person.common_name.toLowerCase().includes(queryCountry.value.toLowerCase())
 		}),
 	)
+
+	// Función para mostrar el nombre común de la persona seleccionada
+	const getDisplayValue = (person) => {
+		const foundPerson = countriesList.value.find(p => p.id === person);
+		return foundPerson ? foundPerson.common_name : '';
+	}
 
 
 
@@ -408,7 +415,6 @@
 
 	const save = () => {
 
-
 		console.log(formData.country_id);
 
 		validate.value.$touch();
@@ -422,7 +428,7 @@
 	onMounted(async () => {
 		await getCountries();	
 		console.log(countries.value);
-		people.value = countries.value;
+		countriesList.value = countries.value;
 	});
 
 </script>
