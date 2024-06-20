@@ -59,8 +59,8 @@
 									<ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
 								</ComboboxButton>
 
-								<ComboboxOptions v-if="filteredPeople.length > 0" class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-									<ComboboxOption v-for="person in filteredPeople" :key="person.id" :value="person.id" as="template" v-slot="{ active, selected }">
+								<ComboboxOptions v-if="filteredCountry.length > 0" class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+									<ComboboxOption v-for="person in filteredCountry" :key="person.id" :value="person.id" as="template" v-slot="{ active, selected }">
 									<li :class="['relative cursor-default select-none py-2 pl-8 pr-4', active ? 'bg-indigo-600 text-white' : 'text-gray-900']">
 										<span :class="['block truncate', selected && 'font-semibold']">
 										{{ person.common_name }}
@@ -330,30 +330,21 @@
 	} from '@headlessui/vue';
 
 
-	// const people = ref([
-  	// 	{ id: 1, name: 'Leslie Alexander' },
-  	// 	{ id: 1, name: 'Leslie Alexander' },
-  	// 	{ id: 1, name: 'Leslie Alexander' },
-	// 	// More users...
-	// ])
+
 
 
 	const countriesList = ref([]);
-
 	const queryCountry = ref('');
-	//const country_id = ref(64);
-	const filteredPeople = computed(() =>
+	const filteredCountry = computed(() =>
 	queryCountry.value === ''
 		? countriesList.value
-		: countriesList.value.filter((person) => {
-			return person.common_name.toLowerCase().includes(queryCountry.value.toLowerCase())
+		: countriesList.value.filter((item) => {
+			return item.common_name.toLowerCase().includes(queryCountry.value.toLowerCase())
 		}),
-	)
-
-	// Función para mostrar el nombre común de la persona seleccionada
-	const getDisplayValue = (person) => {
-		const foundPerson = countriesList.value.find(p => p.id === person);
-		return foundPerson ? foundPerson.common_name : '';
+	);
+	const getDisplayValue = (itemId) => {
+		const find = countriesList.value.find(item => item.id === itemId);
+		return find ? find.common_name : '';
 	}
 
 
