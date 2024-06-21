@@ -29,8 +29,7 @@ import VueGoodTablePlugin from 'vue-good-table-next';
 import 'vue-good-table-next/dist/vue-good-table-next.css';
 
 
-
-// vueselecu
+// VueSelect
 import vSelect from 'vue-select';
 
 
