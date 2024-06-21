@@ -13,38 +13,17 @@
 						<label for="country_id" class="form-label w-full">
 							{{ $t("country_id") }} *
 						</label>
-						<!-- <input
-							v-model.trim="validate.country_id.$model"
-							id="country_id"
-							type="text"
-							name="country_id"
-							class="form-control"
+						<v-select
+							v-model="validate.country_id.$model"
+							:options="countries"
+							label="common_name"
+							:reduce="country => country.id"
 							:class="{ 'border-danger': validate.country_id.$error }"
-						/> -->
-
-						<select 
-							v-model.trim="validate.country_id.$model"
-							id="country_id"
-							name="country_id"
 							class="form-control"
-							:class="{ 'border-danger': validate.country_id.$error }"
-						>
-
-							<option value="">{{ $t("form.select") }}</option>
-							<option 
-								v-for="item in countries" 
-								:key="item.id" 
-								:value="item.id"
-							>
-								{{ item.common_name }}
-							</option>
-
-						</select>
-
-
+						></v-select>
 						<template v-if="validate.country_id.$error">
 							<div v-for="(error, index) in validate.country_id.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -284,6 +263,9 @@
 	import { useI18n } from 'vue-i18n';
 
 	import useCountry from "../../composables/countries";
+
+	import vSelect from 'vue-select';
+	import 'vue-select/dist/vue-select.css';
 
 
 	const {countries, getCountries} = useCountry();
