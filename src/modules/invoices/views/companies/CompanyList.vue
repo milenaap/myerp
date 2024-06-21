@@ -84,6 +84,7 @@
 	import Create from "../../components/companies/CompanyCreate.vue";
 	import Edit from "../../components/companies/CompanyEdit.vue";
 	import useCountry from "../../composables/countries.js";
+import { email } from '@vuelidate/validators';
 
 	// Tabulator
 	const rows = ref([]);
@@ -102,13 +103,12 @@
 		return toRaw(companies.value);
 	}
 
+	
 	// Table
 	const columns = [
-		{ label: t("country_id"), field: 'country_id' },
+		{ label: t("country_id"), field: 'country.common_name' },
 		{ label: t("name"), field: 'name' },
 		{ label: t("tax"), field: 'tax' },
-		{ label: t("municipality"), field: 'municipality' },
-		{ label: t("email"), field: 'email' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store
@@ -170,8 +170,12 @@
 
 	}
 
+	
+
 	onMounted(async () => {
 		rows.value = await findData();
+		console.log(rows.value);
+		//console.log(rows.value[1].country.common_name);
 	});
 
 
