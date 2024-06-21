@@ -1,5 +1,5 @@
 /* color palette from <https://github.com/vuejs/theme> */
-:root, :host{
+:root{
 
   --color-primary: #0096b2;
   --color-primary-dark: #007a91, /* cian oscuro */

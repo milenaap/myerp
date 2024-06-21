@@ -10,73 +10,6 @@
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
-						
-						<!-- <input
-							v-model.trim="validate.country_id.$model"
-							id="country_id"
-							type="text"
-							name="country_id"
-							class="form-control"
-							:class="{ 'border-danger': validate.country_id.$error }"
-						/> -->
-
-						 <!-- <label for="country_id" class="form-label w-full">
-							{{ $t("country_id") }} *
-						</label>
-						<select 
-							v-model.trim="validate.country_id.$model"
-							id="country_id"
-							name="country_id"
-							class="form-control"
-							:class="{ 'border-danger': validate.country_id.$error }"
-						>
-
-							<option value="">{{ $t("form.select") }}</option>
-							<option 
-								v-for="item in countries" 
-								:key="item.id" 
-								:value="item.id"
-							>
-								{{ item.common_name }}
-							</option>
-
-						</select> -->
-
-
-
-						<!-- <Combobox as="div" v-model.trim="validate.country_id.$model" @update:modelValue="queryCountry = ''">
-							<ComboboxLabel class="form-label w-full">{{ $t("country_id") }} *</ComboboxLabel>
-							
-							<div class="relative mt-0">
-								<ComboboxInput 
-									autocomplete="off"
-          							aria-autocomplete="none"
-									class="w-full rounded-md border-0 bg-white py-2 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-200 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 form-control"
-									:class="{ 'input-error': validate.country_id.$error }"
-									@change="queryCountry = $event.target.value" 
-									@blur="queryCountry = ''" 
-									:display-value="getDisplayValue" 
-								/>
-								<ComboboxButton class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-									<ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-								</ComboboxButton>
-
-								<ComboboxOptions v-if="filteredCountry.length > 0" class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-									<ComboboxOption v-for="person in filteredCountry" :key="person.id" :value="person.id" as="template" v-slot="{ active, selected }">
-									<li :class="['relative cursor-default select-none py-2 pl-8 pr-4', active ? 'bg-primary text-white' : 'text-gray-900']">
-										<span :class="['block truncate', selected && 'font-semibold']">
-										{{ person.common_name }}
-										</span>
-
-										<span v-if="selected" :class="['absolute inset-y-0 left-0 flex items-center pl-1.5', active ? 'text-white' : 'text-primary']">
-										<CheckIcon class="h-5 w-5" aria-hidden="true" />
-										</span>
-									</li>
-									</ComboboxOption>
-								</ComboboxOptions>
-							</div>
-						</Combobox> -->
-
 						<label for="country_id" class="form-label w-full">
 							{{ $t("country_id") }} *
 						</label>
@@ -95,7 +28,6 @@
 						</template>
 					</div>
 				</div>
-
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
@@ -322,7 +254,7 @@
 
 <script setup>
 
-	import { onMounted, reactive, toRefs, ref, computed } from 'vue';
+	import { onMounted, reactive, toRefs } from 'vue';
 	import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
@@ -334,37 +266,6 @@
 	import 'vue-select/dist/vue-select.css';
 
 	
-
-
-	// Combobox
-
-	// import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
-	// import {
-	// Combobox,
-	// ComboboxButton,
-	// ComboboxInput,
-	// ComboboxLabel,
-	// ComboboxOption,
-	// ComboboxOptions,
-	// } from '@headlessui/vue';
-
-	// const countriesList = ref([]);
-	// const queryCountry = ref('');
-	// const filteredCountry = computed(() =>
-	// queryCountry.value === ''
-	// 	? countriesList.value
-	// 	: countriesList.value.filter((item) => {
-	// 		return item.common_name.toLowerCase().includes(queryCountry.value.toLowerCase())
-	// 	}),
-	// );
-	// const getDisplayValue = (itemId) => {
-	// 	const find = countriesList.value.find(item => item.id === itemId);
-	// 	return find ? find.common_name : '';
-	// }
-
-	//----- Combobox
-
-
 
 
 	const {countries, getCountries} = useCountry();
