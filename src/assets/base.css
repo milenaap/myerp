@@ -1,5 +1,5 @@
 /* color palette from <https://github.com/vuejs/theme> */
-:root {
+:root, :host{
 
   --color-primary: #0096b2;
   --color-primary-dark: #007a91, /* cian oscuro */
@@ -34,6 +34,10 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+
+  --vs-border-color: #ffffff;
+
 }
 
 /* semantic color variables for this project */
@@ -49,6 +53,10 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+
+  --vs-border-color: #ffffff;
+
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -71,7 +79,11 @@
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+  
+  --vs-border-color: #ffffff;
+
 }
+
 
 /* body {
   min-height: 100vh;

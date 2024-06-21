@@ -20,7 +20,7 @@
 							:class="{ 'border-danger': validate.country_id.$error }"
 						/> -->
 
-						<!-- <label for="country_id" class="form-label w-full">
+						 <!-- <label for="country_id" class="form-label w-full">
 							{{ $t("country_id") }} *
 						</label>
 						<select 
@@ -44,13 +44,15 @@
 
 
 
-						<Combobox as="div" v-model.trim="validate.country_id.$model" @update:modelValue="queryCountry = ''">
+						<!-- <Combobox as="div" v-model.trim="validate.country_id.$model" @update:modelValue="queryCountry = ''">
 							<ComboboxLabel class="form-label w-full">{{ $t("country_id") }} *</ComboboxLabel>
 							
 							<div class="relative mt-0">
 								<ComboboxInput 
-									class="w-full rounded-md border-0 bg-white py-2 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 form-control"
-									:class="{ 'border-danger': validate.country_id.$error }"
+									autocomplete="off"
+          							aria-autocomplete="none"
+									class="w-full rounded-md border-0 bg-white py-2 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-200 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 form-control"
+									:class="{ 'input-error': validate.country_id.$error }"
 									@change="queryCountry = $event.target.value" 
 									@blur="queryCountry = ''" 
 									:display-value="getDisplayValue" 
@@ -61,20 +63,31 @@
 
 								<ComboboxOptions v-if="filteredCountry.length > 0" class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
 									<ComboboxOption v-for="person in filteredCountry" :key="person.id" :value="person.id" as="template" v-slot="{ active, selected }">
-									<li :class="['relative cursor-default select-none py-2 pl-8 pr-4', active ? 'bg-indigo-600 text-white' : 'text-gray-900']">
+									<li :class="['relative cursor-default select-none py-2 pl-8 pr-4', active ? 'bg-primary text-white' : 'text-gray-900']">
 										<span :class="['block truncate', selected && 'font-semibold']">
 										{{ person.common_name }}
 										</span>
 
-										<span v-if="selected" :class="['absolute inset-y-0 left-0 flex items-center pl-1.5', active ? 'text-white' : 'text-indigo-600']">
+										<span v-if="selected" :class="['absolute inset-y-0 left-0 flex items-center pl-1.5', active ? 'text-white' : 'text-primary']">
 										<CheckIcon class="h-5 w-5" aria-hidden="true" />
 										</span>
 									</li>
 									</ComboboxOption>
 								</ComboboxOptions>
 							</div>
-						</Combobox>
+						</Combobox> -->
 
+						<label for="country_id" class="form-label w-full">
+							{{ $t("country_id") }} *
+						</label>
+						<v-select
+							v-model="validate.country_id.$model"
+							:options="countries"
+							label="common_name"
+							:reduce="country => country.id"
+							:class="{ 'border-danger': validate.country_id.$error }"
+							class="form-control"
+						></v-select>
 						<template v-if="validate.country_id.$error">
 							<div v-for="(error, index) in validate.country_id.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
@@ -317,32 +330,37 @@
 	import useCountry from "../../composables/countries";
 
 
+	import vSelect from 'vue-select';
+	import 'vue-select/dist/vue-select.css';
+
+	
+
 
 	// Combobox
 
-	import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
-	import {
-	Combobox,
-	ComboboxButton,
-	ComboboxInput,
-	ComboboxLabel,
-	ComboboxOption,
-	ComboboxOptions,
-	} from '@headlessui/vue';
+	// import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+	// import {
+	// Combobox,
+	// ComboboxButton,
+	// ComboboxInput,
+	// ComboboxLabel,
+	// ComboboxOption,
+	// ComboboxOptions,
+	// } from '@headlessui/vue';
 
-	const countriesList = ref([]);
-	const queryCountry = ref('');
-	const filteredCountry = computed(() =>
-	queryCountry.value === ''
-		? countriesList.value
-		: countriesList.value.filter((item) => {
-			return item.common_name.toLowerCase().includes(queryCountry.value.toLowerCase())
-		}),
-	);
-	const getDisplayValue = (itemId) => {
-		const find = countriesList.value.find(item => item.id === itemId);
-		return find ? find.common_name : '';
-	}
+	// const countriesList = ref([]);
+	// const queryCountry = ref('');
+	// const filteredCountry = computed(() =>
+	// queryCountry.value === ''
+	// 	? countriesList.value
+	// 	: countriesList.value.filter((item) => {
+	// 		return item.common_name.toLowerCase().includes(queryCountry.value.toLowerCase())
+	// 	}),
+	// );
+	// const getDisplayValue = (itemId) => {
+	// 	const find = countriesList.value.find(item => item.id === itemId);
+	// 	return find ? find.common_name : '';
+	// }
 
 	//----- Combobox
 
@@ -416,8 +434,15 @@
 
 	onMounted(async () => {
 		await getCountries();	
-		console.log(countries.value);
-		countriesList.value = countries.value;
+		//console.log(countries.value);
+		//countriesList.value = countries.value;
 	});
 
 </script>
+
+
+<style scoped>
+
+
+
+</style>
