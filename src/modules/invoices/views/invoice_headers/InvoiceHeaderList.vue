@@ -107,11 +107,6 @@
 		return value === 0 ? t("no") : t("yes");
 	}
 
-	const tdClassFunc = (row) => {
-		return ;
-	}
-
-
 
 	// Table
 	const columns = [
