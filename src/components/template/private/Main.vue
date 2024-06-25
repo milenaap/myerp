@@ -35,15 +35,15 @@
                       <ul role="list" class="-mx-2 space-y-1">
                         <li v-for="item in navigation" :key="item.name">
                           <router-link v-if="!item.children" :to="{ name: item.href }" @click="closeSidebar"
-                            :class="[currentRoute === item.href ? 'bg-primary-dark text-black/80' : 'text-black/80 hover:text-black/80 hover:bg-gray-300/80', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-black/80']">
-                            <component :is="item.icon" class="h-6 w-6 shrink-0 text-black/80" aria-hidden="true" />
+                            :class="[currentRoute === item.href ? 'bg-primary-dark text-white' : 'text-white hover:text-white hover:bg-gray-300/80', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-white']">
+                            <component :is="item.icon" class="h-6 w-6 shrink-0 text-white" aria-hidden="true" />
                             {{ item.name }}
                           </router-link>
                           <div v-else>
                             <button
-                              :class="[isDropdownOpen(item.name) ? 'bg-primary-dark text-black/80' : 'text-black/80 hover:text-black/80 hover:bg-gray-300/80', 'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold']"
+                              :class="[isDropdownOpen(item.name) ? 'bg-primary-dark text-white' : 'text-white hover:text-white hover:bg-gray-300/80', 'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold']"
                               @click="toggleDropdown(item.name)">
-                              <component :is="item.icon" class="h-6 w-6 shrink-0 text-black/80" aria-hidden="true" />
+                              <component :is="item.icon" class="h-6 w-6 shrink-0 text-white" aria-hidden="true" />
                               {{ item.name }}
                               <ChevronRightIcon
                                 :class="[isDropdownOpen(item.name) ? 'rotate-90 text-gray-500' : 'text-gray-400', 'ml-auto h-5 w-5 shrink-0']"
@@ -53,7 +53,7 @@
                               <ul v-if="isDropdownOpen(item.name)" class="mt-1 px-2">
                                 <li v-for="subItem in item.children" :key="subItem.name">
                                   <router-link :to="{ name: subItem.href }" @click="closeSidebar"
-                                    :class="[currentRoute === subItem.href ? 'bg-primary-dark text-black/80' : 'hover:bg-gray-300/80', 'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-black/80']">
+                                    :class="[currentRoute === subItem.href ? 'bg-primary-dark text-white' : 'hover:bg-gray-300/80', 'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-white']">
                                     {{ subItem.name }} 
                                   </router-link>
                                 </li>
@@ -95,15 +95,15 @@
               <ul role="list" class="-mx-2 space-y-1">
                 <li v-for="item in navigation" :key="item.name">
                   <router-link v-if="!item.children" :to="{ name: item.href }" @click="closeSidebar"
-                    :class="[currentRoute === item.href ? 'bg-primary-dark text-black/80' : 'text-black/80 hover:text-black/80 hover:bg-gray-300/80', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-black/80']">
-                    <component :is="item.icon" class="h-6 w-6 shrink-0 text-black/80" aria-hidden="true" />
+                    :class="[currentRoute === item.href ? 'bg-primary-dark text-white' : 'text-white hover:text-white hover:bg-gray-300/80', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-white']">
+                    <component :is="item.icon" class="h-6 w-6 shrink-0 text-white" aria-hidden="true" />
                     {{ item.name }}
                   </router-link>
                   <div v-else>
                     <button
-                      :class="[isDropdownOpen(item.name) ? 'bg-primary-dark text-black/80' : 'text-black/80 hover:text-black/80 hover:bg-gray-300/80', 'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold']"
+                      :class="[isDropdownOpen(item.name) ? 'bg-primary-dark text-white' : 'text-white hover:text-white hover:bg-gray-300/80', 'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold']"
                       @click="toggleDropdown(item.name)">
-                      <component :is="item.icon" class="h-6 w-6 shrink-0 text-black/80" aria-hidden="true" />
+                      <component :is="item.icon" class="h-6 w-6 shrink-0 text-white" aria-hidden="true" />
                       {{ item.name }}
                       <ChevronRightIcon
                         :class="[isDropdownOpen(item.name) ? 'rotate-90 text-gray-500' : 'text-gray-400', 'ml-auto h-5 w-5 shrink-0']"
@@ -113,7 +113,7 @@
                       <ul v-if="isDropdownOpen(item.name)" class="mt-1 px-2">
                         <li v-for="subItem in item.children" :key="subItem.name">
                           <router-link :to="{ name: subItem.href }" @click="closeSidebar"
-                            :class="[currentRoute === subItem.href ? 'bg-primary-dark text-black/80' : 'text-black/80 hover:text-black/80 hover:bg-gray-300/80', 'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-black/80']">
+                            :class="[currentRoute === subItem.href ? 'bg-primary-dark text-white' : 'text-white hover:text-white hover:bg-gray-300/80', 'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-white']">
                             {{ subItem.name }}
                           </router-link>
                         </li>
