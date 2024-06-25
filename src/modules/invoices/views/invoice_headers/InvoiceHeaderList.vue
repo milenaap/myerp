@@ -103,8 +103,7 @@
 
 	// Table
 	const columns = [
-		{ label: t("invoice_counter_id"), field: 'invoice_counter_id' },
-		{ label: t("customer_id"), field: 'customer_id' },
+		{ label: t("customer_id"), field: 'customer' },
 		{ label: t("number"), field: 'number' },
 		{ label: t("date"), field: 'date' },
 		{ label: t("due_date"), field: 'due_date' },

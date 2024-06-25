@@ -17,7 +17,7 @@
 							v-model="validate.country_id.$model"
 							:options="countries"
 							label="common_name"
-							:reduce="country => country.id"
+							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.country_id.$error }"
 							class="form-control"
 						></v-select>
@@ -260,8 +260,6 @@
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
 	import useCountry from "../../composables/countries";
-
-
 	import vSelect from 'vue-select';
 	import 'vue-select/dist/vue-select.css';
 

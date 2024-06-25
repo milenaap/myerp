@@ -261,9 +261,7 @@
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
-
 	import useCountry from "../../composables/countries";
-
 	import vSelect from 'vue-select';
 	import 'vue-select/dist/vue-select.css';
 
