@@ -233,9 +233,9 @@ const navigation = [
     current: false,
     children: [
       { name: t("customers"), href: 'settings/companies' },
+      { name: t("products"), href: 'settings/products' },
       { name: t("providers"), href: 'settings/providers' },
       { name: t("services"), href: 'settings/services' },
-      { name: t("products"), href: 'settings/products' },
       { name: t("invoice_counters"), href: 'settings/invoice-counters' },
     ],
   },
