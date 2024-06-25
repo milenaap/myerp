@@ -97,8 +97,8 @@
 
 	// Table
 	const columns = [
-		{ label: t("company_id"), field: 'company_id' },
-		{ label: t("service_id"), field: 'service_id' },
+		{ label: t("company_id"), field: 'company.name' },
+		{ label: t("service_id"), field: 'service.name' },
 		{ label: t("code"), field: 'code' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
