@@ -232,11 +232,11 @@ const navigation = [
     icon: UsersIcon,
     current: false,
     children: [
-      { name: 'Clientes', href: 'settings/companies' },
-      { name: 'Proveedores', href: 'settings/providers' },
-      { name: 'Servicios', href: 'settings/services' },
-      { name: 'Productos', href: 'settings/products' },
-      // { name: 'Customer Success', href: 'customer' },
+      { name: t("customers"), href: 'settings/companies' },
+      { name: t("providers"), href: 'settings/providers' },
+      { name: t("services"), href: 'settings/services' },
+      { name: t("products"), href: 'settings/products' },
+      { name: t("invoice_counters"), href: 'settings/invoice-counters' },
     ],
   },
 ]

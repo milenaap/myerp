@@ -82,6 +82,18 @@ const routes = [
             meta: { breadcrumb: 'Cliente' }
           },
           {
+            path: '/settings/products',
+            name: 'settings/products',
+            component: () => import('@/modules/invoices/views/products/ProductList.vue'),
+            meta: { breadcrumb: 'Productos' }
+          },
+          {
+            path: '/settings/invoice-counters',
+            name: 'settings/invoice-counters',
+            component: () => import('@/modules/invoices/views/invoice_counters/InvoiceCounterList.vue'),
+            meta: { breadcrumb: 'Contador' }
+          },
+          {
             path: '/settings/providers',
             name: 'settings/providers',
             component: () => import('@/modules/invoices/views/providers/ProviderList.vue'),
@@ -93,12 +105,7 @@ const routes = [
             component: () => import('@/modules/invoices/views/services/ServiceList.vue'),
             meta: { breadcrumb: 'Servicios' }
           },
-          {
-            path: '/settings/products',
-            name: 'settings/products',
-            component: () => import('@/modules/invoices/views/products/ProductList.vue'),
-            meta: { breadcrumb: 'Productos' }
-          },
+          
         ]
       },
 

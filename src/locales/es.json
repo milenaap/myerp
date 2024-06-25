@@ -116,8 +116,7 @@
   "providers": "Proveedores",
   "products": "Productos",
   "services": "Servicios",
-  "service": "Servicio"
+  "service": "Servicio",
+  "invoice_counters": "Contadores"
 
-  
-  
 }

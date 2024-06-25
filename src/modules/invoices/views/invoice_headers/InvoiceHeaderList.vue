@@ -20,7 +20,7 @@
 	<!-- BEGIN: Table -->
 	<div v-animate id="div_table">
 		<div class="flex flex-col sm:flex-row xl:items-start justify-between mb-5">
-			<h1 class="mt-0">{{ $t("invoiceheaders") }}</h1>
+			<h1 class="mt-0">{{ $t("invoice_headers") }}</h1>
 			<button class="btn-primary sm:w-auto" @click.prevent="showCreateInvoiceHeader">
 				<div class="flex flex-row">
 					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" viewBox="0 0 50 50">
@@ -101,15 +101,12 @@
 		return toRaw(invoiceHeaders.value);
 	}
 
+
 	// Table
 	const columns = [
-		{ label: t("customer_id"), field: 'customer' },
+		{ label: t("customer"), field: 'customer' },
 		{ label: t("number"), field: 'number' },
 		{ label: t("date"), field: 'date' },
-		{ label: t("due_date"), field: 'due_date' },
-		{ label: t("month"), field: 'month' },
-		{ label: t("year"), field: 'year' },
-		{ label: t("description"), field: 'description' },
 		{ label: t("vat_quote"), field: 'vat_quote' },
 		{ label: t("total_without_vat"), field: 'total_without_vat' },
 		{ label: t("total_with_vat"), field: 'total_with_vat' },

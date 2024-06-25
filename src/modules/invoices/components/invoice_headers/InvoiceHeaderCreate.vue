@@ -13,14 +13,16 @@
 						<label for="invoice_counter_id" class="form-label w-full">
 							{{ $t("invoice_counter_id") }} *
 						</label>
-						<input
-							v-model.trim="validate.invoice_counter_id.$model"
-							id="invoice_counter_id"
-							type="text"
-							name="invoice_counter_id"
-							class="form-control"
+
+						<v-select
+							v-model="validate.invoice_counter_id.$model"
+							:options="invoiceCounters"
+							label="serial"
+							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.invoice_counter_id.$error }"
-						/>
+							class="form-control"
+						></v-select>
+
 						<template v-if="validate.invoice_counter_id.$error">
 							<div v-for="(error, index) in validate.invoice_counter_id.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
@@ -33,16 +35,18 @@
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="customer_id" class="form-label w-full">
-							{{ $t("customer_id") }} *
+							{{ $t("customer") }} *
 						</label>
-						<input
-							v-model.trim="validate.customer_id.$model"
-							id="customer_id"
-							type="text"
-							name="customer_id"
-							class="form-control"
+						
+						<v-select
+							v-model="validate.customer_id.$model"
+							:options="customers"
+							label="name"
+							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.customer_id.$error }"
-						/>
+							class="form-control"
+						></v-select>
+
 						<template v-if="validate.customer_id.$error">
 							<div v-for="(error, index) in validate.customer_id.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
@@ -111,50 +115,6 @@
 						/>
 						<template v-if="validate.due_date.$error">
 							<div v-for="(error, index) in validate.due_date.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="month" class="form-label w-full">
-							{{ $t("month") }} *
-						</label>
-						<input
-							v-model.trim="validate.month.$model"
-							id="month"
-							type="text"
-							name="month"
-							class="form-control"
-							:class="{ 'border-danger': validate.month.$error }"
-						/>
-						<template v-if="validate.month.$error">
-							<div v-for="(error, index) in validate.month.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="year" class="form-label w-full">
-							{{ $t("year") }} *
-						</label>
-						<input
-							v-model.trim="validate.year.$model"
-							id="year"
-							type="text"
-							name="year"
-							class="form-control"
-							:class="{ 'border-danger': validate.year.$error }"
-						/>
-						<template v-if="validate.year.$error">
-							<div v-for="(error, index) in validate.year.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -304,9 +264,21 @@
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
+	import useInvoiceCounter from "../../composables/invoice_counters.js";
+	import useCustomer from "../../composables/customers.js";
+	import vSelect from 'vue-select';
+	import 'vue-select/dist/vue-select.css';
+
+
 
 	const { t } = useI18n();
 	const emit = defineEmits(['cancelCreate', 'saveInvoiceHeaderForm']);
+
+
+	const {invoiceCounters, getInvoiceCounters} = useInvoiceCounter();
+	const {customers, getCustomers} = useCustomer();
+
+
 
 	const rules = {
 		invoice_counter_id: {
@@ -322,12 +294,6 @@
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		due_date: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		month: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		year: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		description: {
@@ -353,8 +319,6 @@
 		number: "",
 		date: "",
 		due_date: "",
-		month: "",
-		year: "",
 		description: "",
 		vat_quote: "",
 		total_without_vat: "",
@@ -374,7 +338,8 @@
 	};
 
 	onMounted(async () => {
-		// TODO here implements...
+		await getInvoiceCounters();
+		await getCustomers();
 	});
 
 </script>
