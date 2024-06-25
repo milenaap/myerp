@@ -46,7 +46,7 @@
                               <component :is="item.icon" class="h-6 w-6 shrink-0 text-white" aria-hidden="true" />
                               {{ item.name }}
                               <ChevronRightIcon
-                                :class="[isDropdownOpen(item.name) ? 'rotate-90 text-gray-500' : 'text-gray-400', 'ml-auto h-5 w-5 shrink-0']"
+                                :class="[isDropdownOpen(item.name) ? 'rotate-90 text-white' : 'text-white', 'ml-auto h-5 w-5 shrink-0']"
                                 aria-hidden="true" />
                             </button>
                             <transition>
@@ -106,7 +106,7 @@
                       <component :is="item.icon" class="h-6 w-6 shrink-0 text-white" aria-hidden="true" />
                       {{ item.name }}
                       <ChevronRightIcon
-                        :class="[isDropdownOpen(item.name) ? 'rotate-90 text-gray-500' : 'text-gray-400', 'ml-auto h-5 w-5 shrink-0']"
+                        :class="[isDropdownOpen(item.name) ? 'rotate-90 text-white' : 'text-white', 'ml-auto h-5 w-5 shrink-0']"
                         aria-hidden="true" />
                     </button>
                     <transition>

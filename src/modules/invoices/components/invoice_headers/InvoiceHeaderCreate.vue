@@ -41,11 +41,26 @@
 						<v-select
 							v-model="validate.customer_id.$model"
 							:options="customers"
-							label="name"
+							label="code"
 							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.customer_id.$error }"
 							class="form-control"
-						></v-select>
+						>
+
+							<!-- Personalización de cómo se muestra cada opción -->
+							<template #option="{ code, company }">
+								{{ code }} - {{ company.name }}
+							</template>
+
+							<template #selected-option="{ code, company }">
+								<div>
+
+									{{ displayText(code + company.name) }}
+									
+								</div>
+							</template>
+							
+						</v-select>
 
 						<template v-if="validate.customer_id.$error">
 							<div v-for="(error, index) in validate.customer_id.$errors" :key="index" class="text-danger mt-2">
@@ -271,6 +286,8 @@
 
 
 
+
+
 	const { t } = useI18n();
 	const emit = defineEmits(['cancelCreate', 'saveInvoiceHeaderForm']);
 
@@ -337,9 +354,36 @@
 		}
 	};
 
+
+
+
+
+	// Función para truncar el texto con un límite máximo de caracteres
+	const truncateText = (text, maxLength) => {
+		return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+	};
+
+	// Ejemplo de cómo usar la función para truncar
+	const displayText = (option) => {
+		const code = truncateText(option.code, 10); // Trunca el código si es necesario
+		const companyName = truncateText(option.company.name, 20); // Trunca el nombre de la compañía si es necesario
+		return `${code} - ${companyName}`;
+	};
+
+
 	onMounted(async () => {
 		await getInvoiceCounters();
 		await getCustomers();
+
+		console.log(customers.value);
 	});
 
 </script>
+
+
+<style scoped>
+
+
+
+
+</style>

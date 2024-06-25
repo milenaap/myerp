@@ -99,7 +99,6 @@
 
 	const findData = async() => {
 		await getInvoiceHeaders();
-		console.log(invoiceHeaders.value);
 		return toRaw(invoiceHeaders.value);
 	}
 
@@ -189,22 +188,5 @@
 </script>
 
 <style scoped>
-
-/* .text-right {
-  text-align: right !important;
-}
-
-.text-center {
-  text-align: center !important;
-} */
-
-
-
-
-/* .text-center {
-  text-align: center !important;
-}  */
-
-
 
 </style>
