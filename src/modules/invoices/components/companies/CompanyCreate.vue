@@ -7,29 +7,8 @@
 
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
-			
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="country_id" class="form-label w-full">
-							{{ $t("country_id") }} *
-						</label>
-						<v-select
-							v-model="validate.country_id.$model"
-							:options="countries"
-							label="common_name"
-							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.country_id.$error }"
-							class="form-control"
-						></v-select>
-						<template v-if="validate.country_id.$error">
-							<div v-for="(error, index) in validate.country_id.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				
+				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
 						<label for="name" class="form-label w-full">
 							{{ $t("name") }} *
@@ -51,7 +30,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-4 lg:col-span-4">
 					<div class="input-form">
 						<label for="tax" class="form-label w-full">
 							{{ $t("tax") }} *
@@ -72,22 +51,23 @@
 					</div>
 				</div>
 
-
+				
+				
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
-						<label for="address" class="form-label w-full">
-							{{ $t("address") }} *
+						<label for="country_id" class="form-label w-full">
+							{{ $t("country_id") }} *
 						</label>
-						<input
-							v-model.trim="validate.address.$model"
-							id="address"
-							type="text"
-							name="address"
+						<v-select
+							v-model="validate.country_id.$model"
+							:options="countries"
+							label="common_name"
+							:reduce="item => item.id"
+							:class="{ 'border-danger': validate.country_id.$error }"
 							class="form-control"
-							:class="{ 'border-danger': validate.address.$error }"
-						/>
-						<template v-if="validate.address.$error">
-							<div v-for="(error, index) in validate.address.$errors" :key="index" class="text-danger mt-2">
+						></v-select>
+						<template v-if="validate.country_id.$error">
+							<div v-for="(error, index) in validate.country_id.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -139,7 +119,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-4 lg:col-span-4">
 					<div class="input-form">
 						<label for="municipality" class="form-label w-full">
 							{{ $t("municipality") }} *
@@ -161,7 +141,33 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				
+
+
+				<div class="col-span-12 md:col-span-8 lg:col-span-8">
+					<div class="input-form">
+						<label for="address" class="form-label w-full">
+							{{ $t("address") }} *
+						</label>
+						<input
+							v-model.trim="validate.address.$model"
+							id="address"
+							type="text"
+							name="address"
+							class="form-control"
+							:class="{ 'border-danger': validate.address.$error }"
+						/>
+						<template v-if="validate.address.$error">
+							<div v-for="(error, index) in validate.address.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+
+				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
 						<label for="email" class="form-label w-full">
 							{{ $t("email") }} *
@@ -183,10 +189,10 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-4 lg:col-span-4">
 					<div class="input-form">
 						<label for="phone" class="form-label w-full">
-							{{ $t("phone") }} *
+							{{ $t("phone") }}
 						</label>
 						<input
 							v-model.trim="validate.phone.$model"
@@ -205,10 +211,10 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="input-form">
 						<label for="website" class="form-label w-full">
-							{{ $t("website") }} *
+							{{ $t("website") }}
 						</label>
 						<input
 							v-model.trim="validate.website.$model"
@@ -265,7 +271,6 @@
 
 	
 
-
 	const {countries, getCountries} = useCountry();
 
 	const { t } = useI18n();
@@ -297,10 +302,10 @@
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		phone: {
-			required: helpers.withMessage(t("form.required"), required),
+			//required: helpers.withMessage(t("form.required"), required),
 		},
 		website: {
-			required: helpers.withMessage(t("form.required"), required),
+			//required: helpers.withMessage(t("form.required"), required),
 		},
 	};
 

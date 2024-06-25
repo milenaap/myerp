@@ -98,19 +98,30 @@
 
 	const findData = async() => {
 		await getInvoiceHeaders();
+		console.log(invoiceHeaders.value);
 		return toRaw(invoiceHeaders.value);
 	}
 
 
+	const formatHasPaid = (value) => {
+		return value === 0 ? t("no") : t("yes");
+	}
+
+	const tdClassFunc = (row) => {
+		return ;
+	}
+
+
+
 	// Table
 	const columns = [
-		{ label: t("customer"), field: 'customer' },
+		{ label: t("customer"), field: 'customer.company.name' },
 		{ label: t("number"), field: 'number' },
-		{ label: t("date"), field: 'date' },
-		{ label: t("vat_quote"), field: 'vat_quote' },
-		{ label: t("total_without_vat"), field: 'total_without_vat' },
-		{ label: t("total_with_vat"), field: 'total_with_vat' },
-		{ label: t("has_paid"), field: 'has_paid' },
+		{ label: t("date"), field: 'date', type: 'date', dateInputFormat: 'yyyy-MM-dd', dateOutputFormat: 'dd-MM-yyyy', },
+		{ label: t("vat_quote"), field: 'vat_quote', tdClass: 'text-right', type: 'number', tdClass: 'text-right' },
+		{ label: t("total_without_vat"), field: 'total_without_vat', type: 'number', tdClass: 'text-right' },
+		{ label: t("total_with_vat"), field: 'total_with_vat', type: 'number', tdClass: 'text-right' },
+		{ label: t("has_paid"), field: 'has_paid', formatFn: formatHasPaid, type: 'number', tdClass: 'text-right' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store
@@ -172,6 +183,8 @@
 
 	}
 
+
+
 	onMounted(async () => {
 		rows.value = await findData();
 	});
@@ -180,4 +193,11 @@
 </script>
 
 <style scoped>
+
+.text-right {
+  text-align: right !important;
+}
+
+
+
 </style>

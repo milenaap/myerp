@@ -84,7 +84,7 @@
 	import Create from "../../components/companies/CompanyCreate.vue";
 	import Edit from "../../components/companies/CompanyEdit.vue";
 	import useCountry from "../../composables/countries.js";
-import { email } from '@vuelidate/validators';
+	import { email } from '@vuelidate/validators';
 
 	// Tabulator
 	const rows = ref([]);

@@ -29,6 +29,8 @@
   "cancel": "Cancelar",
   "delete": "Borrar",
   "name": "Nombre",
+  "yes": "Sí",
+  "no": "No",
   "setting_table":{
     "next_table": "Sig",
     "prev_table": "Prev",
