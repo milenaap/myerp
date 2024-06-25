@@ -83,6 +83,7 @@
 	import useInvoiceHeader from "../../composables/invoice_headers";
 	import Create from "../../components/invoice_headers/InvoiceHeaderCreate.vue";
 	import Edit from "../../components/invoice_headers/InvoiceHeaderEdit.vue";
+	import { formatDecimal } from "@/utils/helper.js";
 
 	// Tabulator
 	const rows = ref([]);
@@ -98,7 +99,6 @@
 
 	const findData = async() => {
 		await getInvoiceHeaders();
-		console.log(invoiceHeaders.value);
 		return toRaw(invoiceHeaders.value);
 	}
 
@@ -112,11 +112,11 @@
 	const columns = [
 		{ label: t("customer"), field: 'customer.company.name' },
 		{ label: t("number"), field: 'number' },
-		{ label: t("date"), field: 'date', type: 'date', dateInputFormat: 'yyyy-MM-dd', dateOutputFormat: 'dd-MM-yyyy', },
-		{ label: t("vat_quote"), field: 'vat_quote', tdClass: 'text-right', type: 'number', tdClass: 'text-right' },
-		{ label: t("total_without_vat"), field: 'total_without_vat', type: 'number', tdClass: 'text-right' },
-		{ label: t("total_with_vat"), field: 'total_with_vat', type: 'number', tdClass: 'text-right' },
-		{ label: t("has_paid"), field: 'has_paid', formatFn: formatHasPaid, type: 'number', tdClass: 'text-right' },
+		{ label: t("date"), field: 'date', type: 'date', dateInputFormat: 'yyyy-MM-dd', dateOutputFormat: 'dd-MM-yyyy' },
+		{ label: t("vat_quote"), field: 'vat_quote', formatFn: formatDecimal, tdClass: 'text-right', type: 'number', tdClass: 'vgt-right-align' },
+		{ label: t("total_without_vat"), field: 'total_without_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
+		{ label: t("total_with_vat"), field: 'total_with_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
+		{ label: t("has_paid"), field: 'has_paid', formatFn: formatHasPaid, type: "number", tdClass: 'vgt-center-align', },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px' },
 	];
 	//Store
@@ -188,11 +188,5 @@
 </script>
 
 <style scoped>
-
-.text-right {
-  text-align: right !important;
-}
-
-
 
 </style>

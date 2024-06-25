@@ -174,8 +174,6 @@
 
 	onMounted(async () => {
 		rows.value = await findData();
-		console.log(rows.value);
-		//console.log(rows.value[1].country.common_name);
 	});
 
 
