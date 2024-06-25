@@ -117,7 +117,7 @@
 		{ label: t("total_without_vat"), field: 'total_without_vat', type: 'number', tdClass: 'text-right' },
 		{ label: t("total_with_vat"), field: 'total_with_vat', type: 'number', tdClass: 'text-right' },
 		{ label: t("has_paid"), field: 'has_paid', formatFn: formatHasPaid, type: 'number', tdClass: 'text-right' },
-		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
+		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px' },
 	];
 	//Store
 	const showCreateInvoiceHeader = () => {
