@@ -119,6 +119,8 @@
   "products": "Productos",
   "services": "Servicios",
   "service": "Servicio",
-  "invoice_counters": "Contadores"
+  "invoice_counters": "Contadores",
+  "amount_without_vat": "Importe sin IVA",
+  "amount_with_vat": "Importe con IVA"  
 
 }

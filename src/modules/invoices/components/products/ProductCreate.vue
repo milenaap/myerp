@@ -8,7 +8,7 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-6 lg:col-span-6">
 					<div class="input-form">
 						<label for="name" class="form-label w-full">
 							{{ $t("name") }} *
@@ -30,7 +30,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-2 lg:col-span-2">
 					<div class="input-form">
 						<label for="amount_without_vat" class="form-label w-full">
 							{{ $t("amount_without_vat") }} *
@@ -52,29 +52,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="amount_with_vat" class="form-label w-full">
-							{{ $t("amount_with_vat") }} *
-						</label>
-						<input
-							v-model.trim="validate.amount_with_vat.$model"
-							id="amount_with_vat"
-							type="text"
-							name="amount_with_vat"
-							class="form-control"
-							:class="{ 'border-danger': validate.amount_with_vat.$error }"
-						/>
-						<template v-if="validate.amount_with_vat.$error">
-							<div v-for="(error, index) in validate.amount_with_vat.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-2 lg:col-span-2">
 					<div class="input-form">
 						<label for="vat" class="form-label w-full">
 							{{ $t("vat") }} *
@@ -95,8 +73,30 @@
 					</div>
 				</div>
 
+				
+				<div class="col-span-12 md:col-span-2 lg:col-span-2">
+					<div class="input-form">
+						<label for="amount_with_vat" class="form-label w-full">
+							{{ $t("total") }} *
+						</label>
+						<input
+							v-model.trim="validate.amount_with_vat.$model"
+							id="amount_with_vat"
+							type="text"
+							name="amount_with_vat"
+							class="form-control"
+							:class="{ 'border-danger': validate.amount_with_vat.$error }"
+						/>
+						<template v-if="validate.amount_with_vat.$error">
+							<div v-for="(error, index) in validate.amount_with_vat.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+
+				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="input-form">
 						<label for="description" class="form-label w-full">
 							{{ $t("description") }}

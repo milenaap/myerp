@@ -16,15 +16,19 @@ const mensaje = ref('variable');
 // Declaracion e inicialización
 const num1 = ref(0);
 const num2 = ref(0);
+const num3 = ref(0);
 const resultado = ref(0);
 
 // Asignando valor
-num1.value = 10;
+num1.value = 30;
 num2.value = 20;
+num3.value = 10;
 
 // Procesando
-resultado.value = num1.value + num2.value;
+resultado.value = (num1.value + num2.value) * (num3.value);
 console.log(resultado.value);
+
+
 
 
 </script>
