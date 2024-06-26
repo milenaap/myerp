@@ -20,7 +20,6 @@
 							label="name"
 							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.service_id.$error }"
-							class="form-control"
 						></v-select>
 
 						<template v-if="validate.service_id.$error">

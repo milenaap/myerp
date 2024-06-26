@@ -20,8 +20,8 @@
 							label="serial"
 							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.invoice_counter_id.$error }"
-							
 						></v-select>
+
 
 						<template v-if="validate.invoice_counter_id.$error">
 							<div v-for="(error, index) in validate.invoice_counter_id.$errors" :key="index" class="text-danger mt-2">
@@ -52,10 +52,8 @@
 							</template>
 
 							<template #selected-option="{ code, company }">
-								<div style="display: flex; flex-direction: columns; align-items: baseline">
-									{{ code + ' ' + company.name }}
-								</div>
-							</template>
+								{{ code + ' - ' + company.name }}
+							</template> 
 							
 						</v-select>
 
@@ -370,8 +368,6 @@
 	onMounted(async () => {
 		await getInvoiceCounters();
 		await getCustomers();
-
-		console.log(customers.value);
 	});
 
 </script>
