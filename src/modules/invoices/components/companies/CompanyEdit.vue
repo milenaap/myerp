@@ -63,7 +63,6 @@
 							label="common_name"
 							:reduce="country => country.id"
 							:class="{ 'border-danger': validate.country_id.$error }"
-							class="form-control"
 						></v-select>
 						<template v-if="validate.country_id.$error">
 							<div v-for="(error, index) in validate.country_id.$errors" :key="index" class="text-danger mt-2">

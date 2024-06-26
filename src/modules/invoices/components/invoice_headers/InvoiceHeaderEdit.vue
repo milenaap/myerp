@@ -20,7 +20,6 @@
 							label="serial"
 							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.invoice_counter_id.$error }"
-							class="form-control"
 						></v-select>
 
 						<template v-if="validate.invoice_counter_id.$error">
@@ -44,7 +43,6 @@
 							label="name"
 							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.customer_id.$error }"
-							class="form-control"
 						></v-select>
 
 						<template v-if="validate.customer_id.$error">

@@ -80,7 +80,8 @@
   margin: 0;
   font-weight: normal;
   
-  --vs-border-color: #ffffff;
+  --vs-line-height: 1.8;
+  --vs-search-input-color: #f2f2f2;
 
 }
 
