@@ -121,6 +121,8 @@
   "service": "Servicio",
   "invoice_counters": "Contadores",
   "amount_without_vat": "Importe sin IVA",
-  "amount_with_vat": "Importe con IVA"  
+  "amount_with_vat": "Importe con IVA",
+  "counter": "Contador",
+  "serial": "Serial"
 
 }
