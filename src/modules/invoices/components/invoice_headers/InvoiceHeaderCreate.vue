@@ -368,6 +368,7 @@
 	onMounted(async () => {
 		await getInvoiceCounters();
 		await getCustomers();
+
 	});
 
 </script>

@@ -104,9 +104,10 @@
 	// Table
 	const columns = [
 		{ label: t("name"), field: 'name' },
-		{ label: t("amount_without_vat"), field: 'amount_without_vat' },
-		{ label: t("amount_with_vat"), field: 'amount_with_vat' },
-		{ label: t("vat"), field: 'vat' },
+		{ label: t("purchase_price_without_vat"), field: 'purchase_price_without_vat' },
+		{ label: t("sale_price_without_vat"), field: 'sale_price_without_vat' },
+		{ label: t("vat_quote"), field: 'vat_quote' },
+		{ label: t("description"), field: 'description' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store
