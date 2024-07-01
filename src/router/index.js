@@ -63,6 +63,12 @@ const routes = [
         meta: { breadcrumb: 'Inicio' }
       },
       {
+        path: '/ims-invoice-headers',
+        name: 'ims-invoice-headers',
+        component: () => import('@/modules/invoices/views/ims_invoice_headers/ImsInvoiceHeaderList.vue'),
+        meta: { breadcrumb: 'Inicio' }
+      },
+      {
         path: '/invoices',
         name: 'invoices',
         component: () => import('@/modules/invoices/views/invoice_headers/InvoiceHeaderList.vue'),

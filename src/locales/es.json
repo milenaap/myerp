@@ -125,7 +125,11 @@
   "counter": "Contador",
   "serial": "Serial",
   "purchase_price_without_vat": "Precio de compra sin IVA",
-  "sale_price_without_vat": "Precio de venta sin IVA"
+  "sale_price_without_vat": "Precio de venta sin IVA",
+  "invoiced_at": "Facturado",
+  "path": "Ruta",
+  "processed_at": "Procesado",
+  "ims_invoice_headers": "Ficheros IMS"
 
 
 }
