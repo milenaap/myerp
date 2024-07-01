@@ -103,7 +103,7 @@
 
 	// Table
 	const columns = [
-		{ label: t("name"), field: 'name' },
+		{ label: t("name"), field: 'name', width: '500px' },
 		{ label: t("purchase_price_without_vat"), field: 'purchase_price_without_vat' },
 		{ label: t("sale_price_without_vat"), field: 'sale_price_without_vat' },
 		{ label: t("vat_quote"), field: 'vat_quote' },
