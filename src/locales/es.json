@@ -123,6 +123,9 @@
   "amount_without_vat": "Importe sin IVA",
   "amount_with_vat": "Importe con IVA",
   "counter": "Contador",
-  "serial": "Serial"
+  "serial": "Serial",
+  "purchase_price_without_vat": "Precio de compra sin IVA",
+  "sale_price_without_vat": "Precio de venta sin IVA"
+
 
 }
