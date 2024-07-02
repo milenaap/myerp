@@ -213,8 +213,13 @@ import {
   FolderIcon,
 } from '@heroicons/vue/24/outline';
 import { ChevronDownIcon, MagnifyingGlassIcon, ChevronRightIcon } from '@heroicons/vue/20/solid';
+import { useAuthenticationStore } from '@/stores/auth/authentication';
 //import Breadcrumb from '@/components/template/private/Breadcrumb.vue';
 
+
+
+const authStore = useAuthenticationStore();
+const { logout } = authStore;
 
 
 
@@ -223,8 +228,8 @@ const { t } = useI18n();
 
 const navigation = [
   { name: t("dashboard"), href: 'dashboard', icon: HomeModernIcon, current: true },
-  { name: t("invoices"), href: 'invoices', icon: FolderIcon, current: false },
   { name: t("ims_invoice_headers"), href: 'ims-invoice-headers', icon: FolderIcon, current: false },
+  { name: t("invoices"), href: 'invoices', icon: DocumentIcon, current: false },
  
   {
     name: 'Configuración',

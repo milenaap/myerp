@@ -83,6 +83,7 @@
 	import useProduct from "../../composables/products";
 	import Create from "../../components/products/ProductCreate.vue";
 	import Edit from "../../components/products/ProductEdit.vue";
+	import { formatDecimal } from "@/utils/helper.js";
 
 	// Tabulator
 	const rows = ref([]);
@@ -104,10 +105,9 @@
 	// Table
 	const columns = [
 		{ label: t("name"), field: 'name', width: '500px' },
-		{ label: t("purchase_price_without_vat"), field: 'purchase_price_without_vat' },
-		{ label: t("sale_price_without_vat"), field: 'sale_price_without_vat' },
-		{ label: t("vat_quote"), field: 'vat_quote' },
-		{ label: t("description"), field: 'description' },
+		{ label: t("purchase_price_without_vat"), field: 'purchase_price_without_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
+		{ label: t("sale_price_without_vat"), field: 'sale_price_without_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
+		{ label: t("vat_quote"), field: 'vat_quote', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store

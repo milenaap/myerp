@@ -16,7 +16,7 @@
       <div class="bg-white shadow-md rounded-lg p-6">
         <h2 class="text-xl font-bold mb-4">Alquiler Dispositivos</h2>
         <p class="text-gray-700">Dispositivos en Alquiler: </p>
-        <p class="text-gray-700">Monto Total: €</p>
+        <p class="text-gray-700">Importe Total: €</p>
         <p class="text-gray-700">Próxima Fecha de Devolución: </p>
       </div>
 
