@@ -76,63 +76,19 @@
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
-						<label for="car" class="form-label w-full">
-							{{ $t("car") }} *
+						<label for="number" class="form-label w-full">
+							{{ $t("number") }} *
 						</label>
 						<input
-							v-model.trim="validate.car.$model"
-							id="car"
+							v-model.trim="validate.number.$model"
+							id="number"
 							type="text"
-							name="car"
+							name="number"
 							class="form-control"
-							:class="{ 'border-danger': validate.car.$error }"
+							:class="{ 'border-danger': validate.number.$error }"
 						/>
-						<template v-if="validate.car.$error">
-							<div v-for="(error, index) in validate.car.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="device" class="form-label w-full">
-							{{ $t("device") }} *
-						</label>
-						<input
-							v-model.trim="validate.device.$model"
-							id="device"
-							type="text"
-							name="device"
-							class="form-control"
-							:class="{ 'border-danger': validate.device.$error }"
-						/>
-						<template v-if="validate.device.$error">
-							<div v-for="(error, index) in validate.device.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="device_id" class="form-label w-full">
-							{{ $t("device_id") }} *
-						</label>
-						<input
-							v-model.trim="validate.device_id.$model"
-							id="device_id"
-							type="text"
-							name="device_id"
-							class="form-control"
-							:class="{ 'border-danger': validate.device_id.$error }"
-						/>
-						<template v-if="validate.device_id.$error">
-							<div v-for="(error, index) in validate.device_id.$errors" :key="index" class="text-danger mt-2">
+						<template v-if="validate.number.$error">
+							<div v-for="(error, index) in validate.number.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -164,72 +120,6 @@
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
-						<label for="installed_at" class="form-label w-full">
-							{{ $t("installed_at") }} *
-						</label>
-						<input
-							v-model.trim="validate.installed_at.$model"
-							id="installed_at"
-							type="text"
-							name="installed_at"
-							class="form-control"
-							:class="{ 'border-danger': validate.installed_at.$error }"
-						/>
-						<template v-if="validate.installed_at.$error">
-							<div v-for="(error, index) in validate.installed_at.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="subscription_price" class="form-label w-full">
-							{{ $t("subscription_price") }} *
-						</label>
-						<input
-							v-model.trim="validate.subscription_price.$model"
-							id="subscription_price"
-							type="text"
-							name="subscription_price"
-							class="form-control"
-							:class="{ 'border-danger': validate.subscription_price.$error }"
-						/>
-						<template v-if="validate.subscription_price.$error">
-							<div v-for="(error, index) in validate.subscription_price.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="payable_days" class="form-label w-full">
-							{{ $t("payable_days") }} *
-						</label>
-						<input
-							v-model.trim="validate.payable_days.$model"
-							id="payable_days"
-							type="text"
-							name="payable_days"
-							class="form-control"
-							:class="{ 'border-danger': validate.payable_days.$error }"
-						/>
-						<template v-if="validate.payable_days.$error">
-							<div v-for="(error, index) in validate.payable_days.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
 						<label for="plate" class="form-label w-full">
 							{{ $t("plate") }} *
 						</label>
@@ -243,6 +133,28 @@
 						/>
 						<template v-if="validate.plate.$error">
 							<div v-for="(error, index) in validate.plate.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="installed_at" class="form-label w-full">
+							{{ $t("installed_at") }} *
+						</label>
+						<input
+							v-model.trim="validate.installed_at.$model"
+							id="installed_at"
+							type="text"
+							name="installed_at"
+							class="form-control"
+							:class="{ 'border-danger': validate.installed_at.$error }"
+						/>
+						<template v-if="validate.installed_at.$error">
+							<div v-for="(error, index) in validate.installed_at.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -287,6 +199,50 @@
 						/>
 						<template v-if="validate.sale_price_without_vat.$error">
 							<div v-for="(error, index) in validate.sale_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="rental_price_without_vat" class="form-label w-full">
+							{{ $t("rental_price_without_vat") }} *
+						</label>
+						<input
+							v-model.trim="validate.rental_price_without_vat.$model"
+							id="rental_price_without_vat"
+							type="text"
+							name="rental_price_without_vat"
+							class="form-control"
+							:class="{ 'border-danger': validate.rental_price_without_vat.$error }"
+						/>
+						<template v-if="validate.rental_price_without_vat.$error">
+							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="provider_rental_price_without_vat" class="form-label w-full">
+							{{ $t("provider_rental_price_without_vat") }} *
+						</label>
+						<input
+							v-model.trim="validate.provider_rental_price_without_vat.$model"
+							id="provider_rental_price_without_vat"
+							type="text"
+							name="provider_rental_price_without_vat"
+							class="form-control"
+							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }"
+						/>
+						<template v-if="validate.provider_rental_price_without_vat.$error">
+							<div v-for="(error, index) in validate.provider_rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -340,28 +296,16 @@
 		product_id: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
-		car: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		device: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		device_id: {
+		number: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		sim: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
-		installed_at: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		subscription_price: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		payable_days: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
 		plate: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
+		installed_at: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		purchase_price_without_vat: {
@@ -370,22 +314,26 @@
 		sale_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
+		rental_price_without_vat: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
+		provider_rental_price_without_vat: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
 	};
 
 	const formData = reactive({
 		customer_id: "",
 		provider_id: "",
 		product_id: "",
-		car: "",
-		device: "",
-		device_id: "",
+		number: "",
 		sim: "",
-		installed_at: "",
-		subscription_price: "",
-		payable_days: "",
 		plate: "",
+		installed_at: "",
 		purchase_price_without_vat: "",
 		sale_price_without_vat: "",
+		rental_price_without_vat: "",
+		provider_rental_price_without_vat: "",
 	});
 
 	const validate = useVuelidate(rules, toRefs(formData));
