@@ -107,7 +107,7 @@
 		{ label: t("provider_id"), field: 'provider_id' },
 		{ label: t("product_id"), field: 'product_id' },
 		{ label: t("number"), field: 'number' },
-		{ label: t("sim"), field: 'sim' },
+		{ label: t("SIM"), field: 'SIM' },
 		{ label: t("plate"), field: 'plate' },
 		{ label: t("installed_at"), field: 'installed_at' },
 		{ label: t("purchase_price_without_vat"), field: 'purchase_price_without_vat' },
