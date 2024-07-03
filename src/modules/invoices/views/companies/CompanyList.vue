@@ -134,8 +134,6 @@
 		
 
 		await storeCompany({ ...form });
-		rows.value = await findData();
-
 		console.log(company.value);
 
 		form.company_id = company.value.id;
@@ -143,7 +141,16 @@
 		await storeCustomer({...form});
 
 
-		await Toast(t("message.record_saved"), 'success');
+
+		rows.value = await findData();
+
+		if(company.value){
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			await Toast(t("message.error"), 'error');
+		}
+
+		
 	}
 
 	//Edit
