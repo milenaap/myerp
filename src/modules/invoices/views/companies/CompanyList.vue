@@ -81,10 +81,13 @@
 	import { Toast } from '@/utils/toast';
 	import Swal from 'sweetalert2';
 	import useCompany from "../../composables/companies";
+	import useCustomers from "@/modules/invoices/composables/customers";
+
 	import Create from "../../components/companies/CompanyCreate.vue";
 	import Edit from "../../components/companies/CompanyEdit.vue";
-	import useCountry from "../../composables/countries.js";
-	import { email } from '@vuelidate/validators';
+
+
+	
 
 	// Tabulator
 	const rows = ref([]);
@@ -95,7 +98,10 @@
 	const companyId = ref(0);
 
 	const { t } = useI18n();
-	const { companies, getCompanies, storeCompany, updateCompany, destroyCompany} = useCompany();
+	const { company, companies, getCompanies, storeCompany, updateCompany, destroyCompany} = useCompany();
+
+	const { customer, storeCustomer, updateCustomer, destroyCustomer} = useCustomers();
+
 
 
 	const findData = async() => {
@@ -125,8 +131,18 @@
 	const saveCompanyForm = async (form) => {
 		isCreate.value = false;
 		div_table.style.display = 'block';
+		
+
 		await storeCompany({ ...form });
 		rows.value = await findData();
+
+		console.log(company.value);
+
+		form.company_id = company.value.id;
+
+		await storeCustomer({...form});
+
+
 		await Toast(t("message.record_saved"), 'success');
 	}
 
