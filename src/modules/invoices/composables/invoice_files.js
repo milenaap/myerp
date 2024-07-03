@@ -11,11 +11,11 @@ export default function useInvoiceFile() {
 
 	const getInvoiceFiles = async () => {
 		invoiceFileErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}invoice-files/list`,{
+		await fetch(`${import.meta.env.VITE_API_URL}invoice-files/list`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -34,11 +34,11 @@ export default function useInvoiceFile() {
 
 	const getInvoiceFile = async (id) => {
 		invoiceFileErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}invoice-files/show/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}invoice-files/show/${id}`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -57,11 +57,11 @@ export default function useInvoiceFile() {
 
 	const storeInvoiceFile = async (data) => {
 		invoiceFileErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}invoice-files/store`,{
+		await fetch(`${import.meta.env.VITE_API_URL}invoice-files/store`,{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -81,11 +81,11 @@ export default function useInvoiceFile() {
 
 	const updateInvoiceFile = async (id, data) => {
 		invoiceFileErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}invoice-files/update/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}invoice-files/update/${id}`,{
 			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -105,11 +105,11 @@ export default function useInvoiceFile() {
 
 	const destroyInvoiceFile = async (id) => {
 		invoiceFileErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}invoice-files/delete/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}invoice-files/delete/${id}`,{
 			method: 'DELETE',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())

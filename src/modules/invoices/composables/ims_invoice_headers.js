@@ -11,11 +11,11 @@ export default function useImsInvoiceHeader() {
 
 	const getImsInvoiceHeaders = async () => {
 		imsInvoiceHeaderErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}ims-invoice-headers/list`,{
+		await fetch(`${import.meta.env.VITE_API_URL}ims-invoice-headers/list`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -34,11 +34,11 @@ export default function useImsInvoiceHeader() {
 
 	const getImsInvoiceHeader = async (id) => {
 		imsInvoiceHeaderErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}ims-invoice-headers/show/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}ims-invoice-headers/show/${id}`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -57,11 +57,11 @@ export default function useImsInvoiceHeader() {
 
 	const storeImsInvoiceHeader = async (data) => {
 		imsInvoiceHeaderErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}ims-invoice-headers/store`,{
+		await fetch(`${import.meta.env.VITE_API_URL}ims-invoice-headers/store`,{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -81,11 +81,11 @@ export default function useImsInvoiceHeader() {
 
 	const updateImsInvoiceHeader = async (id, data) => {
 		imsInvoiceHeaderErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}ims-invoice-headers/update/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}ims-invoice-headers/update/${id}`,{
 			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -105,11 +105,11 @@ export default function useImsInvoiceHeader() {
 
 	const destroyImsInvoiceHeader = async (id) => {
 		imsInvoiceHeaderErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}ims-invoice-headers/delete/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}ims-invoice-headers/delete/${id}`,{
 			method: 'DELETE',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
