@@ -134,7 +134,10 @@
   "plate": "Matrícula",
   "customer_devices": "Dispositivos",
   "rental_price_without_vat": "Precio de alquiler con IVA",
-  "provider_rental_price_without_vat": "Precio de alquiler Proveedor con IVA"
+  "provider_rental_price_without_vat": "Precio de alquiler Proveedor con IVA",
+  "installed_at": "Fecha de Instalación",
+  "product_id": "Producto"
+
 
 
 }
