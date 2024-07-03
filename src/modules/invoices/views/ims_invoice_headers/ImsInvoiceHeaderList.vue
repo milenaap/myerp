@@ -104,11 +104,10 @@
 	// Table
 	const columns = [
 		{ label: t("name"), field: 'name' },
-		{ label: t("invoiced_at"), field: 'invoiced_at' },
 		{ label: t("month"), field: 'month' },
 		{ label: t("year"), field: 'year' },
-		{ label: t("path"), field: 'path' },
 		{ label: t("processed_at"), field: 'processed_at' },
+		{ label: t("invoiced_at"), field: 'invoiced_at' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store
