@@ -134,12 +134,9 @@
 		
 
 		await storeCompany({ ...form });
-		console.log(company.value);
 
 		form.company_id = company.value.id;
-
 		await storeCustomer({...form});
-
 
 
 		rows.value = await findData();
