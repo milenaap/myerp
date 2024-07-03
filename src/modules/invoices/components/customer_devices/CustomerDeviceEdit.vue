@@ -250,6 +250,28 @@
 				</div>
 
 
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="vat_quote" class="form-label w-full">
+							{{ $t("vat_quote") }} *
+						</label>
+						<input
+							v-model.trim="validate.vat_quote.$model"
+							id="vat_quote"
+							type="text"
+							name="vat_quote"
+							class="form-control"
+							:class="{ 'border-danger': validate.vat_quote.$error }"
+						/>
+						<template v-if="validate.vat_quote.$error">
+							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
+						{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
 				<!-- BEGIN: Buttons -->
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="flex justify-center">
@@ -323,6 +345,9 @@
 		provider_rental_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
+		vat_quote: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
 	};
 
 	const formData = reactive({
@@ -337,6 +362,7 @@
 		sale_price_without_vat: "",
 		rental_price_without_vat: "",
 		provider_rental_price_without_vat: "",
+		vat_quote: "",
 	});
 
 	const validate = useVuelidate(rules, toRefs(formData));
@@ -363,6 +389,7 @@
 		formData.sale_price_without_vat = customerDevice.value.sale_price_without_vat;
 		formData.rental_price_without_vat = customerDevice.value.rental_price_without_vat;
 		formData.provider_rental_price_without_vat = customerDevice.value.provider_rental_price_without_vat;
+		formData.vat_quote = customerDevice.value.vat_quote;
 	});
 
 </script>

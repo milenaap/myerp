@@ -114,6 +114,7 @@
 		{ label: t("sale_price_without_vat"), field: 'sale_price_without_vat' },
 		{ label: t("rental_price_without_vat"), field: 'rental_price_without_vat' },
 		{ label: t("provider_rental_price_without_vat"), field: 'provider_rental_price_without_vat' },
+		{ label: t("vat_quote"), field: 'vat_quote' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store
