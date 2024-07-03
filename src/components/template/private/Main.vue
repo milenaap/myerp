@@ -229,6 +229,7 @@ const { t } = useI18n();
 const navigation = [
   { name: t("dashboard"), href: 'dashboard', icon: HomeModernIcon, current: true },
   { name: t("ims_invoice_headers"), href: 'ims-invoice-headers', icon: FolderIcon, current: false },
+  { name: t("customer_devices"), href: 'customer-devices', icon: FolderIcon, current: false },
   { name: t("invoices"), href: 'invoices', icon: DocumentIcon, current: false },
  
   {
