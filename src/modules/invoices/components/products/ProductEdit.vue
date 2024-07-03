@@ -124,7 +124,7 @@
 							{{ $t("rental_price_without_vat") }} *
 						</label>
 						<input
-							v-model.trim="validate.description.$model"
+							v-model.trim="validate.rental_price_without_vat.$model"
 							id="rental_price_without_vat"
 							type="text"
 							name="rental_price_without_vat"
