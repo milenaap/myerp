@@ -73,9 +73,6 @@
 				</div>
 
 
-				
-
-
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="zip_code" class="form-label w-full">
@@ -206,9 +203,6 @@
 				</div>
 
 
-				
-
-
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="website" class="form-label w-full">
@@ -225,6 +219,48 @@
 						<template v-if="validate.website.$error">
 							<div v-for="(error, index) in validate.website.$errors" :key="index" class="text-danger mt-2">
 						{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="service_id" class="form-label w-full">
+							{{ $t("service_id") }} *
+						</label>
+						<input
+							v-model.trim="validate.service_id.$model"
+							id="service_id"
+							type="text"
+							name="service_id"
+							class="form-control"
+							:class="{ 'border-danger': validate.service_id.$error }"
+						/>
+						<template v-if="validate.service_id.$error">
+							<div v-for="(error, index) in validate.service_id.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="code_ims" class="form-label w-full">
+							{{ $t("code_ims") }} *
+						</label>
+						<input
+							v-model.trim="validate.code_ims.$model"
+							id="code_ims"
+							type="text"
+							name="code_ims"
+							class="form-control"
+							:class="{ 'border-danger': validate.code_ims.$error }"
+						/>
+						<template v-if="validate.code_ims.$error">
+							<div v-for="(error, index) in validate.code_ims.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -301,6 +337,12 @@
 		email: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
+		service_id: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
+		code_ims: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
 		phone: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
@@ -320,6 +362,8 @@
 		email: "",
 		phone: "",
 		website: "",
+		service_id: "",
+		code_ims: "",
 	});
 
 	const validate = useVuelidate(rules, toRefs(formData));
