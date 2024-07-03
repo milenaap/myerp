@@ -132,12 +132,10 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		
-
 		await storeCompany({ ...form });
 
 		form.company_id = company.value.id;
 		await storeCustomer({...form});
-
 
 		rows.value = await findData();
 
@@ -146,8 +144,6 @@
 		}else{
 			await Toast(t("message.error"), 'error');
 		}
-
-		
 	}
 
 	//Edit
