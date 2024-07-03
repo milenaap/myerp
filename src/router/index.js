@@ -69,6 +69,12 @@ const routes = [
         meta: { breadcrumb: 'Inicio' }
       },
       {
+        path: '/customer-devices',
+        name: 'customer-devices',
+        component: () => import('@/modules/invoices/views/customer_devices/CustomerDeviceList.vue'),
+        meta: { breadcrumb: 'Inicio' }
+      },
+      {
         path: '/invoices',
         name: 'invoices',
         component: () => import('@/modules/invoices/views/invoice_headers/InvoiceHeaderList.vue'),

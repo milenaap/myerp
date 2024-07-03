@@ -129,7 +129,9 @@
   "invoiced_at": "Facturado",
   "path": "Ruta",
   "processed_at": "Procesado",
-  "ims_invoice_headers": "Ficheros IMS"
+  "ims_invoice_headers": "Ficheros IMS",
+  "provider_id": "Proveedor",
+  "plate": "Matrícula"
 
 
 }

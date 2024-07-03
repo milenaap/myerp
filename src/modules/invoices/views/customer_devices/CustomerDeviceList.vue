@@ -17,20 +17,23 @@
 		/>
 	</div>
 
-	<!-- BEGIN: Table -->
+	<!-- BEGIN: Table --> 
 	<div v-animate class="p-5 border rounded-md shadow-sm" id="div_table">
-		<div class="flex flex-col sm:flex-row sm:items-end xl:items-start justify-end">
-			<div class="flex mt-5 mb-5 sm:mt-0">
-				<button class="btn-primary w-1/2 sm:w-auto" @click.prevent="showCreateCustomerDevice">
-				<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 50 50">
-				<path fill="currentColor"
-					d="M25 42c-9.4 0-17-7.6-17-17S15.6 8 25 8s17 7.6 17 17s-7.6 17-17 17m0-32c-8.3 0-15 6.7-15 15s6.7 15 15 15s15-6.7 15-15s-6.7-15-15-15" />
-					<path fill="currentColor" d="M16 24h18v2H16z" />
-					<path fill="currentColor" d="M24 16h2v18h-2z" />
-				</svg>
+		<div class="flex flex-col sm:flex-row xl:items-start justify-between mb-5">
+			<h1 class="mt-0">{{ $t("customer_device") }}</h1>
+			<button class="btn-primary sm:w-auto" @click.prevent="showCreateCustomerDevice">
+				<div class="flex flex-row">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" viewBox="0 0 50 50">
+					<path fill="currentColor"
+						d="M25 42c-9.4 0-17-7.6-17-17S15.6 8 25 8s17 7.6 17 17s-7.6 17-17 17m0-32c-8.3 0-15 6.7-15 15s6.7 15 15 15s15-6.7 15-15s-6.7-15-15-15" />
+						<path fill="currentColor" d="M16 24h18v2H16z" />
+						<path fill="currentColor" d="M24 16h2v18h-2z" />
+						<path fill="currentColor" d="M24 16h2v18h-2z" />
+					</svg>
+					{{ $t("add") }}
+				</div>
 			</button>
 		</div>
-	</div>
 
 	<!-- BEGIN: Table -->
 	<div class="overflow-x-auto scrollbar-hidden">
@@ -74,9 +77,9 @@
 	import { useI18n } from 'vue-i18n';
 	import { Toast } from '@/utils/toast';
 	import Swal from 'sweetalert2';
-	import useCustomerDevices from "@/modules/invoices/composables/customer_devices";
-	import Create from "@/components/customer_devices/CustomerDeviceCreate.vue";
-	import Edit from "@/components/customer_devices/CustomerDeviceEdit.vue";
+	import useCustomerDevices from "../../composables/customer_devices";
+	import Create from "../../components/customer_devices/CustomerDeviceCreate.vue";
+	import Edit from "../../components/customer_devices/CustomerDeviceEdit.vue";
 
 	// Tabulator
 	const rows = ref([]);
