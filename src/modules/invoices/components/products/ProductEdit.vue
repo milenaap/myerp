@@ -118,6 +118,50 @@
 				</div>
 
 
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="rental_price_without_vat" class="form-label w-full">
+							{{ $t("rental_price_without_vat") }} *
+						</label>
+						<input
+							v-model.trim="validate.description.$model"
+							id="rental_price_without_vat"
+							type="text"
+							name="rental_price_without_vat"
+							class="form-control"
+							:class="{ 'border-danger': validate.rental_price_without_vat.$error }"
+						/>
+						<template v-if="validate.rental_price_without_vat.$error">
+							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+						{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="provider_rental_price_without_vat" class="form-label w-full">
+							{{ $t("provider_rental_price_without_vat") }} *
+						</label>
+						<input
+							v-model.trim="validate.provider_rental_price_without_vat.$model"
+							id="provider_rental_price_without_vat"
+							type="text"
+							name="provider_rental_price_without_vat"
+							class="form-control"
+							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }"
+						/>
+						<template v-if="validate.rental_price_without_vat.$error">
+							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+						{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
 				<!-- BEGIN: Buttons -->
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="flex justify-center">
@@ -165,6 +209,12 @@
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		sale_price_without_vat: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
+		rental_price_without_vat: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
+		provider_rental_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		vat_quote: {

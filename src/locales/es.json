@@ -131,7 +131,10 @@
   "processed_at": "Procesado",
   "ims_invoice_headers": "Ficheros IMS",
   "provider_id": "Proveedor",
-  "plate": "Matrícula"
+  "plate": "Matrícula",
+  "customer_devices": "Dispositivos",
+  "rental_price_without_vat": "Precio de alquiler con IVA",
+  "provider_rental_price_without_vat": "Precio de alquiler Proveedor con IVA"
 
 
 }
