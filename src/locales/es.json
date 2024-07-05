@@ -109,7 +109,7 @@
   "invoice_counter_id": "ID Contador De Factura",
   "invoice_lines": "Factura lineas",
   "due_date": "Fecha De Vencimiento",
-  "month": "Días",
+  "month": "Mes",
   "year": "Año",
   "vat_quote": "IVA",
   "total_without_vat": "Total sin IVA",
