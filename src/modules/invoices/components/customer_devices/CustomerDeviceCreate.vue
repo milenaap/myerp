@@ -59,14 +59,7 @@
 						<label for="product_id" class="form-label w-full">
 							{{ $t("product_id") }} *
 						</label>
-						<!-- <input
-							v-model.trim="validate.product_id.$model"
-							id="product_id"
-							type="text"
-							name="product_id"
-							class="form-control"
-							:class="{ 'border-danger': validate.product_id.$error }"
-						/> -->
+						
 						<v-select
 							v-model="validate.product_id.$model"
 							:options="products"
