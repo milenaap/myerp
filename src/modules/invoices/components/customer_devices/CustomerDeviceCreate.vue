@@ -13,14 +13,16 @@
 						<label for="customer_id" class="form-label w-full">
 							{{ $t("customer_id") }} *
 						</label>
-						<input
-							v-model.trim="validate.customer_id.$model"
-							id="customer_id"
-							type="text"
-							name="customer_id"
-							class="form-control"
+						
+						<v-select
+							v-model="validate.customer_id.$model"
+							:options="customers"
+							label="code"
+							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.customer_id.$error }"
-						/>
+						></v-select>
+
+
 						<template v-if="validate.customer_id.$error">
 							<div v-for="(error, index) in validate.customer_id.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
@@ -35,14 +37,14 @@
 						<label for="provider_id" class="form-label w-full">
 							{{ $t("provider_id") }} *
 						</label>
-						<input
-							v-model.trim="validate.provider_id.$model"
-							id="provider_id"
-							type="text"
-							name="provider_id"
-							class="form-control"
+						
+						<v-select
+							v-model="validate.provider_id.$model"
+							:options="providers"
+							label="name"
+							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.provider_id.$error }"
-						/>
+						></v-select>
 						<template v-if="validate.provider_id.$error">
 							<div v-for="(error, index) in validate.provider_id.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
@@ -57,14 +59,21 @@
 						<label for="product_id" class="form-label w-full">
 							{{ $t("product_id") }} *
 						</label>
-						<input
+						<!-- <input
 							v-model.trim="validate.product_id.$model"
 							id="product_id"
 							type="text"
 							name="product_id"
 							class="form-control"
 							:class="{ 'border-danger': validate.product_id.$error }"
-						/>
+						/> -->
+						<v-select
+							v-model="validate.product_id.$model"
+							:options="products"
+							label="name"
+							:reduce="item => item.id"
+							:class="{ 'border-danger': validate.product_id.$error }"
+						></v-select>
 						<template v-if="validate.product_id.$error">
 							<div v-for="(error, index) in validate.product_id.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
@@ -304,6 +313,15 @@
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
+	import vSelect from 'vue-select';
+	import 'vue-select/dist/vue-select.css';
+	import useCustomer from "../../composables/customers";
+	import useProvider from "../../composables/providers";
+	import useProduct from "../../composables/products";
+
+	const {customers, getCustomers} = useCustomer();
+	const {providers, getProviders} = useProvider();
+	const {products, getProducts} = useProduct();
 
 	const { t } = useI18n();
 	const emit = defineEmits(['cancelCreate', 'saveCustomerDeviceForm']);
@@ -374,7 +392,9 @@
 	};
 
 	onMounted(async () => {
-		// TODO here implements...
+		await getCustomers();
+		await getProviders();
+		await getProducts();
 	});
 
 </script>

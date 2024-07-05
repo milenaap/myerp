@@ -138,7 +138,8 @@
   "installed_at": "Fecha de Instalación",
   "product_id": "Producto",
   "service_id": "Servicio",
-  "code_ims": "Código IMS"
+  "code_ims": "Código IMS",
+  "sim": "SIM"
 
 
 
