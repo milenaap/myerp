@@ -273,7 +273,7 @@
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="code_ims" class="form-label w-full">
-							{{ $t("code_ims") }} *
+							{{ $t("code_ims") }} 
 						</label>
 						<input
 							v-model.trim="validate.code_ims.$model"
@@ -367,7 +367,7 @@
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		code_ims: {
-			required: helpers.withMessage(t("form.required"), required),
+			// required: helpers.withMessage(t("form.required"), required),
 		},
 		phone: {
 			//required: helpers.withMessage(t("form.required"), required),

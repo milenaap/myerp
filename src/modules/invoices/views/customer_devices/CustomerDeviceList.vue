@@ -103,18 +103,19 @@
 
 	// Table
 	const columns = [
-		{ label: t("customer_id"), field: 'customer_id' },
-		{ label: t("provider_id"), field: 'provider_id' },
-		{ label: t("product_id"), field: 'product_id' },
+		{ label: t("customer_id"), field: 'customer.company.name' },
+		{ label: t("code"), field: 'customer.code' },
+		{ label: t("provider_id"), field: 'provider.name' },
+		{ label: t("product_id"), field: 'product.name' },
 		{ label: t("number"), field: 'number' },
-		{ label: t("SIM"), field: 'SIM' },
+		// { label: t("SIM"), field: 'sim' },
 		{ label: t("plate"), field: 'plate' },
-		{ label: t("installed_at"), field: 'installed_at' },
-		{ label: t("purchase_price_without_vat"), field: 'purchase_price_without_vat' },
-		{ label: t("sale_price_without_vat"), field: 'sale_price_without_vat' },
-		{ label: t("rental_price_without_vat"), field: 'rental_price_without_vat' },
-		{ label: t("provider_rental_price_without_vat"), field: 'provider_rental_price_without_vat' },
-		{ label: t("vat_quote"), field: 'vat_quote' },
+		// { label: t("installed_at"), field: 'installed_at' },
+		// { label: t("purchase_price_without_vat"), field: 'purchase_price_without_vat' },
+		// { label: t("sale_price_without_vat"), field: 'sale_price_without_vat' },
+		// { label: t("rental_price_without_vat"), field: 'rental_price_without_vat' },
+		// { label: t("provider_rental_price_without_vat"), field: 'provider_rental_price_without_vat' },
+		// { label: t("vat_quote"), field: 'vat_quote' },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store
@@ -178,6 +179,7 @@
 
 	onMounted(async () => {
 		rows.value = await findData();
+		console.log(rows.value);
 	});
 
 

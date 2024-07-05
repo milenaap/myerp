@@ -9,6 +9,7 @@ export default function useCompany() {
 	const companyErrors = ref([]);
 	const { t } = useI18n();
 
+	//list
 	const getCompanies = async () => {
 		companyErrors.value = [];
 		await fetch(`${import.meta.env.VITE_API_URL}companies/list`,{
@@ -17,21 +18,21 @@ export default function useCompany() {
 				"Content-Type": "application/json",
 				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
-		})
-		.then(res => res.json())
-		.then((res) => {
-			if (!res.success) {
-				companyErrors.value = res.errors;
-			}else{
-				companies.value = res.data;
-			}
-		})
-		.catch((e) => {
-			companyErrors.value.push(t("errors.error_internal"));
-		});
+			})
+			.then(res => res.json())
+			.then((res) => {
+				if (!res.success) {
+					companyErrors.value = res.errors;
+				}else{
+					companies.value = res.data;
+				}
+			})
+			.catch((e) => {
+				companyErrors.value.push(t("errors.error_internal"));
+			});
 	}
 
-
+	//show
 	const getCompany = async (id) => {
 		companyErrors.value = [];
 		await fetch(`${import.meta.env.VITE_API_URL}companies/show/${id}`,{
@@ -54,7 +55,7 @@ export default function useCompany() {
 		});
 	}
 
-
+	//create
 	const storeCompany = async (data) => {
 		companyErrors.value = [];
 		await fetch(`${import.meta.env.VITE_API_URL}companies/store`,{
@@ -78,7 +79,7 @@ export default function useCompany() {
 		});
 	}
 
-
+	//update
 	const updateCompany = async (id, data) => {
 		companyErrors.value = [];
 		await fetch(`${import.meta.env.VITE_API_URL}companies/update/${id}`,{
@@ -102,7 +103,7 @@ export default function useCompany() {
 		});
 	}
 
-
+	//delete
 	const destroyCompany = async (id) => {
 		companyErrors.value = [];
 		await fetch(`${import.meta.env.VITE_API_URL}companies/delete/${id}`,{
