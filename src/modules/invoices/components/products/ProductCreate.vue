@@ -8,7 +8,7 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-5 lg:col-span-5">
 					<div class="input-form">
 						<label for="name" class="form-label w-full">
 							{{ $t("name") }} *
@@ -30,7 +30,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="purchase_price_without_vat" class="form-label w-full">
 							{{ $t("purchase_price_without_vat") }} *
@@ -52,7 +52,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="sale_price_without_vat" class="form-label w-full">
 							{{ $t("sale_price_without_vat") }} *
@@ -74,7 +74,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-4 md:col-span-1 lg:col-span-1">
 					<div class="input-form">
 						<label for="vat_quote" class="form-label w-full">
 							{{ $t("vat_quote") }} *
@@ -95,8 +95,7 @@
 					</div>
 				</div>
 
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="input-form">
 						<label for="description" class="form-label w-full">
 							{{ $t("description") }} *
@@ -115,10 +114,10 @@
 							</div>
 						</template>
 					</div>
-				</div>
+				</div>				
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="rental_price_without_vat" class="form-label w-full">
 							{{ $t("rental_price_without_vat") }} *
@@ -140,7 +139,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="provider_rental_price_without_vat" class="form-label w-full">
 							{{ $t("provider_rental_price_without_vat") }} *
@@ -160,6 +159,8 @@
 						</template>
 					</div>
 				</div>
+
+				
 
 
 				<!-- BEGIN: Buttons -->
