@@ -365,7 +365,7 @@
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		code_ims: {
-			// required: helpers.withMessage(t("form.required"), required),
+			required: helpers.withMessage(t("form.required"), required),
 		},
 		phone: {
 			required: helpers.withMessage(t("form.required"), required),
@@ -415,6 +415,10 @@
 		formData.email = company.value.email;
 		formData.phone = company.value.phone;
 		formData.website = company.value.website;
+		formData.code = company.value.customer.code;
+		formData.code_ims = company.value.customer.code_ims;
+		formData.service_id = company.value.customer.service.id;
+		console.log(company.value)
 	});
 
 </script>

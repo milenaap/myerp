@@ -11,11 +11,11 @@ export default function useRemittanceType() {
 
 	const getRemittanceTypes = async () => {
 		remittanceTypeErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}remittance-types/list`,{
+		await fetch(`${import.meta.env.VITE_API_URL}remittance-types/list`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -34,11 +34,11 @@ export default function useRemittanceType() {
 
 	const getRemittanceType = async (id) => {
 		remittanceTypeErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}remittance-types/show/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}remittance-types/show/${id}`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -57,11 +57,11 @@ export default function useRemittanceType() {
 
 	const storeRemittanceType = async (data) => {
 		remittanceTypeErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}remittance-types/store`,{
+		await fetch(`${import.meta.env.VITE_API_URL}remittance-types/store`,{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -81,11 +81,11 @@ export default function useRemittanceType() {
 
 	const updateRemittanceType = async (id, data) => {
 		remittanceTypeErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}remittance-types/update/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}remittance-types/update/${id}`,{
 			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -105,11 +105,11 @@ export default function useRemittanceType() {
 
 	const destroyRemittanceType = async (id) => {
 		remittanceTypeErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}remittance-types/delete/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}remittance-types/delete/${id}`,{
 			method: 'DELETE',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())

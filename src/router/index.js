@@ -112,6 +112,12 @@ const routes = [
             meta: { breadcrumb: 'Proveedores' }
           },
           {
+            path: '/settings/remittance-types',
+            name: 'settings/remittance-types',
+            component: () => import('@/modules/invoices/views/remittance_types/RemittanceTypeList.vue'),
+            meta: { breadcrumb: 'Tipos de Remesas' }
+          },
+          {
             path: '/settings/services',
             name: 'settings/services',
             component: () => import('@/modules/invoices/views/services/ServiceList.vue'),

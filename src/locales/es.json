@@ -139,7 +139,9 @@
   "product_id": "Producto",
   "service_id": "Servicio",
   "code_ims": "Código IMS",
-  "sim": "SIM"
+  "sim": "SIM",
+  "file": "campo",
+  "remittance_types": "Tipos de Remesas"
 
 
 

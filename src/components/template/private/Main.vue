@@ -241,7 +241,8 @@ const navigation = [
       { name: t("products"), href: 'settings/products' },
       { name: t("providers"), href: 'settings/providers' },
       { name: t("services"), href: 'settings/services' },
-      { name: t("invoice_counters"), href: 'settings/invoice-counters' },
+      { name: t("remittance_types"), href: 'settings/remittance-types'},
+      { name: t("invoice_counters"), href: 'settings/invoice-counters'},
     ],
   },
 ]
