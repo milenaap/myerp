@@ -28,16 +28,7 @@
 						<label for="year" class="form-label w-full">
 							{{ $t("year") }} *
 						</label>
-						<!-- <input
-							v-model.trim="validate.year.$model"
-							id="year"
-							type="text"
-							name="year"
-							class="form-control"
-							:class="{ 'border-danger': validate.year.$error }"
-						/> -->
-
-
+					
 						<select v-model.trim="validate.year.$model" id="year" name="year" class="form-control"
 							:class="{ 'border-danger': validate.year.$error }">
 							<option v-for="year in years" :key="year" :value="year">
@@ -55,7 +46,7 @@
 				</div>
 
 
-				{{ formData.month }}
+				
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="month" class="form-label w-full">
