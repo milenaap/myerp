@@ -8,7 +8,7 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-8 lg:col-span-4">
 					<div class="input-form">
 						<label for="name" class="form-label w-full">
 							{{ $t("name") }} *
@@ -30,34 +30,13 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="invoiced_at" class="form-label w-full">
-							{{ $t("invoiced_at") }} *
-						</label>
-						<input
-							v-model.trim="validate.invoiced_at.$model"
-							id="invoiced_at"
-							type="text"
-							name="invoiced_at"
-							class="form-control"
-							:class="{ 'border-danger': validate.invoiced_at.$error }"
-						/>
-						<template v-if="validate.invoiced_at.$error">
-							<div v-for="(error, index) in validate.invoiced_at.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-2 lg:col-span-2">
 					<div class="input-form">
 						<label for="month" class="form-label w-full">
 							{{ $t("month") }} *
 						</label>
 						<input
+							disabled="disabled"
 							v-model.trim="validate.month.$model"
 							id="month"
 							type="text"
@@ -74,12 +53,13 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-2 lg:col-span-2">
 					<div class="input-form">
 						<label for="year" class="form-label w-full">
 							{{ $t("year") }} *
 						</label>
 						<input
+							disabled="disabled"
 							v-model.trim="validate.year.$model"
 							id="year"
 							type="text"
@@ -96,34 +76,13 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="path" class="form-label w-full">
-							{{ $t("path") }} *
-						</label>
-						<input
-							v-model.trim="validate.path.$model"
-							id="path"
-							type="text"
-							name="path"
-							class="form-control"
-							:class="{ 'border-danger': validate.path.$error }"
-						/>
-						<template v-if="validate.path.$error">
-							<div v-for="(error, index) in validate.path.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-6 lg:col-span-2">
 					<div class="input-form">
 						<label for="processed_at" class="form-label w-full">
 							{{ $t("processed_at") }} *
 						</label>
 						<input
+							disabled="disabled"
 							v-model.trim="validate.processed_at.$model"
 							id="processed_at"
 							type="text"
@@ -133,6 +92,28 @@
 						/>
 						<template v-if="validate.processed_at.$error">
 							<div v-for="(error, index) in validate.processed_at.$errors" :key="index" class="text-danger mt-2">
+						{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-2">
+					<div class="input-form">
+						<label for="invoiced_at" class="form-label w-full">
+							{{ $t("invoiced_at") }} *
+						</label>
+						<input
+							disabled="disabled"
+							v-model.trim="validate.invoiced_at.$model"
+							id="invoiced_at"
+							type="text"
+							name="invoiced_at"
+							class="form-control"
+							:class="{ 'border-danger': validate.invoiced_at.$error }"
+						/>
+						<template v-if="validate.invoiced_at.$error">
+							<div v-for="(error, index) in validate.invoiced_at.$errors" :key="index" class="text-danger mt-2">
 						{{ error.$message }}
 							</div>
 						</template>

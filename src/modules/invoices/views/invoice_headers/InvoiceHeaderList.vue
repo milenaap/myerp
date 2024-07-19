@@ -95,6 +95,7 @@
 
 	const { t } = useI18n();
 	const { invoiceHeaders, getInvoiceHeaders, storeInvoiceHeader, updateInvoiceHeader, destroyInvoiceHeader} = useInvoiceHeader();
+	
 
 
 	const findData = async() => {
@@ -111,14 +112,15 @@
 	// Table
 	const columns = [
 		{ label: t("customer"), field: 'customer.company.name' },
-		{ label: t("number"), field: 'number' },
-		{ label: t("date"), field: 'date', type: 'date', dateInputFormat: 'yyyy-MM-dd', dateOutputFormat: 'dd-MM-yyyy' },
+		{ label: t("number"), field: 'invoice_string' },
+		{ label: t("date"), field: 'invoice_date', type: 'date', dateInputFormat: 'yyyy-MM-dd', dateOutputFormat: 'dd-MM-yyyy' },
 		{ label: t("vat_quote"), field: 'vat_quote', formatFn: formatDecimal, tdClass: 'text-right', type: 'number', tdClass: 'vgt-right-align' },
 		{ label: t("total_without_vat"), field: 'total_without_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
 		{ label: t("total_with_vat"), field: 'total_with_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
 		{ label: t("has_paid"), field: 'has_paid', formatFn: formatHasPaid, type: "number", tdClass: 'vgt-center-align', },
-		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px' },
+		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px' },		
 	];
+	
 	//Store
 	const showCreateInvoiceHeader = () => {
 		isCreate.value = true;
@@ -182,6 +184,7 @@
 
 	onMounted(async () => {
 		rows.value = await findData();
+		console.log(rows.value);
 	});
 
 

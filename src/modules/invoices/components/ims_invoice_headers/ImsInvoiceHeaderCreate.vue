@@ -23,7 +23,7 @@
 					</div>
 				</div>
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-2">
 					<div class="input-form">
 						<label for="year" class="form-label w-full">
 							{{ $t("year") }} *
@@ -47,7 +47,7 @@
 
 
 				
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-2">
 					<div class="input-form">
 						<label for="month" class="form-label w-full">
 							{{ $t("month") }} *
@@ -70,7 +70,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-12 lg:col-span-4">
 					<div class="input-form">
 						<label for="file" class="form-label w-full">
 							{{ $t("file") }} *
