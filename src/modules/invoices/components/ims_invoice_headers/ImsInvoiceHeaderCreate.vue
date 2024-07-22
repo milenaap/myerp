@@ -146,6 +146,7 @@ const months = ref([
 	{  id: '03', name: 'Marzo' },
 	{  id: '04', name: 'Abril' },
 	{  id: '05', name: 'Mayo' },
+	{  id: '06', name: 'Junio' },
 	{  id: '07', name: 'Julio' },
 	{  id: '08', name: 'Agosto' },
 	{  id: '09', name: 'Septiembre' },
