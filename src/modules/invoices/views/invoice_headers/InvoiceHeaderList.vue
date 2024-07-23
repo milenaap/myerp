@@ -143,24 +143,24 @@
 	}
 
 	//Edit
-	const showEditInvoiceHeader = (id) => {
-		isEdit.value = true;
-		div_table.style.display = 'none';
-		invoiceHeaderId.value = id;
-	}
+	// const showEditInvoiceHeader = (id) => {
+	// 	isEdit.value = true;
+	// 	div_table.style.display = 'none';
+	// 	invoiceHeaderId.value = id;
+	// }
 
-	const cancelEdit = async() => {
-		isEdit.value = false;
-		div_table.style.display = 'block';
-	}
+	// const cancelEdit = async() => {
+	// 	isEdit.value = false;
+	// 	div_table.style.display = 'block';
+	// }
 
-	const updateInvoiceHeaderForm = async (id, data) => {
-		isEdit.value = false;
-		div_table.style.display = 'block';
-		await updateInvoiceHeader(id, data);
-		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
-	}
+	// const updateInvoiceHeaderForm = async (id, data) => {
+	// 	isEdit.value = false;
+	// 	div_table.style.display = 'block';
+	// 	await updateInvoiceHeader(id, data);
+	// 	rows.value = await findData();
+	// 	await Toast(t("message.record_updated"), 'success');
+	// }
 
 	// Delete
 	const showDeleteInvoiceHeader = async (id, description='') => {
