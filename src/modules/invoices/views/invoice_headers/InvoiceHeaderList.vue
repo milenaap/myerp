@@ -57,14 +57,14 @@
 					}" 
 					:search-options="{ enabled: true, placeholder: $t('setting_table.search') }"
 				>
-				<template #table-row="props">
-					<span v-if="props.column.field == 'actions'">
-						<button @click="showEditInvoiceHeader(props.row.id)">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 hover:text-blue-400" viewBox="0 0 24 24"><path fill="currentColor" d="m7 17.013l4.413-.015l9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583zM18.045 4.458l1.589 1.583l-1.597 1.582l-1.586-1.585zM9 13.417l6.03-5.973l1.586 1.586l-6.029 5.971L9 15.006z"/><path fill="currentColor" d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2"/></svg>
-						</button>
-						<button @click="showDeleteInvoiceHeader(props.row.id)">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600 hover:text-red-400" viewBox="0 0 24 24"><path fill="currentColor" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zM9 17h2V8H9zm4 0h2V8h-2zM7 6v13z"/></svg>
-						</button>
+					<template #table-row="props">
+						<span v-if="props.column.field == 'actions'">
+							<button @click="downloadInvoiceHeader(props.row.id)">
+								<IconDownload class="h-6 w-8 text-primary hover:text-primary-dark" />
+							</button>
+							<button @click="showDeleteInvoiceHeader(props.row.id)">
+								<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
+							</button>
 						</span>
 					</template>
 				</VueGoodTable>
@@ -84,6 +84,9 @@
 	import Create from "../../components/invoice_headers/InvoiceHeaderCreate.vue";
 	import Edit from "../../components/invoice_headers/InvoiceHeaderEdit.vue";
 	import { formatDecimal } from "@/utils/helper.js";
+	import IconDelete from '@/components/icons/IconDelete.vue';
+	import IconDownload from '@/components/icons/IconDownload.vue';
+
 
 	// Tabulator
 	const rows = ref([]);
@@ -117,7 +120,6 @@
 		{ label: t("vat_quote"), field: 'vat_quote', formatFn: formatDecimal, tdClass: 'text-right', type: 'number', tdClass: 'vgt-right-align' },
 		{ label: t("total_without_vat"), field: 'total_without_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
 		{ label: t("total_with_vat"), field: 'total_with_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
-		{ label: t("has_paid"), field: 'has_paid', formatFn: formatHasPaid, type: "number", tdClass: 'vgt-center-align', },
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px' },		
 	];
 	
@@ -181,10 +183,15 @@
 	}
 
 
+	const downloadInvoiceHeader = (id) => {
+		console.log(id);
+	}
+
+
+
 
 	onMounted(async () => {
 		rows.value = await findData();
-		console.log(rows.value);
 	});
 
 
