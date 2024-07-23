@@ -9,6 +9,31 @@ export default function useInvoiceHeader() {
 	const invoiceHeaderErrors = ref([]);
 	const { t } = useI18n();
 
+
+	const downloadInvoiceHeader = async (id) => {
+		invoiceHeaderErrors.value = [];
+		await fetch(`${import.meta.env.VITE_API_URL}invoice-headers/download/${id}`,{
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
+			},
+		})
+		.then(res => res.json())
+		.then((res) => {
+			if (!res.success) {
+				invoiceHeaderErrors.value = res.errors;
+			}else{
+				invoiceHeader.value = res.data;
+			}
+		})
+		.catch((e) => {
+			invoiceHeaderErrors.value.push(t("errors.error_internal"));
+		});
+	}
+
+
+
 	const getInvoiceHeaders = async () => {
 		invoiceHeaderErrors.value = [];
 		await fetch(`${import.meta.env.VITE_API_URL}invoice-headers/list`,{
@@ -30,6 +55,7 @@ export default function useInvoiceHeader() {
 			invoiceHeaderErrors.value.push(t("errors.error_internal"));
 		});
 	}
+
 
 
 	const getInvoiceHeader = async (id) => {
@@ -135,6 +161,7 @@ export default function useInvoiceHeader() {
 		storeInvoiceHeader,
 		updateInvoiceHeader,
 		destroyInvoiceHeader,
+		downloadInvoiceHeader,
 	}
 
 }

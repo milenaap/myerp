@@ -59,7 +59,7 @@
 				>
 					<template #table-row="props">
 						<span v-if="props.column.field == 'actions'">
-							<button @click="downloadInvoiceHeader(props.row.id)">
+							<button @click="downloadFileInvoiceHeader(props.row.id)">
 								<IconDownload class="h-6 w-8 text-primary hover:text-primary-dark" />
 							</button>
 							<button @click="showDeleteInvoiceHeader(props.row.id)">
@@ -80,7 +80,7 @@
 	import { useI18n } from 'vue-i18n';
 	import { Toast } from '@/utils/toast';
 	import Swal from 'sweetalert2';
-	import useInvoiceHeader from "../../composables/invoice_headers";
+	import useInvoiceHeader from "../../composables/invoice_headers.js";
 	import Create from "../../components/invoice_headers/InvoiceHeaderCreate.vue";
 	import Edit from "../../components/invoice_headers/InvoiceHeaderEdit.vue";
 	import { formatDecimal } from "@/utils/helper.js";
@@ -97,7 +97,15 @@
 	const invoiceHeaderId = ref(0);
 
 	const { t } = useI18n();
-	const { invoiceHeaders, getInvoiceHeaders, storeInvoiceHeader, updateInvoiceHeader, destroyInvoiceHeader} = useInvoiceHeader();
+	const { 
+		invoiceHeader, 
+		invoiceHeaders, 
+		getInvoiceHeaders, 
+		storeInvoiceHeader, 
+		updateInvoiceHeader, 
+		destroyInvoiceHeader, 
+		downloadInvoiceHeader
+	} = useInvoiceHeader();
 	
 
 
@@ -183,10 +191,18 @@
 	}
 
 
-	const downloadInvoiceHeader = (id) => {
-		console.log(id);
-	}
+	const downloadFileInvoiceHeader = async (id) => {
+		await downloadInvoiceHeader(id);
+		const newWindow = window.open('', '_blank');
+		if (newWindow) {
+			newWindow.document.body.style.margin = '0';
+			newWindow.document.body.innerHTML = 
+			`<iframe src="${invoiceHeader.value.data}" frameborder="0" style="border:0; width:100vw; height:100vh;" allowfullscreen></iframe>`;
+		} else {
+			console.error('No se pudo abrir la nueva pestaña');
+		}
 
+	}
 
 
 
