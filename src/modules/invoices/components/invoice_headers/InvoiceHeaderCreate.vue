@@ -8,7 +8,8 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+
+				<div class="col-span-12 md:col-span-4 lg:col-span-4">
 					<div class="input-form">
 						<label for="invoice_counter_id" class="form-label w-full">
 							{{ $t("invoice_counter_id") }} *
@@ -32,7 +33,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
 						<label for="customer_id" class="form-label w-full">
 							{{ $t("customer") }} *
@@ -66,21 +67,59 @@
 				</div>
 
 
+
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
-						<label for="number" class="form-label w-full">
-							{{ $t("number") }} *
+						<label for="remittance_type_id" class="form-label w-full">
+							{{ $t("remittance_type_id") }} *
+						</label>
+						<!-- <input
+							v-model.trim="validate.remittance_type_id.$model"
+							id="remittance_type_id"
+							type="text"
+							name="remittance_type_id"
+							class="form-control"
+							:class="{ 'border-danger': validate.remittance_type_id.$error }"
+						/> -->
+
+						<v-select
+							v-model="validate.remittance_type_id.$model"
+							:options="remittanceTypes"
+							label="name"
+							:reduce="item => item.id"
+							:class="{ 'border-danger': validate.remittance_type_id.$error }"
+						></v-select>
+
+
+						<template v-if="validate.remittance_type_id.$error">
+							<div v-for="(error, index) in validate.remittance_type_id.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+				
+
+
+
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="invoice_date" class="form-label w-full">
+							{{ $t("invoice_date") }} *
 						</label>
 						<input
-							v-model.trim="validate.number.$model"
-							id="number"
+							v-model.trim="validate.invoice_date.$model"
+							id="invoice_date"
 							type="text"
-							name="number"
+							name="invoice_date"
 							class="form-control"
-							:class="{ 'border-danger': validate.number.$error }"
+							:class="{ 'border-danger': validate.invoice_date.$error }"
 						/>
-						<template v-if="validate.number.$error">
-							<div v-for="(error, index) in validate.number.$errors" :key="index" class="text-danger mt-2">
+						<template v-if="validate.invoice_date.$error">
+							<div v-for="(error, index) in validate.invoice_date.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -90,63 +129,19 @@
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
-						<label for="date" class="form-label w-full">
-							{{ $t("date") }} *
+						<label for="invoice_due_date" class="form-label w-full">
+							{{ $t("invoice_due_date") }} *
 						</label>
 						<input
-							v-model.trim="validate.date.$model"
-							id="date"
+							v-model.trim="validate.invoice_due_date.$model"
+							id="invoice_due_date"
 							type="text"
-							name="date"
+							name="invoice_due_date"
 							class="form-control"
-							:class="{ 'border-danger': validate.date.$error }"
+							:class="{ 'border-danger': validate.invoice_due_date.$error }"
 						/>
-						<template v-if="validate.date.$error">
-							<div v-for="(error, index) in validate.date.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="due_date" class="form-label w-full">
-							{{ $t("due_date") }} *
-						</label>
-						<input
-							v-model.trim="validate.due_date.$model"
-							id="due_date"
-							type="text"
-							name="due_date"
-							class="form-control"
-							:class="{ 'border-danger': validate.due_date.$error }"
-						/>
-						<template v-if="validate.due_date.$error">
-							<div v-for="(error, index) in validate.due_date.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="description" class="form-label w-full">
-							{{ $t("description") }} *
-						</label>
-						<input
-							v-model.trim="validate.description.$model"
-							id="description"
-							type="text"
-							name="description"
-							class="form-control"
-							:class="{ 'border-danger': validate.description.$error }"
-						/>
-						<template v-if="validate.description.$error">
-							<div v-for="(error, index) in validate.description.$errors" :key="index" class="text-danger mt-2">
+						<template v-if="validate.invoice_due_date.$error">
+							<div v-for="(error, index) in validate.invoice_due_date.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -169,6 +164,28 @@
 						/>
 						<template v-if="validate.vat_quote.$error">
 							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="vat_type" class="form-label w-full">
+							{{ $t("vat_type") }} *
+						</label>
+						<input
+							v-model.trim="validate.vat_type.$model"
+							id="vat_type"
+							type="text"
+							name="vat_type"
+							class="form-control"
+							:class="{ 'border-danger': validate.vat_type.$error }"
+						/>
+						<template v-if="validate.vat_type.$error">
+							<div v-for="(error, index) in validate.vat_type.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -220,28 +237,6 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="has_paid" class="form-label w-full">
-							{{ $t("has_paid") }} *
-						</label>
-						<input
-							v-model.trim="validate.has_paid.$model"
-							id="has_paid"
-							type="text"
-							name="has_paid"
-							class="form-control"
-							:class="{ 'border-danger': validate.has_paid.$error }"
-						/>
-						<template v-if="validate.has_paid.$error">
-							<div v-for="(error, index) in validate.has_paid.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
 				<!-- BEGIN: Buttons -->
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="flex justify-center">
@@ -274,12 +269,12 @@
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
+
 	import useInvoiceCounter from "../../composables/invoice_counters.js";
+	import useRemittanceType from "../../composables/remittance_types.js";
 	import useCustomer from "../../composables/customers.js";
 	import vSelect from 'vue-select';
 	import 'vue-select/dist/vue-select.css';
-
-
 
 
 
@@ -287,31 +282,36 @@
 	const emit = defineEmits(['cancelCreate', 'saveInvoiceHeaderForm']);
 
 
-	const {invoiceCounters, getInvoiceCounters} = useInvoiceCounter();
-	const {customers, getCustomers} = useCustomer();
 
+
+	const {invoiceCounters, getInvoiceCounters} = useInvoiceCounter();
+	const {remittanceTypes, getRemittanceTypes} = useRemittanceType();
+	const {customers, getCustomers} = useCustomer();
 
 
 	const rules = {
 		invoice_counter_id: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
+		invoice_type_id: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
+		remittance_type_id: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
 		customer_id: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
-		number: {
+		invoice_date: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
-		date: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		due_date: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		description: {
+		invoice_due_date: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		vat_quote: {
+			required: helpers.withMessage(t("form.required"), required),
+		},
+		vat_type: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		total_without_vat: {
@@ -320,22 +320,19 @@
 		total_with_vat: {
 			required: helpers.withMessage(t("form.required"), required),
 		},
-		has_paid: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
 	};
 
 	const formData = reactive({
 		invoice_counter_id: "",
+		invoice_type_id: "2",
+		remittance_type_id: "",
 		customer_id: "",
-		number: "",
-		date: "",
-		due_date: "",
-		description: "",
+		invoice_date: "",
+		invoice_due_date: "",
 		vat_quote: "",
+		vat_type: "",
 		total_without_vat: "",
 		total_with_vat: "",
-		has_paid: "",
 	});
 
 	const validate = useVuelidate(rules, toRefs(formData));
@@ -349,34 +346,11 @@
 		}
 	};
 
-
-
-
-
-	// Función para truncar el texto con un límite máximo de caracteres
-	// const truncateText = (text, maxLength) => {
-	// 	return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-	// };
-
-	// // Ejemplo de cómo usar la función para truncar
-	// const displayText = (option) => {
-	// 	const str = truncateText(option, 30); // Trunca el código si es necesario
-	// 	return `${str}`;
-	// };
-
-
 	onMounted(async () => {
 		await getInvoiceCounters();
 		await getCustomers();
-
+		await getRemittanceTypes();
 	});
 
 </script>
 
-
-<style scoped>
-
-
-
-
-</style>

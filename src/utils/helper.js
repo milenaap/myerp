@@ -13,13 +13,15 @@ export function delay(ms) {
 
 
 export function formatDecimal(value) {
-    // Asegurarse de que el valor es un número antes de formatearlo
-    if (typeof value !== 'number') {
-        value = parseFloat(value);
-    }
-    if (isNaN(value)) {
-        return value;  // O retornar un string vacío o cero si prefieres manejar así los NaN
-    }
-    return value.toLocaleString('de-DE');
-}
+    // Convertir el valor a string y separar la parte entera y la decimal
+    let [integerPart, decimalPart] = value.toString().split('.');
 
+    // Agregar separador de miles
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    // Asegurar que la parte decimal tenga siempre dos dígitos
+    decimalPart = decimalPart ? (decimalPart.length === 1 ? decimalPart + '0' : decimalPart) : '00';
+
+    // Combinar la parte entera y la parte decimal con una coma
+    return `${integerPart},${decimalPart}`;
+}
