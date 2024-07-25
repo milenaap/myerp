@@ -98,7 +98,7 @@
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="input-form">
 						<label for="description" class="form-label w-full">
-							{{ $t("description") }} *
+							{{ $t("description") }}
 						</label>
 						<input
 							v-model.trim="validate.description.$model"
@@ -205,21 +205,26 @@
 		},
 		purchase_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		sale_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		rental_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		provider_rental_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		vat_quote: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		description: {
-			required: helpers.withMessage(t("form.required"), required),
+			//required: helpers.withMessage(t("form.required"), required),
 		},
 	};
 
@@ -228,6 +233,7 @@
 		purchase_price_without_vat: "",
 		sale_price_without_vat: "",
 		rental_price_without_vat: "",
+		provider_rental_price_without_vat: "",
 		vat_quote: "",
 		description: "",
 	});
@@ -239,9 +245,21 @@
 		if (validate.value.$invalid) {
 			//TODO
 		} else {
+
+			// Convertir todos los campos a formato de punto antes de enviar
+			formData.purchase_price_without_vat = formData.purchase_price_without_vat.replace(',', '.');
+			formData.sale_price_without_vat = formData.sale_price_without_vat.replace(',', '.');
+			formData.rental_price_without_vat = formData.rental_price_without_vat.replace(',', '.');
+			formData.provider_rental_price_without_vat = formData.provider_rental_price_without_vat.replace(',', '.');
+			formData.vat_quote = formData.vat_quote.replace(',', '.');
 			emit('saveProductForm', formData);
 		}
 	};
+
+
+	
+
+
 
 	onMounted(async () => {
 		// TODO here implements...

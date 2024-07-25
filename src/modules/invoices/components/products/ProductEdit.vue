@@ -8,6 +8,7 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
+				
 				<div class="col-span-12 md:col-span-5 lg:col-span-5">
 					<div class="input-form">
 						<label for="name" class="form-label w-full">
@@ -23,7 +24,7 @@
 						/>
 						<template v-if="validate.name.$error">
 							<div v-for="(error, index) in validate.name.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -45,7 +46,7 @@
 						/>
 						<template v-if="validate.purchase_price_without_vat.$error">
 							<div v-for="(error, index) in validate.purchase_price_without_vat.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -67,7 +68,7 @@
 						/>
 						<template v-if="validate.sale_price_without_vat.$error">
 							<div v-for="(error, index) in validate.sale_price_without_vat.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -89,17 +90,16 @@
 						/>
 						<template v-if="validate.vat_quote.$error">
 							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
 				</div>
 
-
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="input-form">
 						<label for="description" class="form-label w-full">
-							{{ $t("description") }} *
+							{{ $t("description") }}
 						</label>
 						<input
 							v-model.trim="validate.description.$model"
@@ -111,11 +111,11 @@
 						/>
 						<template v-if="validate.description.$error">
 							<div v-for="(error, index) in validate.description.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
-				</div>
+				</div>				
 
 
 				<div class="col-span-12 md:col-span-3 lg:col-span-3">
@@ -133,7 +133,7 @@
 						/>
 						<template v-if="validate.rental_price_without_vat.$error">
 							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -153,13 +153,14 @@
 							class="form-control"
 							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }"
 						/>
-						<template v-if="validate.rental_price_without_vat.$error">
-							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+						<template v-if="validate.provider_rental_price_without_vat.$error">
+							<div v-for="(error, index) in validate.provider_rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
 				</div>
+
 
 
 				<!-- BEGIN: Buttons -->
@@ -207,18 +208,23 @@
 		},
 		purchase_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		sale_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		rental_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		provider_rental_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		vat_quote: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		description: {
 			required: helpers.withMessage(t("form.required"), required),
@@ -229,6 +235,8 @@
 		name: "",
 		purchase_price_without_vat: "",
 		sale_price_without_vat: "",
+		rental_price_without_vat: "",
+		provider_rental_price_without_vat: "",
 		vat_quote: "",
 		description: "",
 	});
@@ -240,6 +248,14 @@
 		if (validate.value.$invalid) {
 			//TODO
 		} else {
+
+			// Convertir todos los campos a formato de punto antes de enviar
+			formData.purchase_price_without_vat = formData.purchase_price_without_vat.replace(',', '.');
+			formData.sale_price_without_vat = formData.sale_price_without_vat.replace(',', '.');
+			formData.rental_price_without_vat = formData.rental_price_without_vat.replace(',', '.');
+			formData.provider_rental_price_without_vat = formData.provider_rental_price_without_vat.replace(',', '.');
+			formData.vat_quote = formData.vat_quote.replace(',', '.');
+
 			emit('updateProductForm', product.value.id, formData);
 		}
 	};
@@ -247,9 +263,11 @@
 	onMounted(async () => {
 		await getProduct(props.productId);
 		formData.name = product.value.name;
-		formData.purchase_price_without_vat = product.value.purchase_price_without_vat;
-		formData.sale_price_without_vat = product.value.sale_price_without_vat;
-		formData.vat_quote = product.value.vat_quote;
+		formData.purchase_price_without_vat = String(product.value.purchase_price_without_vat).replace('.', ',');
+		formData.sale_price_without_vat = String(product.value.sale_price_without_vat).replace('.', ',');
+		formData.rental_price_without_vat = String(product.value.rental_price_without_vat).replace('.', ',');
+		formData.provider_rental_price_without_vat = String(product.value.provider_rental_price_without_vat).replace('.', ',');
+		formData.vat_quote = String(product.value.vat_quote).replace('.', ',');
 		formData.description = product.value.description;
 	});
 
