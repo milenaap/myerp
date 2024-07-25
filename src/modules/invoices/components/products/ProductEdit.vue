@@ -233,11 +233,11 @@
 
 	const formData = reactive({
 		name: "",
-		purchase_price_without_vat: "",
-		sale_price_without_vat: "",
-		rental_price_without_vat: "",
-		provider_rental_price_without_vat: "",
-		vat_quote: "",
+		purchase_price_without_vat: "0,0",
+		sale_price_without_vat: "0,0",
+		rental_price_without_vat: "0,0",
+		provider_rental_price_without_vat: "0,0",
+		vat_quote: "0,0",
 		description: "",
 	});
 
