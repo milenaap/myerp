@@ -1,4 +1,5 @@
 
+
 <template>
     <div class="m-32">
         <h1>Hola desde Test</h1>
@@ -11,9 +12,8 @@
 <script setup>
 import { ref } from 'vue';
 
-const mensaje = ref('variable');
-
 // Declaracion e inicialización
+const mensaje = ref('variable');
 const num1 = ref(0);
 const num2 = ref(0);
 const num3 = ref(0);
