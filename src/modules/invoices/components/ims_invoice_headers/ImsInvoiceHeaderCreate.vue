@@ -162,7 +162,7 @@ const file = ref(null);
 const fileError = ref(false);
 
 const formData = reactive({
-	name: "Header Nuevo",
+	name: "",
 	year: currentYear,
 	month: currentMonth
 });
