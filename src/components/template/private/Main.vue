@@ -211,6 +211,7 @@ import {
   UsersIcon,
   DocumentIcon,
   FolderIcon,
+  WifiIcon
 } from '@heroicons/vue/24/outline';
 import { ChevronDownIcon, MagnifyingGlassIcon, ChevronRightIcon } from '@heroicons/vue/20/solid';
 import { useAuthenticationStore } from '@/stores/auth/authentication';
@@ -229,7 +230,7 @@ const { t } = useI18n();
 const navigation = [
   { name: t("dashboard"), href: 'dashboard', icon: HomeModernIcon, current: true },
   { name: t("ims_invoice_headers"), href: 'ims-invoice-headers', icon: FolderIcon, current: false },
-  { name: t("customer_devices"), href: 'customer-devices', icon: FolderIcon, current: false },
+  { name: t("customer_devices"), href: 'customer-devices', icon: WifiIcon, current: false },
   { name: t("invoices"), href: 'invoices', icon: DocumentIcon, current: false },
  
   {
