@@ -334,6 +334,7 @@ const save = () => {
 	if (validate.value.$invalid) {
 		//TODO
 	} else {
+		formData.lines = arrProducts.value;
 		emit('saveInvoiceHeaderForm', formData);
 	}
 };
