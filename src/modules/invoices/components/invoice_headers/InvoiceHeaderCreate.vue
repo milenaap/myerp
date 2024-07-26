@@ -308,12 +308,6 @@ const rules = {
 	invoice_due_date: {
 		required: helpers.withMessage(t("form.required"), required),
 	},
-	vat_quote: {
-		required: helpers.withMessage(t("form.required"), required),
-	},
-	vat_type: {
-		required: helpers.withMessage(t("form.required"), required),
-	},
 	total_without_vat: {
 		required: helpers.withMessage(t("form.required"), required),
 	},
@@ -323,14 +317,12 @@ const rules = {
 };
 
 const formData = reactive({
-	invoice_counter_id: "DFG",
+	invoice_counter_id: "",
 	invoice_type_id: "2",
 	remittance_type_id: "",
 	customer_id: "",
 	invoice_date: formatNowToDB(),
 	invoice_due_date: format30DaysFromNowToDB(),
-	vat_quote: "",
-	vat_type: "",
 	total_without_vat: "0",
 	total_with_vat: "0",
 });
@@ -342,9 +334,7 @@ const save = () => {
 	if (validate.value.$invalid) {
 		//TODO
 	} else {
-
-		console.log(formData);
-		// emit('saveInvoiceHeaderForm', formData);
+		emit('saveInvoiceHeaderForm', formData);
 	}
 };
 
