@@ -1,7 +1,7 @@
 <template>
 
 	<!-- BEGIN: Page Layout Create -->
-	<div v-animate>
+	<div v-animate v-if="isCreate">
 		<Create
 			@saveInvoiceHeaderForm="saveInvoiceHeaderForm"
 			@cancelCreate="cancelCreate"
@@ -18,7 +18,7 @@
 	</div>
 
 	<!-- BEGIN: Table -->
-	<div v-animate id="div_table" style="display: none;">
+	<div v-animate id="div_table">
 		<div class="flex flex-col sm:flex-row xl:items-start justify-between mb-5">
 			<h1 class="mt-0">{{ $t("invoice_headers") }}</h1>
 			<button class="btn-primary sm:w-auto" @click.prevent="showCreateInvoiceHeader">

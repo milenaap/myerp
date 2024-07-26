@@ -9,7 +9,7 @@
 			<div class="grid grid-cols-12 gap-6">
 
 				
-				<div class="col-span-12 md:col-span-5 lg:col-span-5">
+				<div class="col-span-12 md:col-span-10 lg:col-span-10">
 					<div class="input-form">
 						<label for="name" class="form-label w-full">
 							{{ $t("name") }} *
@@ -30,6 +30,27 @@
 					</div>
 				</div>
 
+				<div class="col-span-4 md:col-span-2 lg:col-span-2">
+					<div class="input-form">
+						<label for="vat_quote" class="form-label w-full">
+							{{ $t("vat_quote") }} *
+						</label>
+						<input
+							v-model.trim="validate.vat_quote.$model"
+							id="vat_quote"
+							type="text"
+							name="vat_quote"
+							class="form-control text-right"
+							:class="{ 'border-danger': validate.vat_quote.$error }"
+						/>
+						<template v-if="validate.vat_quote.$error">
+							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
 
 				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
@@ -41,7 +62,7 @@
 							id="purchase_price_without_vat"
 							type="text"
 							name="purchase_price_without_vat"
-							class="form-control"
+							class="form-control text-right"
 							:class="{ 'border-danger': validate.purchase_price_without_vat.$error }"
 						/>
 						<template v-if="validate.purchase_price_without_vat.$error">
@@ -63,7 +84,7 @@
 							id="sale_price_without_vat"
 							type="text"
 							name="sale_price_without_vat"
-							class="form-control"
+							class="form-control text-right"
 							:class="{ 'border-danger': validate.sale_price_without_vat.$error }"
 						/>
 						<template v-if="validate.sale_price_without_vat.$error">
@@ -75,48 +96,9 @@
 				</div>
 
 
-				<div class="col-span-4 md:col-span-1 lg:col-span-1">
-					<div class="input-form">
-						<label for="vat_quote" class="form-label w-full">
-							{{ $t("vat_quote") }} *
-						</label>
-						<input
-							v-model.trim="validate.vat_quote.$model"
-							id="vat_quote"
-							type="text"
-							name="vat_quote"
-							class="form-control"
-							:class="{ 'border-danger': validate.vat_quote.$error }"
-						/>
-						<template v-if="validate.vat_quote.$error">
-							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
+				
 
-				<div class="col-span-12 md:col-span-12 lg:col-span-12">
-					<div class="input-form">
-						<label for="description" class="form-label w-full">
-							{{ $t("description") }}
-						</label>
-						<input
-							v-model.trim="validate.description.$model"
-							id="description"
-							type="text"
-							name="description"
-							class="form-control"
-							:class="{ 'border-danger': validate.description.$error }"
-						/>
-						<template v-if="validate.description.$error">
-							<div v-for="(error, index) in validate.description.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>				
-
+				
 
 				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
@@ -128,7 +110,7 @@
 							id="rental_price_without_vat"
 							type="text"
 							name="rental_price_without_vat"
-							class="form-control"
+							class="form-control text-right"
 							:class="{ 'border-danger': validate.rental_price_without_vat.$error }"
 						/>
 						<template v-if="validate.rental_price_without_vat.$error">
@@ -150,7 +132,7 @@
 							id="provider_rental_price_without_vat"
 							type="text"
 							name="provider_rental_price_without_vat"
-							class="form-control"
+							class="form-control text-right"
 							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }"
 						/>
 						<template v-if="validate.provider_rental_price_without_vat.$error">
@@ -161,6 +143,28 @@
 					</div>
 				</div>
 
+
+
+				<div class="col-span-12 md:col-span-12 lg:col-span-12">
+					<div class="input-form">
+						<label for="description" class="form-label w-full">
+							{{ $t("description") }}
+						</label>
+						<input
+							v-model.trim="validate.description.$model"
+							id="description"
+							type="text"
+							name="description"
+							class="form-control"
+							:class="{ 'border-danger': validate.description.$error }"
+						/>
+						<template v-if="validate.description.$error">
+							<div v-for="(error, index) in validate.description.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>				
 
 
 				<!-- BEGIN: Buttons -->

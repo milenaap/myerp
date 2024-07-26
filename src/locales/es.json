@@ -60,7 +60,8 @@
   },
   "form": {
     "required": "Requerido",
-    "select": "Seleccione"
+    "select": "Seleccione",
+    "must_be_number": "Número"
   },
   "errors":{
     "error_internal": "Error Interno"
@@ -106,7 +107,7 @@
   "municipality": "Municipio",
   "zip_code": "Codigo Postal",
   "is_generated": "Está Generado",
-  "invoice_counter_id": "ID Contador De Factura",
+  "invoice_counter_id": "Serie",
   "invoice_lines": "Factura lineas",
   "due_date": "Fecha De Vencimiento",
   "month": "Mes",
@@ -133,8 +134,8 @@
   "provider_id": "Proveedor",
   "plate": "Matrícula",
   "customer_devices": "Dispositivos",
-  "rental_price_without_vat": "Precio de alquiler con IVA",
-  "provider_rental_price_without_vat": "Precio de alquiler Proveedor con IVA",
+  "rental_price_without_vat": "Alquiler sin IVA",
+  "provider_rental_price_without_vat": "Alquiler Prov. sin IVA",
   "installed_at": "Fecha de Instalación",
   "product_id": "Producto",
   "service_id": "Servicio",

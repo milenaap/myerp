@@ -8,28 +8,6 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-
-				<div class="col-span-12 md:col-span-4 lg:col-span-4">
-					<div class="input-form">
-						<label for="invoice_counter_id" class="form-label w-full">
-							{{ $t("invoice_counter_id") }} *
-						</label>
-
-						<v-select v-model="validate.invoice_counter_id.$model" :options="invoiceCounters" label="serial"
-							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.invoice_counter_id.$error }"></v-select>
-
-
-						<template v-if="validate.invoice_counter_id.$error">
-							<div v-for="(error, index) in validate.invoice_counter_id.$errors" :key="index"
-								class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-
 				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
 						<label for="customer_id" class="form-label w-full">
@@ -60,28 +38,46 @@
 				</div>
 
 
+				
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-3">
+
+				<div class="col-span-12 md:col-span-4 lg:col-span-4">
 					<div class="input-form">
 						<label for="remittance_type_id" class="form-label w-full">
 							{{ $t("remittance_type_id") }} *
 						</label>
-						<!-- <input
-							v-model.trim="validate.remittance_type_id.$model"
-							id="remittance_type_id"
-							type="text"
-							name="remittance_type_id"
-							class="form-control"
-							:class="{ 'border-danger': validate.remittance_type_id.$error }"
-						/> -->
 
-						<v-select v-model="validate.remittance_type_id.$model" :options="remittanceTypes" label="name"
+						<v-select 
+							v-model="validate.remittance_type_id.$model" 
+							:options="remittanceTypes" 
+							label="name"
 							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.remittance_type_id.$error }"></v-select>
-
+							:class="{ 'border-danger': validate.remittance_type_id.$error }"
+						></v-select>
 
 						<template v-if="validate.remittance_type_id.$error">
 							<div v-for="(error, index) in validate.remittance_type_id.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+				<div class="col-span-12 md:col-span-2 lg:col-span-2">
+					<div class="input-form">
+						<label for="invoice_counter_id" class="form-label w-full">
+							{{ $t("invoice_counter_id") }} *
+						</label>
+
+						<v-select v-model="validate.invoice_counter_id.$model" :options="invoiceCounters" label="serial"
+							:reduce="item => item.id"
+							:class="{ 'border-danger': validate.invoice_counter_id.$error }"></v-select>
+
+
+						<template v-if="validate.invoice_counter_id.$error">
+							<div v-for="(error, index) in validate.invoice_counter_id.$errors" :key="index"
 								class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
@@ -132,8 +128,12 @@
 						<label for="total_without_vat" class="form-label w-full">
 							{{ $t("total_without_vat") }} *
 						</label>
-						<input v-model.trim="validate.total_without_vat.$model" id="total_without_vat" type="text"
-							name="total_without_vat" class="form-control"
+						<input 
+							v-model.trim="validate.total_without_vat.$model" 
+							id="total_without_vat" 
+							type="text"
+							name="total_without_vat" 
+							class="form-control text-right"
 							:class="{ 'border-danger': validate.total_without_vat.$error }" />
 						<template v-if="validate.total_without_vat.$error">
 							<div v-for="(error, index) in validate.total_without_vat.$errors" :key="index"
@@ -151,7 +151,7 @@
 							{{ $t("total_with_vat") }} *
 						</label>
 						<input v-model.trim="validate.total_with_vat.$model" id="total_with_vat" type="text"
-							name="total_with_vat" class="form-control"
+							name="total_with_vat" class="form-control text-right"
 							:class="{ 'border-danger': validate.total_with_vat.$error }" />
 						<template v-if="validate.total_with_vat.$error">
 							<div v-for="(error, index) in validate.total_with_vat.$errors" :key="index"
@@ -165,7 +165,7 @@
 
 				<!-- BEGIN: Buttons -->
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
-					<div class="flex justify-center">
+					<div class="flex justify-end">
 						<button type="submit" class="btn btn-primary mr-5">
 							{{ $t("save") }}
 						</button>
@@ -175,6 +175,8 @@
 					</div>
 				</div>
 				<!-- END: Buttons -->
+
+				
 
 			</div>
 			<!-- END: container -->
@@ -223,9 +225,10 @@
 
 		<div class="col-span-12 md:col-span-12 lg:col-span-12">
 			<div class="flex justify-around border p-2 rounded-lg shadow bg-gray-100">
-				<div>Descripcion</div>
-				<div>Precio</div>
-				<div>IVA</div>
+				<div>{{ $t("description") }}</div>
+				<div>{{ $t("sale_price_without_vat") }}</div>
+				<div>{{ $t("vat") }}</div>
+				<div>{{ $t("actions") }}</div>
 			</div>
 
 			<div v-for="item in arrProducts" class="col-span-12 md:col-span-12 lg:col-span-12 ">
@@ -234,6 +237,11 @@
 					<div>{{ item.name }}</div>
 					<div>{{ item.sale_price_without_vat }}</div>
 					<div>{{ item.vat_quote }}</div>
+					<div>
+						<button @click="deleteLine(item.id)">
+							<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -255,6 +263,8 @@ import { required, minLength, maxLength, email, url, integer } from '@vuelidate/
 import { useVuelidate } from '@vuelidate/core';
 import { helpers } from '@vuelidate/validators';
 import { useI18n } from 'vue-i18n';
+import IconDelete from '@/components/icons/IconDelete.vue';
+
 
 import useInvoiceCounter from "../../composables/invoice_counters.js";
 import useRemittanceType from "../../composables/remittance_types.js";
@@ -312,9 +322,9 @@ const rules = {
 };
 
 const formData = reactive({
-	invoice_counter_id: "",
+	invoice_counter_id: "DFG",
 	invoice_type_id: "2",
-	remittance_type_id: "",
+	remittance_type_id: "Recibo",
 	customer_id: "",
 	invoice_date: "",
 	invoice_due_date: "",
@@ -348,6 +358,12 @@ const addLine = () => {
 
 	arrProducts.value.push(p);
 }
+
+
+const deleteLine = () => {
+	console.log("object");
+}
+
 
 onMounted(async () => {
 	await getInvoiceCounters();
