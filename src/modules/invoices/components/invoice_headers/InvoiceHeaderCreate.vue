@@ -204,7 +204,7 @@
 		<div class="col-span-12 md:col-span-4 lg:col-span-">
 			<div class="input-form">
 				<label for="description" class="form-label w-full">
-					{{ $t("description") }} *
+					{{ $t("description") }} 
 				</label>
 
 				<input v-model.trim="description" id="description" type="text"
@@ -231,14 +231,14 @@
 				<div>{{ $t("actions") }}</div>
 			</div>
 
-			<div v-for="item in arrProducts" class="col-span-12 md:col-span-12 lg:col-span-12 ">
+			<div v-for="item, index in arrProducts" class="col-span-12 md:col-span-12 lg:col-span-12 ">
 
 				<div class="flex justify-around p-2">
 					<div>{{ item.name }}</div>
 					<div>{{ item.sale_price_without_vat }}</div>
 					<div>{{ item.vat_quote }}</div>
 					<div>
-						<button @click="deleteLine(item.id)">
+						<button @click.prevent="deleteLine(index)">
 							<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
 						</button>
 					</div>
@@ -273,6 +273,7 @@ import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import useProduct from '../../composables/products';
 import useInvoiceHeaders from '@/modules/invoices/composables/invoice_headers';
+import { formatNowToDB, format30DaysFromNowToDB } from '@/utils/helper.js';
 
 
 const { t } = useI18n();
@@ -326,8 +327,8 @@ const formData = reactive({
 	invoice_type_id: "2",
 	remittance_type_id: "Recibo",
 	customer_id: "",
-	invoice_date: "",
-	invoice_due_date: "",
+	invoice_date: formatNowToDB(),
+	invoice_due_date: format30DaysFromNowToDB(),
 	vat_quote: "",
 	vat_type: "",
 	total_without_vat: "0",
@@ -346,7 +347,12 @@ const save = () => {
 };
 
 const addLine = () => {
-	let foundProduct = products.value.find(products => products.id === (product_id.value));
+	const foundProduct = products.value.find(products => products.id === (product_id.value));
+	
+	if (!foundProduct) {  
+        return;
+    }
+	
 	const p = {...foundProduct};
 
 	if(description.value){
@@ -357,11 +363,20 @@ const addLine = () => {
 	formData.total_without_vat = Number(formData.total_without_vat) + Number(p.sale_price_without_vat);
 
 	arrProducts.value.push(p);
+
+	console.log(arrProducts);
+	
 }
 
 
-const deleteLine = () => {
-	console.log("object");
+const deleteLine = (index) => {
+	console.log(index);
+
+	// Restar el precio del producto del total sin IVA
+	formData.total_without_vat = Number(formData.total_without_vat) - Number(arrProducts.value[index].sale_price_without_vat);
+
+	// Eliminar el producto de la lista
+	arrProducts.value.splice(index, 1);
 }
 
 

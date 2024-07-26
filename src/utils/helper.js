@@ -25,3 +25,21 @@ export function formatDecimal(value) {
     // Combinar la parte entera y la parte decimal con una coma
     return `${integerPart},${decimalPart}`;
 }
+
+
+
+/**
+ * Formato YYYY-MM-DD
+ */
+export function formatNowToDB() {
+    const today = new Date();
+    return today.toISOString().split('T')[0]; 
+};
+
+export function format30DaysFromNowToDB() {
+    const today = new Date();
+    today.setDate(today.getDate() + 30);
+    return today.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+};
+
+
