@@ -325,7 +325,7 @@ const rules = {
 const formData = reactive({
 	invoice_counter_id: "DFG",
 	invoice_type_id: "2",
-	remittance_type_id: "Recibo",
+	remittance_type_id: "",
 	customer_id: "",
 	invoice_date: formatNowToDB(),
 	invoice_due_date: format30DaysFromNowToDB(),
@@ -342,7 +342,9 @@ const save = () => {
 	if (validate.value.$invalid) {
 		//TODO
 	} else {
-		emit('saveInvoiceHeaderForm', formData);
+
+		console.log(formData);
+		// emit('saveInvoiceHeaderForm', formData);
 	}
 };
 
@@ -360,11 +362,14 @@ const addLine = () => {
 		description.value = '';
 	}
 
-	formData.total_without_vat = Number(formData.total_without_vat) + Number(p.sale_price_without_vat);
+	let total_without_vat = Number(formData.total_without_vat.replace(",", ".")) + Number(p.sale_price_without_vat);
+	
+	formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
+	formData.total_with_vat =  String((Number(total_without_vat) * 1.21).toFixed(2)).replace(".", ",");
 
 	arrProducts.value.push(p);
 
-	console.log(arrProducts);
+	// console.log(arrProducts);
 	
 }
 
