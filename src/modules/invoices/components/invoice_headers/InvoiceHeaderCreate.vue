@@ -334,7 +334,10 @@ const save = () => {
 	if (validate.value.$invalid) {
 		//TODO
 	} else {
-		formData.lines = arrProducts.value;
+
+		formData.total_without_vat =formData.total_without_vat.replace(',', '.');
+		formData.total_with_vat = formData.total_with_vat.replace(',', '.');
+		formData.lines = JSON.stringify(arrProducts.value);
 		emit('saveInvoiceHeaderForm', formData);
 	}
 };
@@ -360,8 +363,8 @@ const addLine = () => {
 
 	arrProducts.value.push(p);
 
-	// console.log(arrProducts);
-	
+	console.log(arrProducts);
+
 }
 
 
@@ -369,10 +372,16 @@ const deleteLine = (index) => {
 	console.log(index);
 
 	// Restar el precio del producto del total sin IVA
-	formData.total_without_vat = Number(formData.total_without_vat) - Number(arrProducts.value[index].sale_price_without_vat);
+	let total_without_vat = Number(formData.total_without_vat.replace(",", ".")) - Number(arrProducts.value[index].sale_price_without_vat);
+
+	formData.total_without_vat = total_without_vat;
+
+	formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
+	formData.total_with_vat =  String((Number(total_without_vat) * 1.21).toFixed(2)).replace(".", ",");
 
 	// Eliminar el producto de la lista
 	arrProducts.value.splice(index, 1);
+
 }
 
 
