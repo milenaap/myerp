@@ -42,4 +42,3 @@ export function format30DaysFromNowToDB() {
     return today.toISOString().split('T')[0]; // Formato YYYY-MM-DD
 };
 
-

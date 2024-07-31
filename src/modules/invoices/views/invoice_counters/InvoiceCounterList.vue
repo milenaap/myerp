@@ -20,7 +20,7 @@
 	<!-- BEGIN: Table -->
 	<div v-animate class="p-5 border rounded-md shadow-sm" id="div_table">
 		<div class="flex flex-col sm:flex-row xl:items-start justify-between mb-5">
-			<h1 class="mt-0">{{ $t("Contadores") }}</h1>
+			<h1 class="mt-0">{{ $t("invoice_counter") }}</h1>
 			<!-- <button class="btn-primary sm:w-auto" @click.prevent="showCreateInvoiceCounter">
 				<div class="flex flex-row">
 					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" viewBox="0 0 50 50">

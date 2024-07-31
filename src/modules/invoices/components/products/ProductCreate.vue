@@ -41,6 +41,7 @@
 							name="vat_quote"
 							class="form-control text-right"
 							:class="{ 'border-danger': validate.vat_quote.$error }"
+							placeholder="Ej. 0,00"
 						/>
 						<template v-if="validate.vat_quote.$error">
 							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
@@ -63,6 +64,7 @@
 							name="purchase_price_without_vat"
 							class="form-control text-right"
 							:class="{ 'border-danger': validate.purchase_price_without_vat.$error }"
+							placeholder="Ej. 0,00"
 						/>
 						<template v-if="validate.purchase_price_without_vat.$error">
 							<div v-for="(error, index) in validate.purchase_price_without_vat.$errors" :key="index" class="text-danger mt-2">
@@ -85,6 +87,7 @@
 							name="sale_price_without_vat"
 							class="form-control text-right"
 							:class="{ 'border-danger': validate.sale_price_without_vat.$error }"
+							placeholder="Ej. 0,00"
 						/>
 						<template v-if="validate.sale_price_without_vat.$error">
 							<div v-for="(error, index) in validate.sale_price_without_vat.$errors" :key="index" class="text-danger mt-2">
@@ -112,6 +115,7 @@
 							name="rental_price_without_vat"
 							class="form-control text-right"
 							:class="{ 'border-danger': validate.rental_price_without_vat.$error }"
+							placeholder="Ej. 0,00"
 						/>
 						<template v-if="validate.rental_price_without_vat.$error">
 							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
@@ -134,6 +138,7 @@
 							name="provider_rental_price_without_vat"
 							class="form-control text-right"
 							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }"
+							placeholder="Ej. 0,00"
 						/>
 						<template v-if="validate.provider_rental_price_without_vat.$error">
 							<div v-for="(error, index) in validate.provider_rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
@@ -269,3 +274,23 @@
 	});
 
 </script>
+
+
+<style>
+
+input::placeholder {
+  color: #cdcdcd; /* Cambia el color del placeholder */
+  font-style: italic; /* Cambia el estilo de la fuente del placeholder */
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #888888;
+  font-style: italic;
+}
+
+input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #888888;
+  font-style: italic;
+}
+
+</style>
