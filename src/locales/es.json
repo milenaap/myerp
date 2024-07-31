@@ -144,10 +144,11 @@
   "file": "campo",
   "remittance_types": "Tipos de Remesas",
   "remittance_type_id": "Remesa",
-  "invoice_date": " Fecha de factura",
-  "invoice_due_date": " Fecha de Vencimiento",
+  "invoice_date": "Fecha de factura",
+  "invoice_due_date": "Fecha de Vencimiento",
   "vat_type": "Tipo de IVA",
-  "Add": "Agregar"
+  "Add": "Agregar",
+  "invoice_counter": "Contador"
 
 
 

@@ -330,14 +330,21 @@ const formData = reactive({
 const validate = useVuelidate(rules, toRefs(formData));
 
 const save = () => {
+
 	validate.value.$touch();
+
 	if (validate.value.$invalid) {
 		//TODO
 	} else {
-
+		
+		if (arrProducts.value.length === 0) {
+			
+			return;
+		}
+		
 		formData.total_without_vat =formData.total_without_vat.replace(',', '.');
 		formData.total_with_vat = formData.total_with_vat.replace(',', '.');
-		formData.lines = JSON.stringify(arrProducts.value);
+		formData.lines = JSON.stringify(arrProducts.value);		
 		emit('saveInvoiceHeaderForm', formData);
 	}
 };
