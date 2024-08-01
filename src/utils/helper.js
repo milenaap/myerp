@@ -1,3 +1,6 @@
+import numeral from 'numeral';
+
+
 export function randomNumbers(from, to, length) {
     const numbers = [0];
     for (let i = 1; i < length; i++) {
@@ -34,11 +37,19 @@ export function formatDecimal(value) {
 export function formatNowToDB() {
     const today = new Date();
     return today.toISOString().split('T')[0]; 
-};
+}
 
 export function format30DaysFromNowToDB() {
     const today = new Date();
     today.setDate(today.getDate() + 30);
     return today.toISOString().split('T')[0]; // Formato YYYY-MM-DD
-};
+}
 
+
+
+
+export function formatNumber(number) {
+	let formattedNumber = numeral(number).format('0,0.00');
+	formattedNumber = formattedNumber.replace(/,/g, '#').replace(/\./g, ',').replace(/#/g, '.');
+	return formattedNumber;
+}

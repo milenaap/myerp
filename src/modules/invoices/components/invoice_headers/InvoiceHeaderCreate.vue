@@ -134,7 +134,7 @@
 							type="text"
 							name="total_without_vat" 
 							class="form-control text-right"
-							:class="{ 'border-danger': validate.total_without_vat.$error }" />
+							:class="{ 'border-danger': validate.total_without_vat.$error }" v-numeric-only />
 						<template v-if="validate.total_without_vat.$error">
 							<div v-for="(error, index) in validate.total_without_vat.$errors" :key="index"
 								class="text-danger mt-2">
@@ -152,7 +152,7 @@
 						</label>
 						<input v-model.trim="validate.total_with_vat.$model" id="total_with_vat" type="text"
 							name="total_with_vat" class="form-control text-right"
-							:class="{ 'border-danger': validate.total_with_vat.$error }" />
+							:class="{ 'border-danger': validate.total_with_vat.$error }" v-numeric-only/>
 						<template v-if="validate.total_with_vat.$error">
 							<div v-for="(error, index) in validate.total_with_vat.$errors" :key="index"
 								class="text-danger mt-2">
@@ -235,8 +235,8 @@
 
 				<div class="flex justify-around p-2">
 					<div>{{ item.name }}</div>
-					<div>{{ item.sale_price_without_vat }}</div>
-					<div>{{ item.vat_quote }}</div>
+					<div>{{ formatNumber(item.sale_price_without_vat) }}</div>
+					<div>{{ formatNumber(item.vat_quote) }}</div>
 					<div>
 						<button @click.prevent="deleteLine(index)">
 							<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
@@ -273,7 +273,7 @@ import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import useProduct from '../../composables/products';
 import useInvoiceHeaders from '@/modules/invoices/composables/invoice_headers';
-import { formatNowToDB, format30DaysFromNowToDB } from '@/utils/helper.js';
+import { formatNowToDB, format30DaysFromNowToDB, formatNumber } from '@/utils/helper.js';
 
 
 const { t } = useI18n();
@@ -329,6 +329,8 @@ const formData = reactive({
 
 const validate = useVuelidate(rules, toRefs(formData));
 
+
+
 const save = () => {
 
 	validate.value.$touch();
@@ -342,8 +344,11 @@ const save = () => {
 			return;
 		}
 		
-		formData.total_without_vat =formData.total_without_vat.replace(',', '.');
-		formData.total_with_vat = formData.total_with_vat.replace(',', '.');
+		// formData.total_without_vat =formData.total_without_vat.replace(',', '.');
+		// formData.total_with_vat = formData.total_with_vat.replace(',', '.');
+		formData.total_without_vat = formData.total_without_vat.replace('.', '').replace(',', '.');
+		formData.total_with_vat = formData.total_with_vat.replace('.', '').replace(',', '.');
+
 		formData.lines = JSON.stringify(arrProducts.value);		
 		emit('saveInvoiceHeaderForm', formData);
 	}
@@ -358,33 +363,43 @@ const addLine = () => {
 	
 	const p = {...foundProduct};
 
+
+
 	if(description.value){
 		p.name = p.name + ' ' + description.value;
 		description.value = '';
 	}
 
-	let total_without_vat = Number(formData.total_without_vat.replace(",", ".")) + Number(p.sale_price_without_vat);
+	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".");
+
+
+	let total_without_vat = Number(format1) + Number(p.sale_price_without_vat);
+
 	
-	formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
-	formData.total_with_vat =  String((Number(total_without_vat) * 1.21).toFixed(2)).replace(".", ",");
+	// formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
+	// formData.total_with_vat =  String((Number(total_without_vat) * 1.21).toFixed(2)).replace(".", ",");
+
+	formData.total_without_vat = formatNumber(total_without_vat); 
+	formData.total_with_vat =  formatNumber(Number(total_without_vat) * 1.21);
 
 	arrProducts.value.push(p);
 
-	console.log(arrProducts);
 
 }
 
 
 const deleteLine = (index) => {
-	console.log(index);
+	
 
 	// Restar el precio del producto del total sin IVA
 	let total_without_vat = Number(formData.total_without_vat.replace(",", ".")) - Number(arrProducts.value[index].sale_price_without_vat);
 
-	formData.total_without_vat = total_without_vat;
+	// formData.total_without_vat = total_without_vat;
+	// formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
+	// formData.total_with_vat =  String((Number(total_without_vat) * 1.21).toFixed(2)).replace(".", ",");
 
-	formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
-	formData.total_with_vat =  String((Number(total_without_vat) * 1.21).toFixed(2)).replace(".", ",");
+	formData.total_without_vat = formatNumber(total_without_vat); 
+	formData.total_with_vat = formatNumber(Number(total_without_vat) * 1.21);
 
 	// Eliminar el producto de la lista
 	arrProducts.value.splice(index, 1);
@@ -400,6 +415,22 @@ onMounted(async () => {
 	// console.log(products.value);
 
 });
+
+// Directiva personalizada para la máscara de entrada numérica
+const vNumericOnly = {
+    beforeMount(el) {
+        el.addEventListener('input', (e) => {
+            const value = e.target.value;
+            // Permitir solo números, comas y puntos
+            const numericValue = value.replace(/[^\d.,]/g, '');
+            if (numericValue !== value) {
+                e.target.value = numericValue;
+                // Actualizar el v-model manualmente
+                el.dispatchEvent(new Event('input'));
+            }
+        });
+    }
+};
 
 
 </script>
