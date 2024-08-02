@@ -371,13 +371,7 @@ const addLine = () => {
 	}
 
 	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".");
-
-
 	let total_without_vat = Number(format1) + Number(p.sale_price_without_vat);
-
-	
-	// formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
-	// formData.total_with_vat =  String((Number(total_without_vat) * 1.21).toFixed(2)).replace(".", ",");
 
 	formData.total_without_vat = formatNumber(total_without_vat); 
 	formData.total_with_vat =  formatNumber(Number(total_without_vat) * 1.21);
@@ -390,9 +384,10 @@ const addLine = () => {
 
 const deleteLine = (index) => {
 	
-
 	// Restar el precio del producto del total sin IVA
-	let total_without_vat = Number(formData.total_without_vat.replace(",", ".")) - Number(arrProducts.value[index].sale_price_without_vat);
+	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".")
+	let total_without_vat = Number(format1) - Number(arrProducts.value[index].sale_price_without_vat);
+
 
 	// formData.total_without_vat = total_without_vat;
 	// formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
