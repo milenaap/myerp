@@ -183,7 +183,21 @@
 
 		</div>
 
-		<div class="col-span-12 md:col-span-4 lg:col-span-">
+		<div class="col-span-12 md:col-span-4 lg:col-span-2">
+			<div class="input-form">
+				<label for="unit_nb" class="form-label w-full">
+					{{ $t("unit_nb") }} 
+				</label>
+
+				<input v-model.trim="unit_nb" id="unit_nb" type="number" min="1"
+							name="unit_nb" class="form-control"
+				 />
+
+			</div>
+
+		</div>
+
+		<div class="col-span-12 md:col-span-4 lg:col-span-4">
 			<div class="input-form">
 				<label for="description" class="form-label w-full">
 					{{ $t("description") }} 
@@ -198,7 +212,7 @@
 		</div>
 
 
-		<div class="col-span-12 md:col-span-4 lg:col-span-4">
+		<div class="col-span-12 md:col-span-4 lg:col-span-2">
 			<button type="button" @click.prevent="addLine" class="btn btn-primary mr-5 mt-6">
 				{{ $t("insert") }}
 			</button>
@@ -215,7 +229,7 @@
 							{{ $t("sale_price_without_vat") }}
 						</th>
 						<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-							{{ $t("vat") }}
+							{{ $t("unit_nb") }}
 						</th>
 						<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 							{{ $t("actions") }}
@@ -226,7 +240,7 @@
 					<tr v-for="(item, index) in arrProducts" :key="index">
 						<td class="px-6 py-4">{{ item.name }}</td>
 						<td class="px-6 py-4">{{ formatNumber(item.sale_price_without_vat) }}</td>
-						<td class="px-6 py-4">{{ formatNumber(item.vat_quote) }}</td>
+						<td class="px-6 py-4">{{ item.unit_nb }}</td>
 						<td class="px-6 py-4">
 							<button @click.prevent="deleteLine(index)">
 								<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
@@ -274,13 +288,15 @@ const { t } = useI18n();
 const emit = defineEmits(['cancelCreate', 'saveInvoiceHeaderForm']);
 
 
-const product_id = ref();
-const description = ref();
-const arrProducts = ref([]);
+
 const { invoiceCounters, getInvoiceCounters } = useInvoiceCounter();
 const { remittanceTypes, getRemittanceTypes } = useRemittanceType();
 const { customers, getCustomers } = useCustomer();
 const { products, getProducts } = useProduct();
+const product_id = ref();
+const description = ref();
+const arrProducts = ref([]);
+const unit_nb = ref(1);
 
 
 const rules = {
@@ -356,15 +372,16 @@ const addLine = () => {
 		description.value = '';
 	}
 
+	p.unit_nb = unit_nb.value;
+
 	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".");
-	let total_without_vat = Number(format1) + Number(p.sale_price_without_vat);
+	let total_without_vat = Number(format1) + (Number(p.sale_price_without_vat) * unit_nb.value) ;
 
 	formData.total_without_vat = formatNumber(total_without_vat); 
 	formData.total_with_vat =  formatNumber(Number(total_without_vat) * 1.21);
-
+	
 	arrProducts.value.push(p);
-
-
+	
 }
 
 
