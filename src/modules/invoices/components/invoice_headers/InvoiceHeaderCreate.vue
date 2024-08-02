@@ -222,35 +222,41 @@
 			</button>
 		</div>
 
-
 		<div class="col-span-12 md:col-span-12 lg:col-span-12">
-			<div class="flex justify-around border p-2 rounded-lg shadow bg-gray-100">
-				<div>{{ $t("description") }}</div>
-				<div>{{ $t("sale_price_without_vat") }}</div>
-				<div>{{ $t("vat") }}</div>
-				<div>{{ $t("actions") }}</div>
-			</div>
-
-			<div v-for="item, index in arrProducts" class="col-span-12 md:col-span-12 lg:col-span-12 ">
-
-				<div class="flex justify-around p-2">
-					<div>{{ item.name }}</div>
-					<div>{{ formatNumber(item.sale_price_without_vat) }}</div>
-					<div>{{ formatNumber(item.vat_quote) }}</div>
-					<div>
-						<button @click.prevent="deleteLine(index)">
-							<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
-						</button>
-					</div>
-				</div>
-			</div>
+			<table class="min-w-full divide-y divide-gray-200">
+				<thead class="bg-gray-50">
+					<tr>
+						<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+							{{ $t("description") }}
+						</th>
+						<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+							{{ $t("sale_price_without_vat") }}
+						</th>
+						<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+							{{ $t("vat") }}
+						</th>
+						<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+							{{ $t("actions") }}
+						</th>
+					</tr>
+				</thead>
+				<tbody class="bg-white divide-y divide-gray-200">
+					<tr v-for="(item, index) in arrProducts" :key="index">
+						<td class="px-6 py-4">{{ item.name }}</td>
+						<td class="px-6 py-4">{{ formatNumber(item.sale_price_without_vat) }}</td>
+						<td class="px-6 py-4">{{ formatNumber(item.vat_quote) }}</td>
+						<td class="px-6 py-4">
+							<button @click.prevent="deleteLine(index)">
+								<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 	</div>
 
-
-
-	<!--  description / unit_nb / unit_price /  -->
 
 </template>
 
@@ -344,8 +350,6 @@ const save = () => {
 			return;
 		}
 		
-		// formData.total_without_vat =formData.total_without_vat.replace(',', '.');
-		// formData.total_with_vat = formData.total_with_vat.replace(',', '.');
 		formData.total_without_vat = formData.total_without_vat.replace('.', '').replace(',', '.');
 		formData.total_with_vat = formData.total_with_vat.replace('.', '').replace(',', '.');
 
@@ -362,8 +366,6 @@ const addLine = () => {
     }
 	
 	const p = {...foundProduct};
-
-
 
 	if(description.value){
 		p.name = p.name + ' ' + description.value;
@@ -384,19 +386,12 @@ const addLine = () => {
 
 const deleteLine = (index) => {
 	
-	// Restar el precio del producto del total sin IVA
 	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".")
 	let total_without_vat = Number(format1) - Number(arrProducts.value[index].sale_price_without_vat);
-
-
-	// formData.total_without_vat = total_without_vat;
-	// formData.total_without_vat = String(total_without_vat.toFixed(2)).replace(".", ","); 
-	// formData.total_with_vat =  String((Number(total_without_vat) * 1.21).toFixed(2)).replace(".", ",");
 
 	formData.total_without_vat = formatNumber(total_without_vat); 
 	formData.total_with_vat = formatNumber(Number(total_without_vat) * 1.21);
 
-	// Eliminar el producto de la lista
 	arrProducts.value.splice(index, 1);
 
 }
