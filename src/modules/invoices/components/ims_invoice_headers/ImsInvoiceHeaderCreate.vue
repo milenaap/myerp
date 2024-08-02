@@ -5,6 +5,11 @@
 		<!-- BEGIN: Form -->
 		<form @submit.prevent="save">
 
+
+			<div class="bg-primary text-white px-6 py-2 rounded-lg shadow-md mb-6" role="alert">
+				<p class="text-left ml-6 mt-1">Registre los clientes antes de ejecutar este fichero</p>
+			</div>
+
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
@@ -28,7 +33,7 @@
 						<label for="year" class="form-label w-full">
 							{{ $t("year") }} *
 						</label>
-					
+
 						<select v-model.trim="validate.year.$model" id="year" name="year" class="form-control"
 							:class="{ 'border-danger': validate.year.$error }">
 							<option v-for="year in years" :key="year" :value="year">
@@ -46,7 +51,7 @@
 				</div>
 
 
-				
+
 				<div class="col-span-12 md:col-span-3 lg:col-span-2">
 					<div class="input-form">
 						<label for="month" class="form-label w-full">
@@ -141,18 +146,18 @@ const currentYear = new Date().getFullYear();
 const years = ref(Array.from({ length: 2 }, (v, i) => currentYear - i));
 
 const months = ref([
-	{  id: '01', name: 'Enero' },
-	{  id: '02', name: 'Febrero' },
-	{  id: '03', name: 'Marzo' },
-	{  id: '04', name: 'Abril' },
-	{  id: '05', name: 'Mayo' },
-	{  id: '06', name: 'Junio' },
-	{  id: '07', name: 'Julio' },
-	{  id: '08', name: 'Agosto' },
-	{  id: '09', name: 'Septiembre' },
-	{  id: '10', name: 'Octubre' },
-	{  id: '11', name: 'Noviembre' },
-	{  id: '12', name: 'Diciembre' }
+	{ id: '01', name: 'Enero' },
+	{ id: '02', name: 'Febrero' },
+	{ id: '03', name: 'Marzo' },
+	{ id: '04', name: 'Abril' },
+	{ id: '05', name: 'Mayo' },
+	{ id: '06', name: 'Junio' },
+	{ id: '07', name: 'Julio' },
+	{ id: '08', name: 'Agosto' },
+	{ id: '09', name: 'Septiembre' },
+	{ id: '10', name: 'Octubre' },
+	{ id: '11', name: 'Noviembre' },
+	{ id: '12', name: 'Diciembre' }
 
 ]);
 
@@ -207,7 +212,7 @@ const save = () => {
 
 onMounted(async () => {
 	// validate.value.month.$model = currentMonth;
-	
+
 });
 
 </script>
