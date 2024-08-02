@@ -31,6 +31,10 @@
   "name": "Nombre",
   "yes": "Sí",
   "no": "No",
+  "month": "Mes",
+  "year": "Año",
+  "insert": "Agregar",
+  "setting": "Configuración",
   "setting_table":{
     "next_table": "Sig",
     "prev_table": "Prev",
@@ -110,8 +114,6 @@
   "invoice_counter_id": "Serie",
   "invoice_lines": "Factura lineas",
   "due_date": "Fecha De Vencimiento",
-  "month": "Mes",
-  "year": "Año",
   "vat_quote": "IVA",
   "total_without_vat": "Total sin IVA",
   "total_with_vat": "Total con IVA",
@@ -147,7 +149,6 @@
   "invoice_date": "Fecha de factura",
   "invoice_due_date": "Fecha de Vencimiento",
   "vat_type": "Tipo de IVA",
-  "Add": "Agregar",
   "invoice_counter": "Contador"
 
 

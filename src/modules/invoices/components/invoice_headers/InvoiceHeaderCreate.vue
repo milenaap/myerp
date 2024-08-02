@@ -5,6 +5,8 @@
 		<!-- BEGIN: Form -->
 		<form @submit.prevent="save">
 
+			<h3 class="mb-5 mt-1">Datos</h3>
+
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
@@ -162,7 +164,13 @@
 	<!-- END: Card -->
 
 
-	<div class="grid grid-cols-12 gap-6 mt-5">
+
+	<!-- BEGIN: Card -->
+	<div class="card mt-5">
+
+		<h3 class="mb-5 mt-1">Detalles</h3>
+
+		<div class="grid grid-cols-12 gap-6 mt-5">
 		<div class="col-span-12 md:col-span-4 lg:col-span-4">
 			<div class="input-form">
 				<label for="product_id" class="form-label w-full">
@@ -192,7 +200,7 @@
 
 		<div class="col-span-12 md:col-span-4 lg:col-span-4">
 			<button type="button" @click.prevent="addLine" class="btn btn-primary mr-5 mt-6">
-				{{ $t("Add") }}
+				{{ $t("insert") }}
 			</button>
 		</div>
 
@@ -231,6 +239,12 @@
 
 	</div>
 
+
+
+	</div>
+
+	<!-- END: Card -->
+	
 
 </template>
 

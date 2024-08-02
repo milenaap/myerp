@@ -211,7 +211,8 @@ import {
   UsersIcon,
   DocumentIcon,
   FolderIcon,
-  WifiIcon
+  WifiIcon,
+  Cog6ToothIcon
 } from '@heroicons/vue/24/outline';
 import { ChevronDownIcon, MagnifyingGlassIcon, ChevronRightIcon } from '@heroicons/vue/20/solid';
 import { useAuthenticationStore } from '@/stores/auth/authentication';
@@ -234,9 +235,7 @@ const navigation = [
   { name: t("invoices"), href: 'invoices', icon: DocumentIcon, current: false },
  
   {
-    name: 'Configuración',
-    icon: UsersIcon,
-    current: false,
+    name: t("setting"), icon: Cog6ToothIcon, current: false,
     children: [
       { name: t("customers"), href: 'settings/companies' },
       { name: t("products"), href: 'settings/products' },
