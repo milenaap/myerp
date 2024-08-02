@@ -374,21 +374,25 @@ const addLine = () => {
 
 	p.unit_nb = unit_nb.value;
 
-	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".");
-	let total_without_vat = Number(format1) + (Number(p.sale_price_without_vat) * unit_nb.value) ;
+	let format1 = formData.total_without_vat.replace(".", "").replace(",", "."); 
+	let total_without_vat = Number(format1) + (Number(p.sale_price_without_vat) * unit_nb.value);
 
 	formData.total_without_vat = formatNumber(total_without_vat); 
 	formData.total_with_vat =  formatNumber(Number(total_without_vat) * 1.21);
 	
 	arrProducts.value.push(p);
+
+	unit_nb.value = 1;
+
+	product_id.value = '';
 	
 }
 
 
 const deleteLine = (index) => {
 	
-	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".")
-	let total_without_vat = Number(format1) - Number(arrProducts.value[index].sale_price_without_vat);
+	let format1 = formData.total_without_vat.replace(".", "").replace(",", "."); // 1230.20
+	let total_without_vat = Number(format1) - (Number(arrProducts.value[index].sale_price_without_vat) * Number(arrProducts.value[index].unit_nb));
 
 	formData.total_without_vat = formatNumber(total_without_vat); 
 	formData.total_with_vat = formatNumber(Number(total_without_vat) * 1.21);
