@@ -8,7 +8,7 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-				<div class="col-span-12 md:col-span-8 lg:col-span-8">
+				<div class="col-span-12 md:col-span-10 lg:col-span-10">
 					<div class="input-form">
 						<label for="customer_id" class="form-label w-full">
 							{{ $t("customer") }} *
@@ -38,32 +38,6 @@
 				</div>
 
 
-				
-
-
-				<div class="col-span-12 md:col-span-4 lg:col-span-4">
-					<div class="input-form">
-						<label for="remittance_type_id" class="form-label w-full">
-							{{ $t("remittance_type_id") }} *
-						</label>
-
-						<v-select 
-							v-model="validate.remittance_type_id.$model" 
-							:options="remittanceTypes" 
-							label="name"
-							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.remittance_type_id.$error }"
-						></v-select>
-
-						<template v-if="validate.remittance_type_id.$error">
-							<div v-for="(error, index) in validate.remittance_type_id.$errors" :key="index"
-								class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
 
 				<div class="col-span-12 md:col-span-2 lg:col-span-2">
 					<div class="input-form">
@@ -86,7 +60,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-3">
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="invoice_date" class="form-label w-full">
 							{{ $t("invoice_date") }} *
@@ -104,7 +78,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-3">
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="invoice_due_date" class="form-label w-full">
 							{{ $t("invoice_due_date") }} *
@@ -302,9 +276,6 @@ const rules = {
 	invoice_type_id: {
 		required: helpers.withMessage(t("form.required"), required),
 	},
-	remittance_type_id: {
-		required: helpers.withMessage(t("form.required"), required),
-	},
 	customer_id: {
 		required: helpers.withMessage(t("form.required"), required),
 	},
@@ -325,7 +296,6 @@ const rules = {
 const formData = reactive({
 	invoice_counter_id: "",
 	invoice_type_id: "2",
-	remittance_type_id: "",
 	customer_id: "",
 	invoice_date: formatNowToDB(),
 	invoice_due_date: format30DaysFromNowToDB(),
