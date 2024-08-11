@@ -99,6 +99,12 @@ const routes = [
             meta: { breadcrumb: 'Cliente' }
           },
           {
+            path: '/settings/companies/create',
+            name: 'settings/companies/create',
+            component: () => import('@/modules/invoices/components/companies/CompanyCreate.vue'),
+            meta: { breadcrumb: 'Cliente' }
+          },
+          {
             path: '/settings/products',
             name: 'settings/products',
             component: () => import('@/modules/invoices/views/products/ProductList.vue'),

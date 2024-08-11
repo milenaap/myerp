@@ -7,6 +7,18 @@
 
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
+
+				<!-- BEGIN: Buttons data and invoice-->
+				<div class="col-span-12 md:col-span-12 lg:col-span-12">
+					<div class="flex justify-left">
+						<button type="button" class="btn btn-primary mr-5">
+							{{ $t("customer_data") }}
+						</button>
+						<button @click.prevent="" class="btn btn-primary">
+							{{ $t("invoice") }}
+						</button>
+					</div>
+				</div>
 				
 				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
@@ -403,6 +415,8 @@
 			emit('saveCompanyForm', formData);
 		}
 	};
+
+
 
 	onMounted(async () => {
 		await getCountries();	

@@ -163,6 +163,8 @@
 
 	onMounted(async () => {
 		rows.value = await findData();
+		
+		
 	});
 
 

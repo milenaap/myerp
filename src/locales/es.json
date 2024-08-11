@@ -150,7 +150,8 @@
   "invoice_due_date": "Fecha de Vencimiento",
   "vat_type": "Tipo de IVA",
   "invoice_counter": "Contador",
-  "unit_nb": "Cantidad"
+  "unit_nb": "Cantidad",
+  "customer_data": "Datos"
 
 
 
