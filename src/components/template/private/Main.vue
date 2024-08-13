@@ -238,6 +238,7 @@ const navigation = [
     name: t("setting"), icon: Cog6ToothIcon, current: false,
     children: [
       { name: t("customers"), href: 'settings/companies' },
+      { name: t("customer_invoices"), href: 'settings/customer-invoices' },
       { name: t("products"), href: 'settings/products' },
       { name: t("providers"), href: 'settings/providers' },
       { name: t("services"), href: 'settings/services' },

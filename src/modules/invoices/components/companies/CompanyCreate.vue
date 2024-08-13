@@ -1,5 +1,7 @@
 <template>
 
+
+
 	<!-- BEGIN: Card -->
 	<div class="card">
 		<!-- BEGIN: Form -->
@@ -8,18 +10,7 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-				<!-- BEGIN: Buttons data and invoice-->
-				<div class="col-span-12 md:col-span-12 lg:col-span-12">
-					<div class="flex justify-left">
-						<button type="button" class="btn btn-primary mr-5">
-							{{ $t("customer_data") }}
-						</button>
-						<button @click.prevent="" class="btn btn-primary">
-							{{ $t("invoice") }}
-						</button>
-					</div>
-				</div>
-				
+							
 				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
 						<label for="name" class="form-label w-full">
@@ -331,7 +322,7 @@
 
 <script setup>
 
-	import { onMounted, reactive, toRefs } from 'vue';
+	import { onMounted, reactive, toRefs, ref } from 'vue';
 	import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
@@ -339,8 +330,10 @@
 	import useCountry from "../../composables/countries";
 	import vSelect from 'vue-select';
 	import 'vue-select/dist/vue-select.css';
-
+	import CustomerInvoiceForm from "../../components/customer_invoices/CustomerInvoiceCreate.vue";
+	import InvoiceCounterCreate from '../invoice_counters/InvoiceCounterCreate.vue';
 	
+
 
 	const {countries, getCountries} = useCountry();
 
@@ -416,8 +409,7 @@
 		}
 	};
 
-
-
+	
 	onMounted(async () => {
 		await getCountries();	
 	});

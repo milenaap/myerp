@@ -11,11 +11,11 @@ export default function useCustomerInvoice() {
 
 	const getCustomerInvoices = async () => {
 		customerInvoiceErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}customer-invoices/list`,{
+		await fetch(`${import.meta.env.VITE_API_URL}customer-invoices/list`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -34,11 +34,11 @@ export default function useCustomerInvoice() {
 
 	const getCustomerInvoice = async (id) => {
 		customerInvoiceErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}customer-invoices/show/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}customer-invoices/show/${id}`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())
@@ -57,11 +57,11 @@ export default function useCustomerInvoice() {
 
 	const storeCustomerInvoice = async (data) => {
 		customerInvoiceErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}customer-invoices/store`,{
+		await fetch(`${import.meta.env.VITE_API_URL}customer-invoices/store`,{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -81,11 +81,11 @@ export default function useCustomerInvoice() {
 
 	const updateCustomerInvoice = async (id, data) => {
 		customerInvoiceErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}customer-invoices/update/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}customer-invoices/update/${id}`,{
 			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -105,11 +105,11 @@ export default function useCustomerInvoice() {
 
 	const destroyCustomerInvoice = async (id) => {
 		customerInvoiceErrors.value = [];
-		await fetch(`${import.meta.env.VITE_API_URL_GLOBALFLEET}customer-invoices/delete/${id}`,{
+		await fetch(`${import.meta.env.VITE_API_URL}customer-invoices/delete/${id}`,{
 			method: 'DELETE',
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem('token')}`
+				"Authorization": `Bearer ${localStorage.getItem('token_gf_erp')}`
 			},
 		})
 		.then(res => res.json())

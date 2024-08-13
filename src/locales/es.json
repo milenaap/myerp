@@ -151,7 +151,13 @@
   "vat_type": "Tipo de IVA",
   "invoice_counter": "Contador",
   "unit_nb": "Cantidad",
-  "customer_data": "Datos"
+  "customer_data": "Datos",
+  "customer_invoices": " Facturas",
+  "customers_invoices": " Facturas",
+  "bank_account": " Cuenta bancaria",
+  "bank_name": "Banco",
+  "account_holder": "Titular de la cuenta"
+  
 
 
 

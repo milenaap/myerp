@@ -173,6 +173,7 @@
 
 	onMounted(async () => {
 		rows.value = await findData();
+		console.log(rows.value);
 	});
 
 

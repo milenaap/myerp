@@ -99,6 +99,12 @@ const routes = [
             meta: { breadcrumb: 'Cliente' }
           },
           {
+            path: '/settings/customer-invoices',
+            name: 'settings/customer-invoices',
+            component: () => import('@/modules/invoices/views/customer_invoices/CustomerInvoiceList.vue'),
+            meta: { breadcrumb: 'Cliente' }
+          },
+          {
             path: '/settings/companies/create',
             name: 'settings/companies/create',
             component: () => import('@/modules/invoices/components/companies/CompanyCreate.vue'),

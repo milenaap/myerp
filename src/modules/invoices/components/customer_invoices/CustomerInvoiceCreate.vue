@@ -8,7 +8,7 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-				
+								
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
@@ -197,6 +197,9 @@
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
 
+
+
+
 	const { t } = useI18n();
 	const emit = defineEmits(['cancelCreate', 'saveCustomerInvoiceForm']);
 
@@ -244,6 +247,8 @@
 			emit('saveCustomerInvoiceForm', formData);
 		}
 	};
+
+	
 
 	onMounted(async () => {
 		// TODO here implements...

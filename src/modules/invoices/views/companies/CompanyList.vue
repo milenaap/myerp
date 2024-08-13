@@ -17,6 +17,8 @@
 		/>
 	</div>
 
+	
+
 	<!-- BEGIN: Table -->
 	<div v-animate id="div_table">
 		<div class="flex flex-col sm:flex-row xl:items-start justify-between mb-5">
@@ -85,7 +87,7 @@
 
 	import Create from "../../components/companies/CompanyCreate.vue";
 	import Edit from "../../components/companies/CompanyEdit.vue";
-
+	
 
 	
 
@@ -95,6 +97,7 @@
 	// Views
 	const isCreate = ref(false);
 	const isEdit = ref(false);
+	
 	const companyId = ref(0);
 
 	const { t } = useI18n();
