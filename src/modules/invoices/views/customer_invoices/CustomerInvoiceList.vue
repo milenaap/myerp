@@ -103,13 +103,9 @@
 
 	// Table
 	const columns = [
-		{ label: t("customer_id"), field: 'customer_id' },
-		{ label: t("remittance_type_id"), field: 'remittance_type_id' },
-		{ label: t("bank_name"), field: 'bank_name' },
-		{ label: t("bank_account"), field: 'bank_account' },
-		{ label: t("account_holder"), field: 'account_holder' },
-		{ label: t("due_date"), field: 'due_date' },
-		{ label: t("due_date_by_days"), field: 'due_date_by_days' },
+		{ label: t("customer_id"), field: 'customer.company.name' },
+		{ label: t("remittance_type_id"), field: 'remittance_type.name' },
+		{ label: t("bank_account"), field: 'bank_account' },		
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store
