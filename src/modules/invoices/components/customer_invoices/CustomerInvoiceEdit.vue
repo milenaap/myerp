@@ -13,14 +13,13 @@
 						<label for="customer_id" class="form-label w-full">
 							{{ $t("customer_id") }} *
 						</label>
-						<input
-							v-model.trim="validate.customer_id.$model"
-							id="customer_id"
-							type="text"
-							name="customer_id"
-							class="form-control"
+						<v-select
+							v-model="validate.customer_id.$model"
+							:options="customers"
+							label="code"
+							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.customer_id.$error }"
-						/>
+						></v-select>
 						<template v-if="validate.customer_id.$error">
 							<div v-for="(error, index) in validate.customer_id.$errors" :key="index" class="text-danger mt-2">
 						{{ error.$message }}

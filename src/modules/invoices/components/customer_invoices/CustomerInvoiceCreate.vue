@@ -10,21 +10,29 @@
 
 								
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-6 lg:col-span-6">
 					<div class="input-form">
 						<label for="customer_id" class="form-label w-full">
-							{{ $t("customer_id") }} *
+							{{ $t("customer") }} *
 						</label>
-						<input
-							v-model.trim="validate.customer_id.$model"
-							id="customer_id"
-							type="text"
-							name="customer_id"
-							class="form-control"
-							:class="{ 'border-danger': validate.customer_id.$error }"
-						/>
+
+						<v-select v-model="validate.customer_id.$model" :options="customers" label="code"
+							:reduce="item => item.id" :class="{ 'border-danger': validate.customer_id.$error }">
+
+							<!-- Personalización de cómo se muestra cada opción -->
+							<template #option="{ code, company }">
+								{{ code }} - {{ company.name }}
+							</template>
+
+							<template #selected-option="{ code, company }">
+								{{ code + ' - ' + company.name }}
+							</template>
+
+						</v-select>
+
 						<template v-if="validate.customer_id.$error">
-							<div v-for="(error, index) in validate.customer_id.$errors" :key="index" class="text-danger mt-2">
+							<div v-for="(error, index) in validate.customer_id.$errors" :key="index"
+								class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
@@ -128,7 +136,8 @@
 						<input
 							v-model.trim="validate.due_date.$model"
 							id="due_date"
-							type="text"
+							type="number"
+							min="0"
 							name="due_date"
 							class="form-control"
 							:class="{ 'border-danger': validate.due_date.$error }"
@@ -150,7 +159,8 @@
 						<input
 							v-model.trim="validate.due_date_by_days.$model"
 							id="due_date_by_days"
-							type="text"
+							type="number"
+							min="0"
 							name="due_date_by_days"
 							class="form-control"
 							:class="{ 'border-danger': validate.due_date_by_days.$error }"
@@ -196,12 +206,16 @@
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
+	import useCustomer from "../../composables/customers.js";
+	import vSelect from 'vue-select';
+	import 'vue-select/dist/vue-select.css';
 
 
 
 
 	const { t } = useI18n();
 	const emit = defineEmits(['cancelCreate', 'saveCustomerInvoiceForm']);
+	const {customers, getCustomers} = useCustomer();
 
 	const rules = {
 		customer_id: {
@@ -251,7 +265,7 @@
 	
 
 	onMounted(async () => {
-		// TODO here implements...
+		await getCustomers();
 	});
 
 </script>
