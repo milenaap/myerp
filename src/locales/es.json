@@ -113,7 +113,7 @@
   "is_generated": "Está Generado",
   "invoice_counter_id": "Serie",
   "invoice_lines": "Factura lineas",
-  "due_date": "Fecha De Vencimiento",
+  "due_date": "Fecha de Vencimiento",
   "vat_quote": "IVA",
   "total_without_vat": "Total sin IVA",
   "total_with_vat": "Total con IVA",
@@ -156,7 +156,8 @@
   "customers_invoices": " Facturas",
   "bank_account": " Cuenta bancaria",
   "bank_name": "Banco",
-  "account_holder": "Titular de la cuenta"
+  "account_holder": "Titular de la cuenta",
+  "due_date_by_days": "Fecha de Vencimiento por días"
   
 
 
