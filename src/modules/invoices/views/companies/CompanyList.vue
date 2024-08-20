@@ -25,13 +25,7 @@
 			<h1 class="mt-0"> {{ $t("customers") }}</h1>
 			<button class="btn-primary sm:w-auto" @click.prevent="showCreateCompany">
 				<div class="flex flex-row">
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" viewBox="0 0 50 50">
-					<path fill="currentColor"
-						d="M25 42c-9.4 0-17-7.6-17-17S15.6 8 25 8s17 7.6 17 17s-7.6 17-17 17m0-32c-8.3 0-15 6.7-15 15s6.7 15 15 15s15-6.7 15-15s-6.7-15-15-15" />
-						<path fill="currentColor" d="M16 24h18v2H16z" />
-						<path fill="currentColor" d="M24 16h2v18h-2z" />
-						<path fill="currentColor" d="M24 16h2v18h-2z" />
-					</svg>
+					<IconAdd />
 					{{ $t("add") }}
 				</div>
 			</button>
@@ -82,11 +76,14 @@
 	import { useI18n } from 'vue-i18n';
 	import { Toast } from '@/utils/toast';
 	import Swal from 'sweetalert2';
+	import IconAdd from '@/components/icons/IconAdd.vue';
 	import useCompany from "../../composables/companies";
 	import useCustomers from "@/modules/invoices/composables/customers";
 
 	import Create from "../../components/companies/CompanyCreate.vue";
 	import Edit from "../../components/companies/CompanyEdit.vue";
+
+	
 	
 
 	
