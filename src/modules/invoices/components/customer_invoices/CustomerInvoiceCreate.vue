@@ -10,7 +10,7 @@
 
 								
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-6">
+				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
 						<label for="customer_id" class="form-label w-full">
 							{{ $t("customer") }} *
@@ -40,19 +40,20 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-4 lg:col-span-4">
 					<div class="input-form">
 						<label for="remittance_type_id" class="form-label w-full">
 							{{ $t("remittance_type_id") }} *
 						</label>
-						<input
-							v-model.trim="validate.remittance_type_id.$model"
-							id="remittance_type_id"
-							type="text"
-							name="remittance_type_id"
-							class="form-control"
+
+						<v-select
+							v-model="validate.remittance_type_id.$model"
+							:options="remittanceTypes"
+							label="name"
+							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.remittance_type_id.$error }"
-						/>
+						></v-select>
+
 						<template v-if="validate.remittance_type_id.$error">
 							<div v-for="(error, index) in validate.remittance_type_id.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
@@ -131,13 +132,14 @@
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="due_date" class="form-label w-full">
-							{{ $t("due_date") }} *
+							{{ $t("due_date_days") }} *
 						</label>
 						<input
 							v-model.trim="validate.due_date.$model"
 							id="due_date"
 							type="number"
 							min="0"
+							max="31"
 							name="due_date"
 							class="form-control"
 							:class="{ 'border-danger': validate.due_date.$error }"
@@ -209,12 +211,18 @@
 	import useCustomer from "../../composables/customers.js";
 	import vSelect from 'vue-select';
 	import 'vue-select/dist/vue-select.css';
+	import useCustomers from '../../composables/customers';
+	import useRemittanceTypes from '../../composables/remittance_types';
 
+	
+	
+	
 
 
 
 	const { t } = useI18n();
 	const emit = defineEmits(['cancelCreate', 'saveCustomerInvoiceForm']);
+	const { remittanceTypes, getRemittanceTypes } = useRemittanceTypes();
 	const {customers, getCustomers} = useCustomer();
 
 	const rules = {
@@ -266,6 +274,7 @@
 
 	onMounted(async () => {
 		await getCustomers();
+		await getRemittanceTypes();
 	});
 
 </script>

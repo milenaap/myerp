@@ -152,14 +152,13 @@
   "invoice_counter": "Contador",
   "unit_nb": "Cantidad",
   "customer_data": "Datos",
-  "customer_invoices": " Facturas",
-  "customers_invoices": " Facturas",
+  "customer_invoices": "Facturación cliente",
+  "customers_invoices": "Facturas",
   "bank_account": " Cuenta bancaria",
-  "bank_name": "Banco",
+  "bank_name": "Nombre del banco",
   "account_holder": "Titular de la cuenta",
-  "due_date_by_days": "Fecha de Vencimiento por días"
+  "due_date_by_days": "A cuantos días",
+  "due_date_days": "Vencimiento el día"
   
-
-
 
 }

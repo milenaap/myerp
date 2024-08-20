@@ -6,8 +6,9 @@
 		<form @submit.prevent="save">
 
 
-			<div class="bg-primary text-white px-6 py-2 rounded-lg shadow-md mb-6" role="alert">
-				<p class="text-left ml-6 mt-1">Registre los clientes antes de ejecutar este fichero</p>
+			<div class="flex flex-row justify-center bg-primary-light/85 text-yellow-100 px-6 py-2 rounded-lg shadow-md mb-10" role="alert">
+				<IconAlert />
+				<p class="text-left ml-3 mt-0">Información: por favor registre los clientes antes de cargar el fichero excel</p>
 			</div>
 
 			<!-- BEGIN: container -->
@@ -124,6 +125,7 @@ import { required, minLength, maxLength, email, url, integer } from '@vuelidate/
 import { useVuelidate } from '@vuelidate/core';
 import { helpers } from '@vuelidate/validators';
 import { useI18n } from 'vue-i18n';
+import IconAlert from '@/components/icons/IconAlert.vue';
 
 const { t } = useI18n();
 const emit = defineEmits(['cancelCreate', 'saveImsInvoiceHeaderForm']);

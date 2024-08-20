@@ -8,18 +8,24 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
 						<label for="customer_id" class="form-label w-full">
 							{{ $t("customer_id") }} *
 						</label>
-						<v-select
-							v-model="validate.customer_id.$model"
-							:options="customers"
-							label="code"
-							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.customer_id.$error }"
-						></v-select>
+						<v-select v-model="validate.customer_id.$model" :options="customers" label="code"
+							:reduce="item => item.id" :class="{ 'border-danger': validate.customer_id.$error }" disabled="disabled">
+
+							<!-- Personalización de cómo se muestra cada opción -->
+							<template #option="{ code, company }">
+								{{ code }} - {{ company.name }}
+							</template>
+
+							<template #selected-option="{ code, company }">
+								{{ code + ' - ' + company.name }}
+							</template>
+
+						</v-select>
 						<template v-if="validate.customer_id.$error">
 							<div v-for="(error, index) in validate.customer_id.$errors" :key="index" class="text-danger mt-2">
 						{{ error.$message }}
@@ -29,19 +35,20 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-4 lg:col-span-4">
 					<div class="input-form">
 						<label for="remittance_type_id" class="form-label w-full">
 							{{ $t("remittance_type_id") }} *
 						</label>
-						<input
-							v-model.trim="validate.remittance_type_id.$model"
-							id="remittance_type_id"
-							type="text"
-							name="remittance_type_id"
-							class="form-control"
+
+						<v-select
+							v-model="validate.remittance_type_id.$model"
+							:options="remittanceTypes"
+							label="name"
+							:reduce="item => item.id"
 							:class="{ 'border-danger': validate.remittance_type_id.$error }"
-						/>
+						></v-select>
+						
 						<template v-if="validate.remittance_type_id.$error">
 							<div v-for="(error, index) in validate.remittance_type_id.$errors" :key="index" class="text-danger mt-2">
 						{{ error.$message }}
@@ -187,15 +194,19 @@
 
 
 <script setup>
-
 	import { onMounted, reactive, toRefs } from 'vue';
-	import useCustomerInvoices from '../../composables/customer_invoices';
 	import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
+	import useCustomerInvoices from '../../composables/customer_invoices';
+	import useCustomers from '../../composables/customers';
+	import useRemittanceTypes from '../../composables/remittance_types';
 
 	const { customerInvoice, getCustomerInvoice } = useCustomerInvoices();
+	const { customers, getCustomers } = useCustomers();
+	const { remittanceTypes, getRemittanceTypes } = useRemittanceTypes();
+
 	const { t } = useI18n();
 	const props = defineProps(['customerInvoiceId']);
 	const emit = defineEmits(['cancelEdit', 'updateCustomerInvoiceForm']);
@@ -246,7 +257,12 @@
 	};
 
 	onMounted(async () => {
+
+		await getRemittanceTypes();
+		await getCustomers();
+
 		await getCustomerInvoice(props.customerInvoiceId);
+
 		formData.customer_id = customerInvoice.value.customer_id;
 		formData.remittance_type_id = customerInvoice.value.remittance_type_id;
 		formData.bank_name = customerInvoice.value.bank_name;
