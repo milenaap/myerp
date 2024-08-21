@@ -5,7 +5,16 @@
 {{ $t("add") }}
 
 
+
+<IconEdit />
+
+<IconDelete />
+
+
+
 import IconAdd from '@/components/icons/IconAdd.vue';
+import IconEdit from '@/components/icons/IconEdit.vue';
+import IconDelete from '@/components/icons/IconDelete.vue';
 
 
 
