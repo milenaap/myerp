@@ -23,13 +23,7 @@
 			<h1 class="mt-0">{{ $t("invoice_headers") }}</h1>
 			<button class="btn-primary sm:w-auto" @click.prevent="showCreateInvoiceHeader">
 				<div class="flex flex-row">
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" viewBox="0 0 50 50">
-					<path fill="currentColor"
-						d="M25 42c-9.4 0-17-7.6-17-17S15.6 8 25 8s17 7.6 17 17s-7.6 17-17 17m0-32c-8.3 0-15 6.7-15 15s6.7 15 15 15s15-6.7 15-15s-6.7-15-15-15" />
-						<path fill="currentColor" d="M16 24h18v2H16z" />
-						<path fill="currentColor" d="M24 16h2v18h-2z" />
-						<path fill="currentColor" d="M24 16h2v18h-2z" />
-					</svg>
+					<IconAdd />
 					{{ $t("add") }}
 				</div>
 			</button>
@@ -60,10 +54,10 @@
 					<template #table-row="props">
 						<span v-if="props.column.field == 'actions'">
 							<button @click="downloadFileInvoiceHeader(props.row.id)">
-								<IconDownload class="h-6 w-8 text-primary hover:text-primary-dark" />
+								<IconDownload />
 							</button>
 							<button @click="showDeleteInvoiceHeader(props.row.id)">
-								<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
+								<IconDelete />
 							</button>
 						</span>
 					</template>
@@ -86,6 +80,7 @@
 	import { formatDecimal } from "@/utils/helper.js";
 	import IconDelete from '@/components/icons/IconDelete.vue';
 	import IconDownload from '@/components/icons/IconDownload.vue';
+	import IconAdd from '@/components/icons/IconAdd.vue';
 
 
 	// Tabulator
