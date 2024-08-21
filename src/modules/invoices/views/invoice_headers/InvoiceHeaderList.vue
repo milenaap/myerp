@@ -29,6 +29,10 @@
 			</button>
 		</div>
 
+		<div class="flex flex-col">
+			
+		</div>
+
 		<!-- BEGIN: Table -->
 		<div class="p-5 border rounded-md shadow-sm">
 			<div class="overflow-x-auto scrollbar-hidden">
@@ -53,6 +57,9 @@
 				>
 					<template #table-row="props">
 						<span v-if="props.column.field == 'actions'">
+							<button @click="showEditInvoiceHeader(props.row.id)">
+								<IconEdit />
+							</button>
 							<button @click="downloadFileInvoiceHeader(props.row.id)">
 								<IconDownload />
 							</button>
@@ -81,6 +88,8 @@
 	import IconDelete from '@/components/icons/IconDelete.vue';
 	import IconDownload from '@/components/icons/IconDownload.vue';
 	import IconAdd from '@/components/icons/IconAdd.vue';
+	import IconEdit from '@/components/icons/IconEdit.vue';
+
 
 
 	// Tabulator
@@ -146,24 +155,24 @@
 	}
 
 	//Edit
-	// const showEditInvoiceHeader = (id) => {
-	// 	isEdit.value = true;
-	// 	div_table.style.display = 'none';
-	// 	invoiceHeaderId.value = id;
-	// }
+	const showEditInvoiceHeader = (id) => {
+		isEdit.value = true;
+		div_table.style.display = 'none';
+		invoiceHeaderId.value = id;
+	}
 
-	// const cancelEdit = async() => {
-	// 	isEdit.value = false;
-	// 	div_table.style.display = 'block';
-	// }
+	const cancelEdit = async() => {
+		isEdit.value = false;
+		div_table.style.display = 'block';
+	}
 
-	// const updateInvoiceHeaderForm = async (id, data) => {
-	// 	isEdit.value = false;
-	// 	div_table.style.display = 'block';
-	// 	await updateInvoiceHeader(id, data);
-	// 	rows.value = await findData();
-	// 	await Toast(t("message.record_updated"), 'success');
-	// }
+	const updateInvoiceHeaderForm = async (id, data) => {
+		isEdit.value = false;
+		div_table.style.display = 'block';
+		await updateInvoiceHeader(id, data);
+		rows.value = await findData();
+		await Toast(t("message.record_updated"), 'success');
+	}
 
 	// Delete
 	const showDeleteInvoiceHeader = async (id, description='') => {
