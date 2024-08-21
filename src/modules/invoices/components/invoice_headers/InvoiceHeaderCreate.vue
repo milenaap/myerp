@@ -213,7 +213,7 @@
 
 
 		<div class="col-span-12 md:col-span-4 lg:col-span-2">
-			<button type="button" @click.prevent="addLine" class="btn btn-primary mr-5 mt-6">
+			<button type="button" @click.prevent="addLine" class="btn btn-secondary mr-5 mt-6 hover:btn-secondary-dark">
 				{{ $t("insert") }}
 			</button>
 		</div>
