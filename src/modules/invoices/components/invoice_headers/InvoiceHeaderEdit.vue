@@ -275,7 +275,12 @@
 	const { invoiceHeader, getInvoiceHeader } = useInvoiceHeaders();
 
 	const { t } = useI18n();
-	const props = defineProps(['invoiceHeaderId']);
+	const props = defineProps({
+		'invoiceHeaderId': {
+			type: Number,
+			required: true,
+		}
+	});
 	const emit = defineEmits(['cancelEdit', 'updateInvoiceHeaderForm']);
 
 	const rules = {
