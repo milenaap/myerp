@@ -1,5 +1,5 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" :class="[className]" viewBox="0 0 24 24">
 		<path fill="currentColor" d="m12.866 3l9.526 16.5a1 1 0 0 1-.866 1.5H2.474a1 1 0 0 1-.866-1.5L11.134 3a1 1 0 0 1 1.732 0M11 16v2h2v-2zm0-7v5h2V9z" />
 	</svg>
 </template>
@@ -10,7 +10,7 @@ import { defineProps } from 'vue'
 const props = defineProps({
     className: {
         type: String,
-        default: '',
+        default: 'w-6 h-6 mr-1',
     }
 })
 </script>
