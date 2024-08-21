@@ -1,6 +1,16 @@
 # ERP Vuejs
 
 
+<IconAdd />
+{{ $t("add") }}
+
+
+import IconAdd from '@/components/icons/IconAdd.vue';
+
+
+
+
+
 ERP project
 
 ## Project Setup
