@@ -66,7 +66,7 @@
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="bank_name" class="form-label w-full">
-							{{ $t("bank_name") }} *
+							{{ $t("bank_name") }}
 						</label>
 						<input
 							v-model.trim="validate.bank_name.$model"
@@ -88,7 +88,7 @@
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="bank_account" class="form-label w-full">
-							{{ $t("bank_account") }} *
+							{{ $t("bank_account") }}
 						</label>
 						<input
 							v-model.trim="validate.bank_account.$model"
@@ -110,7 +110,7 @@
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="account_holder" class="form-label w-full">
-							{{ $t("account_holder") }} *
+							{{ $t("account_holder") }}
 						</label>
 						<input
 							v-model.trim="validate.account_holder.$model"
@@ -129,7 +129,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="due_date" class="form-label w-full">
 							{{ $t("due_date_days") }} *
@@ -153,7 +153,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="due_date_by_days" class="form-label w-full">
 							{{ $t("due_date_by_days") }} *
@@ -233,13 +233,13 @@
 			required: helpers.withMessage(t("form.required"), required),
 		},
 		bank_name: {
-			required: helpers.withMessage(t("form.required"), required),
+			//required: helpers.withMessage(t("form.required"), required),
 		},
 		bank_account: {
-			required: helpers.withMessage(t("form.required"), required),
+			//required: helpers.withMessage(t("form.required"), required),
 		},
 		account_holder: {
-			required: helpers.withMessage(t("form.required"), required),
+			//required: helpers.withMessage(t("form.required"), required),
 		},
 		due_date: {
 			required: helpers.withMessage(t("form.required"), required),
