@@ -247,7 +247,7 @@
 							<td class="px-6 py-4">{{ formatNumber(item.total_without_vat) }}</td>
 							<td class="px-6 py-4">{{ item.unit_nb }}</td>
 							<td class="px-6 py-4">
-								<button type="button" @click.prevent="deleteLine(index)">
+								<button type="button" @click.prevent="deleteLine(index, item)">
 									<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
 								</button>
 							</td>
@@ -283,7 +283,7 @@ import 'vue-select/dist/vue-select.css';
 import useProduct from '../../composables/products';
 import { formatNumber } from '@/utils/helper.js';
 import IconDelete from '@/components/icons/IconDelete.vue';
-
+import Swal from 'sweetalert2';
 
 
 
@@ -414,19 +414,31 @@ const addLine = () => {
 
 
 
-const deleteLine = (index) => {
-	
-	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".");
-	let total_without_vat = Number(format1) - (Number(arrProducts.value[index].unit_prices) * Number(arrProducts.value[index].unit_nb));
+const deleteLine = (index, item) => {
 
-	formData.total_without_vat = formatNumber(total_without_vat); 
-	formData.total_with_vat = formatNumber(Number(total_without_vat) * 1.21);
+	Swal.fire({
+		icon: 'warning',
+		title: t("message.are_you_sure"),
+		text: t("delete") + (item.description !== '' ? ': ' + item.description : ''),
+		showCancelButton: true,
+		confirmButtonText: t("delete"),
+		confirmButtonColor: import.meta.env.VITE_SWEETALERT_COLOR_BTN_SUCCESS,
+	}).then(async (result) => {
+		if (result.isConfirmed) {
 
-	arrDeletedProducts.value.push(arrProducts.value[index]);
+			let format1 = formData.total_without_vat.replace(".", "").replace(",", ".");
+			let total_without_vat = Number(format1) - (Number(arrProducts.value[index].unit_prices) * Number(arrProducts.value[index].unit_nb));
 
-	arrProducts.value.splice(index, 1);
+			formData.total_without_vat = formatNumber(total_without_vat); 
+			formData.total_with_vat = formatNumber(Number(total_without_vat) * 1.21);
 
-	console.log(arrDeletedProducts.value);
+			arrDeletedProducts.value.push(arrProducts.value[index]);
+
+			arrProducts.value.splice(index, 1);
+
+		}
+
+	});
 
 }
 

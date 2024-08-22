@@ -266,7 +266,6 @@ const downloadFileInvoiceHeader = async (id) => {
 onMounted(async () => {
 	rows.value = await findData();
 
-
 });
 
 
