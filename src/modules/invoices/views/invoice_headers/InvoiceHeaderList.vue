@@ -138,7 +138,8 @@ const years = Array.from({ length: new Date().getFullYear() - 2022 }, (_, i) => 
 
 
 const findData = async () => {
-	await getInvoiceHeaders();
+	let pathUrl = `?year=${selectedYear.value}&month=${selectedMonth.value}`
+	await getInvoiceHeaders(pathUrl);
 	return toRaw(invoiceHeaders.value);
 }
 
@@ -150,17 +151,8 @@ const formatHasPaid = (value) => {
 
 // Filter logic
 const filterInvoices = async () => {
+	rows.value = await findData();
 
-	console.log(selectedMonth.value)
-	console.log(selectedYear.value)
-	let pathUrl = `?year=${selectedYear.value}&month=${selectedMonth.value}`
-
-	await getInvoiceHeaders(pathUrl);
-
-	rows.value = toRaw(invoiceHeaders.value)
-
-
-	
 };
 
 
@@ -253,8 +245,6 @@ const downloadFileInvoiceHeader = async (id) => {
 
 onMounted(async () => {
 	rows.value = await findData();
-
-
 });
 
 
