@@ -15,45 +15,63 @@
 	<div v-animate id="div_table">
 		<div class="flex flex-col sm:flex-row xl:items-start justify-between mb-5">
 			<h1 class="mt-0">{{ $t("invoice_headers") }}</h1>
-			<button class="btn-primary sm:w-auto" @click.prevent="showCreateInvoiceHeader">
-				<div class="flex flex-row">
-					<IconAdd />
-					{{ $t("add") }}
-				</div>
-			</button>
-		</div>
 
 
-		<!-- Filter -->
-
-		<div class="flex flex-row items-center space-x-4 mb-5">
-			<div class="flex flex-col">
-				<label for="month" class="p-1">Mes</label>
-				<select id="month" v-model="selectedMonth" class="p-1 border rounded-md">
-					<option v-for="(month, index) in months" :key="index" :value="String(index + 1).padStart(2, '0')">
-						{{ month }}
-					</option>
-				</select>
+			<div>
+				<button class="btn-primary sm:w-auto" @click.prevent="showCreateInvoiceHeader">
+					<div class="flex flex-row">
+						<IconAdd />
+						{{ $t("add") }}
+					</div>
+				</button>
 			</div>
 
-			<div class="flex flex-col">
-				<label for="year" class="p-1">Año</label>
-				<select id="year" v-model="selectedYear" class="p-1 border rounded-md">
-					<option v-for="year in years" :key="year" :value="year">
-						{{ year }}
-					</option>
-				</select>
-			</div>
-
-			<button @click.prevent="filterInvoices"
-				class="py-2 px-4 mt-10 border rounded-md btn-primary text-white">Buscar
-			</button>
 		</div>
-		<!-- END Filter -->
 
 
 		<!-- BEGIN: Table -->
 		<div class="p-5 border rounded-md shadow-sm">
+
+			<!-- Filter -->
+			<div class="flex flex-row mb-3">
+
+				<div class="mr-4">
+					
+						<label for="month" class="form-label w-full mr-2 font-light italic">
+							{{ $t("month") }}:
+						</label>
+						<select id="month" v-model="selectedMonth" class="p-1 border rounded-md">
+							<option v-for="(month, index) in months" :key="index"
+								:value="String(index + 1).padStart(2, '0')">
+								{{ month }}
+							</option>
+						</select>
+					
+				</div>
+
+
+				<div>
+					<div class="">
+						<label for="year" class="form-label w-full mr-2 font-light italic">
+							{{ $t("year") }}:
+						</label>
+						<select id="year" v-model="selectedYear" class="p-1 border rounded-md">
+							<option v-for="year in years" :key="year" :value="year">
+								{{ year }}
+							</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="ml-2">
+					<button @click.prevent="filterInvoices" class="btn btn-secondary py-1">Buscar
+					</button>
+
+				</div>
+
+			</div>
+			<!-- END Filter -->
+
 			<div class="overflow-x-auto scrollbar-hidden">
 				<VueGoodTable :columns="columns" :rows="rows" :pagination-options="{
 					enabled: true,
