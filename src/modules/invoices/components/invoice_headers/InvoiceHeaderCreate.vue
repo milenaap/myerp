@@ -238,8 +238,8 @@
 				</thead>
 				<tbody class="bg-white divide-y divide-gray-200">
 					<tr v-for="(item, index) in arrProducts" :key="index">
-						<td class="px-6 py-4">{{ item.name }}</td>
-						<td class="px-6 py-4">{{ formatNumber(item.sale_price_without_vat) }}</td>
+						<td class="px-6 py-4">{{ item.description }}</td>
+						<td class="px-6 py-4">{{ formatNumber(item.unit_prices) }}</td>
 						<td class="px-6 py-4">{{ item.unit_nb }}</td>
 						<td class="px-6 py-4">
 							<button @click.prevent="deleteLine(index)">
@@ -256,7 +256,6 @@
 
 
 	</div>
-
 	<!-- END: Card -->
 	
 
@@ -275,12 +274,10 @@ import IconDelete from '@/components/icons/IconDelete.vue';
 
 
 import useInvoiceCounter from "../../composables/invoice_counters.js";
-import useRemittanceType from "../../composables/remittance_types.js";
 import useCustomer from "../../composables/customers.js";
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import useProduct from '../../composables/products';
-import useInvoiceHeaders from '@/modules/invoices/composables/invoice_headers';
 import { formatNowToDB, format30DaysFromNowToDB, formatNumber } from '@/utils/helper.js';
 
 
@@ -290,7 +287,6 @@ const emit = defineEmits(['cancelCreate', 'saveInvoiceHeaderForm']);
 
 
 const { invoiceCounters, getInvoiceCounters } = useInvoiceCounter();
-const { remittanceTypes, getRemittanceTypes } = useRemittanceType();
 const { customers, getCustomers } = useCustomer();
 const { products, getProducts } = useProduct();
 const product_id = ref();
@@ -346,7 +342,6 @@ const save = () => {
 	} else {
 		
 		if (arrProducts.value.length === 0) {
-			
 			return;
 		}
 		
@@ -355,8 +350,13 @@ const save = () => {
 
 		formData.lines = JSON.stringify(arrProducts.value);		
 		emit('saveInvoiceHeaderForm', formData);
+
 	}
 };
+
+
+
+
 
 const addLine = () => {
 	const foundProduct = products.value.find(products => products.id === (product_id.value));
@@ -365,26 +365,36 @@ const addLine = () => {
         return;
     }
 	
-	const p = {...foundProduct};
+	const p = {};
 
 	if(description.value){
-		p.name = p.name + ' ' + description.value;
+		p.description = foundProduct.name + ' ' + description.value;
 		description.value = '';
+	}else{
+		p.description = foundProduct.name;
 	}
 
 	p.unit_nb = unit_nb.value;
+	p.unit_prices = Number(foundProduct.sale_price_without_vat);
+	p.product_id = foundProduct.id;
+	p.vat_type = foundProduct.vat_quote;
+	p.total_without_vat = (Number(foundProduct.sale_price_without_vat) * unit_nb.value);
+
+	
 
 	let format1 = formData.total_without_vat.replace(".", "").replace(",", "."); 
-	let total_without_vat = Number(format1) + (Number(p.sale_price_without_vat) * unit_nb.value);
+	let total_without_vat = Number(format1) + (Number(foundProduct.sale_price_without_vat) * unit_nb.value);
 
+	//Inputs
 	formData.total_without_vat = formatNumber(total_without_vat); 
 	formData.total_with_vat =  formatNumber(Number(total_without_vat) * 1.21);
 	
+
 	arrProducts.value.push(p);
 
 	unit_nb.value = 1;
-
 	product_id.value = '';
+
 	
 }
 
@@ -392,7 +402,7 @@ const addLine = () => {
 const deleteLine = (index) => {
 	
 	let format1 = formData.total_without_vat.replace(".", "").replace(",", "."); // 1230.20
-	let total_without_vat = Number(format1) - (Number(arrProducts.value[index].sale_price_without_vat) * Number(arrProducts.value[index].unit_nb));
+	let total_without_vat = Number(format1) - (Number(arrProducts.value[index].unit_prices) * Number(arrProducts.value[index].unit_nb));
 
 	formData.total_without_vat = formatNumber(total_without_vat); 
 	formData.total_with_vat = formatNumber(Number(total_without_vat) * 1.21);
@@ -403,10 +413,15 @@ const deleteLine = (index) => {
 
 
 onMounted(async () => {
-	await getInvoiceCounters();
-	await getCustomers();
-	await getRemittanceTypes();
-	await getProducts();
+
+
+	await Promise.all([
+		getInvoiceCounters(),
+		getCustomers(),
+		getProducts(),
+	])
+
+	
 	// console.log(products.value);
 
 });
