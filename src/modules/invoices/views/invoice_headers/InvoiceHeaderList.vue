@@ -30,7 +30,7 @@
 			<div class="flex flex-col">
 				<label for="month" class="p-1">Mes</label>
 				<select id="month" v-model="selectedMonth" class="p-1 border rounded-md">
-					<option v-for="(month, index) in months" :key="index" :value="index + 1">
+					<option v-for="(month, index) in months" :key="index" :value="String(index + 1).padStart(2, '0')">
 						{{ month }}
 					</option>
 				</select>
@@ -45,8 +45,9 @@
 				</select>
 			</div>
 
-			<button @click="filterInvoices"
-				class="py-2 px-4 mt-10 border rounded-md btn-primary text-white">Buscar</button>
+			<button @click.prevent="filterInvoices"
+				class="py-2 px-4 mt-10 border rounded-md btn-primary text-white">Buscar
+			</button>
 		</div>
 		<!-- END Filter -->
 
@@ -126,7 +127,7 @@ const {
 
 
 // Filter state
-const selectedMonth = ref(new Date().getMonth() + 1);
+const selectedMonth = ref(String(new Date().getMonth() + 1).padStart(2, '0'));
 const selectedYear = ref(new Date().getFullYear());
 const months = [
 	'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -137,7 +138,8 @@ const years = Array.from({ length: new Date().getFullYear() - 2022 }, (_, i) => 
 
 
 const findData = async () => {
-	await getInvoiceHeaders();
+	let pathUrl = `?year=${selectedYear.value}&month=${selectedMonth.value}`
+	await getInvoiceHeaders(pathUrl);
 	return toRaw(invoiceHeaders.value);
 }
 
@@ -149,32 +151,10 @@ const formatHasPaid = (value) => {
 
 // Filter logic
 const filterInvoices = async () => {
+	rows.value = await findData();
 
-	console.log(selectedMonth.value)
-	console.log(selectedYear.value)
-
-
-
-	await getInvoiceHeaders();
-
-
-	// rows.value = rows.value.filter(invoice => {
-	// 	const invoiceDate = new Date(invoice.invoice_date);
-	// 	const invoiceMonth = invoiceDate.getMonth() + 1;
-	// 	const invoiceYear = invoiceDate.getFullYear();
-	// 	return invoiceMonth === selectedMonth.value && invoiceYear === selectedYear.value;
-	// });
 };
 
-// Computed property for filtered rows
-const filteredRows = computed(() => {
-	return rows.value.filter(invoice => {
-		const invoiceDate = new Date(invoice.invoice_date);
-		const invoiceMonth = invoiceDate.getMonth() + 1;
-		const invoiceYear = invoiceDate.getFullYear();
-		return invoiceMonth === selectedMonth.value && invoiceYear === selectedYear.value;
-	});
-});
 
 
 // Table
@@ -265,7 +245,6 @@ const downloadFileInvoiceHeader = async (id) => {
 
 onMounted(async () => {
 	rows.value = await findData();
-
 });
 
 
