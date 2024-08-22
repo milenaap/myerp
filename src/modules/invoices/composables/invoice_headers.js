@@ -36,9 +36,8 @@ export default function useInvoiceHeader() {
 
 	const getInvoiceHeaders = async (param = '') => {
 		invoiceHeaderErrors.value = [];
-		
-		
-		await fetch(`${import.meta.env.VITE_API_URL}invoice-headers/list?`,{
+			
+		await fetch(`${import.meta.env.VITE_API_URL}invoice-headers/list${param}`,{
 			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
