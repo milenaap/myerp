@@ -18,7 +18,7 @@
 						</label>
 
 						<v-select v-model="validate.customer_id.$model" :options="customers" label="code"
-							:reduce="item => item.id" :class="{ 'border-danger': validate.customer_id.$error }">
+							:reduce="item => item.id" :class="{ 'border-danger': validate.customer_id.$error }" disabled="disabled">
 
 							<!-- Personalización de cómo se muestra cada opción -->
 							<template #option="{ code, company }">
@@ -50,7 +50,7 @@
 
 						<v-select v-model="validate.invoice_counter_id.$model" :options="invoiceCounters" label="serial"
 							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.invoice_counter_id.$error }"></v-select>
+							:class="{ 'border-danger': validate.invoice_counter_id.$error }" disabled="disabled"></v-select>
 
 
 						<template v-if="validate.invoice_counter_id.$error">
@@ -247,7 +247,7 @@
 							<td class="px-6 py-4">{{ formatNumber(item.total_without_vat) }}</td>
 							<td class="px-6 py-4">{{ item.unit_nb }}</td>
 							<td class="px-6 py-4">
-								<button @click.prevent="deleteLine(index)">
+								<button type="button" @click.prevent="deleteLine(index)">
 									<IconDelete class="h-6 w-6 text-red-600 hover:text-red-400" />
 								</button>
 							</td>
@@ -281,7 +281,8 @@ import useCustomer from "../../composables/customers.js";
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import useProduct from '../../composables/products';
-import { formatNowToDB, format30DaysFromNowToDB, formatNumber } from '@/utils/helper.js';
+import { formatNumber } from '@/utils/helper.js';
+import IconDelete from '@/components/icons/IconDelete.vue';
 
 
 
@@ -301,6 +302,7 @@ const props = defineProps({
 const product_id = ref();
 const description = ref();
 const arrProducts = ref([]);
+const arrDeletedProducts = ref([]);
 const unit_nb = ref(1);
 
 
@@ -309,9 +311,6 @@ const emit = defineEmits(['cancelEdit', 'updateInvoiceHeaderForm']);
 
 const rules = {
 	invoice_counter_id: {
-		required: helpers.withMessage(t("form.required"), required),
-	},
-	invoice_type_id: {
 		required: helpers.withMessage(t("form.required"), required),
 	},
 	customer_id: {
@@ -335,8 +334,8 @@ const formData = reactive({
 	invoice_counter_id: "",
 	invoice_type_id: "",
 	customer_id: "",
-	invoice_date: formatNowToDB(),
-	invoice_due_date: format30DaysFromNowToDB(),
+	invoice_date: "",
+	invoice_due_date: "",
 	total_without_vat: "",
 	total_with_vat: "",
 });
@@ -344,13 +343,30 @@ const formData = reactive({
 const validate = useVuelidate(rules, toRefs(formData));
 
 const save = () => {
+
 	validate.value.$touch();
 	if (validate.value.$invalid) {
 		//TODO
 	} else {
+
+		if (arrProducts.value.length === 0) {
+			return;
+		}
+		
+		formData.total_without_vat = formData.total_without_vat.replace('.', '').replace(',', '.');
+		formData.total_with_vat = formData.total_with_vat.replace('.', '').replace(',', '.');
+		
+
+		formData.lines = JSON.stringify(arrProducts.value);	
+		formData.deletedLines = JSON.stringify(arrDeletedProducts.value);	
+
 		emit('updateInvoiceHeaderForm', invoiceHeader.value.id, formData);
 	}
 };
+
+
+
+
 
 
 
@@ -400,17 +416,39 @@ const addLine = () => {
 
 const deleteLine = (index) => {
 	
-	let format1 = formData.total_without_vat.replace(".", "").replace(",", "."); // 1230.20
-	let total_without_vat = Number(format1) - (Number(arrProducts.value[index].sale_price_without_vat) * Number(arrProducts.value[index].unit_nb));
+	let format1 = formData.total_without_vat.replace(".", "").replace(",", ".");
+	let total_without_vat = Number(format1) - (Number(arrProducts.value[index].unit_prices) * Number(arrProducts.value[index].unit_nb));
 
 	formData.total_without_vat = formatNumber(total_without_vat); 
 	formData.total_with_vat = formatNumber(Number(total_without_vat) * 1.21);
 
+	arrDeletedProducts.value.push(arrProducts.value[index]);
+
 	arrProducts.value.splice(index, 1);
+
+	console.log(arrDeletedProducts.value);
 
 }
 
 
+
+
+
+// Directiva personalizada para la máscara de entrada numérica
+const vNumericOnly = {
+    beforeMount(el) {
+        el.addEventListener('input', (e) => {
+            const value = e.target.value;
+            // Permitir solo números, comas y puntos
+            const numericValue = value.replace(/[^\d.,]/g, '');
+            if (numericValue !== value) {
+                e.target.value = numericValue;
+                // Actualizar el v-model manualmente
+                el.dispatchEvent(new Event('input'));
+            }
+        });
+    }
+};
 
 
 
@@ -423,28 +461,17 @@ onMounted(async () => {
 		getInvoiceHeader(props.invoiceHeaderId)
 	])
 
-	console.log(invoiceHeader.value.lines);
-
 	formData.invoice_counter_id = invoiceHeader.value.invoice_counter_id;
 	formData.customer_id = invoiceHeader.value.customer_id;
 	formData.invoice_string = invoiceHeader.value.invoice_string;
-	formData.date = invoiceHeader.value.date;
-	formData.due_date = invoiceHeader.value.due_date;
-	formData.month = invoiceHeader.value.month;
-	formData.year = invoiceHeader.value.year;
-	formData.description = invoiceHeader.value.description;
-	formData.vat_quote = invoiceHeader.value.vat_quote;
-	formData.total_without_vat = invoiceHeader.value.total_without_vat;
-	formData.total_with_vat = invoiceHeader.value.total_with_vat;
+	formData.invoice_date = invoiceHeader.value.invoice_date;
+	formData.invoice_due_date = invoiceHeader.value.invoice_due_date;
+	formData.total_without_vat = formatNumber(invoiceHeader.value.total_without_vat);
+	formData.total_with_vat = formatNumber(invoiceHeader.value.total_with_vat);
 	formData.has_paid = invoiceHeader.value.has_paid;
-
-
-
 
 	arrProducts.value = invoiceHeader.value.lines;
 	
-
-
 });
 
 </script>

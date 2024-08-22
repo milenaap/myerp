@@ -342,7 +342,6 @@ const save = () => {
 	} else {
 		
 		if (arrProducts.value.length === 0) {
-			
 			return;
 		}
 		
@@ -367,8 +366,6 @@ const addLine = () => {
     }
 	
 	const p = {};
-
-
 
 	if(description.value){
 		p.description = foundProduct.name + ' ' + description.value;
@@ -397,6 +394,7 @@ const addLine = () => {
 
 	unit_nb.value = 1;
 	product_id.value = '';
+
 	
 }
 
