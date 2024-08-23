@@ -13,9 +13,9 @@ export default {
         primary: '#0096b2', // cian
         'primary-dark': '#007a91', // cian oscuro
         'primary-light': '#00b4d6', // cian claro
-        secondary: '#ff6347', // tomate
-        'secondary-dark': '#cc4f3a', // tomate oscuro
-        'secondary-light': '#ff7f6e', // tomate claro
+        secondary: '#0998FC', // azul
+        'secondary-dark': '#0976FC', // azul oscuro
+        'secondary-light': '##09C0FC', // azul claro
         accent: '#ffc107', // ámbar
         'accent-dark': '#cc9a06', // ámbar oscuro
         'accent-light': '#ffca28', // ámbar claro

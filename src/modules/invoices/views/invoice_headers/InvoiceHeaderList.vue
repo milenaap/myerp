@@ -64,9 +64,12 @@
 				</div>
 
 				<div class="ml-2">
-					<button @click.prevent="filterInvoices" class="btn btn-secondary py-1">Buscar
+					<button @click.prevent="filterInvoices" class="btn btn-secondary py-1">
+						<div class="flex">
+							<IconSearch />
+							{{ $t("search") }}
+						</div>
 					</button>
-
 				</div>
 
 			</div>
@@ -121,6 +124,7 @@ import IconDelete from '@/components/icons/IconDelete.vue';
 import IconDownload from '@/components/icons/IconDownload.vue';
 import IconAdd from '@/components/icons/IconAdd.vue';
 import IconEdit from '@/components/icons/IconEdit.vue';
+import IconSearch from '@/components/icons/IconSearch.vue';
 
 
 

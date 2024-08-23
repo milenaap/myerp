@@ -5,7 +5,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.js", "src/**/*.vue"],
+  "include": ["src/**/*.js", "src/**/*.vue", "src/components/icons/IconSave.vue"],
   "exclude": ["node_modules", "dist"]
 }
 

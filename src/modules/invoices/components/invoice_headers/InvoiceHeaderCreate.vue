@@ -141,7 +141,7 @@
 
 				<!-- BEGIN: Buttons -->
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
-					<div class="flex justify-end">
+					<div class="flex justify-center">
 						<button type="submit" class="btn btn-primary mr-5">
 							{{ $t("save") }}
 						</button>
@@ -214,7 +214,10 @@
 
 		<div class="col-span-12 md:col-span-4 lg:col-span-2">
 			<button type="button" @click.prevent="addLine" class="btn btn-secondary mr-5 mt-6 hover:btn-secondary-dark">
-				{{ $t("insert") }}
+				<div class="flex">
+					<IconAddLine />
+					{{ $t("insert") }}
+				</div>
 			</button>
 		</div>
 
@@ -271,6 +274,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { helpers } from '@vuelidate/validators';
 import { useI18n } from 'vue-i18n';
 import IconDelete from '@/components/icons/IconDelete.vue';
+import IconAddLine from '@/components/icons/IconAddLine.vue';
 
 
 import useInvoiceCounter from "../../composables/invoice_counters.js";

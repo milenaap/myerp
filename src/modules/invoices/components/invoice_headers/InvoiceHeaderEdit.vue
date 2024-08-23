@@ -208,9 +208,15 @@
 
 
 			<div class="col-span-12 md:col-span-4 lg:col-span-2">
-				<button type="button" @click.prevent="addLine"
-					class="btn btn-secondary mr-5 mt-6 hover:btn-secondary-dark">
-					{{ $t("insert") }}
+				<button 
+					type="button" 
+					@click.prevent="addLine"
+					class="btn btn-secondary mr-5 mt-6 hover:btn-secondary-dark"
+				>
+					<div class="flex">
+						<IconAddLine />
+						{{ $t("insert") }}
+					</div>
 				</button>
 			</div>
 
@@ -283,6 +289,7 @@ import 'vue-select/dist/vue-select.css';
 import useProduct from '../../composables/products';
 import { formatNumber } from '@/utils/helper.js';
 import IconDelete from '@/components/icons/IconDelete.vue';
+import IconAddLine from '@/components/icons/IconAddLine.vue';
 import Swal from 'sweetalert2';
 
 
