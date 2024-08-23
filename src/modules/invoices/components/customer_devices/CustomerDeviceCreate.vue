@@ -14,13 +14,19 @@
 							{{ $t("customer_id") }} *
 						</label>
 						
-						<v-select
-							v-model="validate.customer_id.$model"
-							:options="customers"
-							label="code"
-							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.customer_id.$error }"
-						></v-select>
+						<v-select v-model="validate.customer_id.$model" :options="customers" label="code"
+							:reduce="item => item.id" :class="{ 'border-danger': validate.customer_id.$error }">
+
+							<!-- Personalización de cómo se muestra cada opción -->
+							<template #option="{ code, company }">
+								{{ code }} - {{ company.name }}
+							</template>
+
+							<template #selected-option="{ code, company }">
+								{{ code + ' - ' + company.name }}
+							</template>
+
+						</v-select>
 
 
 						<template v-if="validate.customer_id.$error">
@@ -76,7 +82,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="number" class="form-label w-full">
 							{{ $t("number") }} *
@@ -98,7 +104,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="sim" class="form-label w-full">
 							{{ $t("sim") }} *
@@ -120,7 +126,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="plate" class="form-label w-full">
 							{{ $t("plate") }} *
@@ -142,7 +148,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="installed_at" class="form-label w-full">
 							{{ $t("installed_at") }} *
@@ -150,7 +156,7 @@
 						<input
 							v-model.trim="validate.installed_at.$model"
 							id="installed_at"
-							type="text"
+							type="date"
 							name="installed_at"
 							class="form-control"
 							:class="{ 'border-danger': validate.installed_at.$error }"
@@ -164,7 +170,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-2">
 					<div class="input-form">
 						<label for="purchase_price_without_vat" class="form-label w-full">
 							{{ $t("purchase_price_without_vat") }} *
@@ -176,6 +182,7 @@
 							name="purchase_price_without_vat"
 							class="form-control"
 							:class="{ 'border-danger': validate.purchase_price_without_vat.$error }"
+							v-numeric-only
 						/>
 						<template v-if="validate.purchase_price_without_vat.$error">
 							<div v-for="(error, index) in validate.purchase_price_without_vat.$errors" :key="index" class="text-danger mt-2">
@@ -186,7 +193,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-2">
 					<div class="input-form">
 						<label for="sale_price_without_vat" class="form-label w-full">
 							{{ $t("sale_price_without_vat") }} *
@@ -198,6 +205,7 @@
 							name="sale_price_without_vat"
 							class="form-control"
 							:class="{ 'border-danger': validate.sale_price_without_vat.$error }"
+							v-numeric-only
 						/>
 						<template v-if="validate.sale_price_without_vat.$error">
 							<div v-for="(error, index) in validate.sale_price_without_vat.$errors" :key="index" class="text-danger mt-2">
@@ -208,7 +216,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-2">
 					<div class="input-form">
 						<label for="rental_price_without_vat" class="form-label w-full">
 							{{ $t("rental_price_without_vat") }} *
@@ -220,6 +228,7 @@
 							name="rental_price_without_vat"
 							class="form-control"
 							:class="{ 'border-danger': validate.rental_price_without_vat.$error }"
+							v-numeric-only
 						/>
 						<template v-if="validate.rental_price_without_vat.$error">
 							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
@@ -230,7 +239,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-2">
 					<div class="input-form">
 						<label for="provider_rental_price_without_vat" class="form-label w-full">
 							{{ $t("provider_rental_price_without_vat") }} *
@@ -242,6 +251,7 @@
 							name="provider_rental_price_without_vat"
 							class="form-control"
 							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }"
+							v-numeric-only
 						/>
 						<template v-if="validate.provider_rental_price_without_vat.$error">
 							<div v-for="(error, index) in validate.provider_rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
@@ -252,7 +262,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-2">
 					<div class="input-form">
 						<label for="vat_quote" class="form-label w-full">
 							{{ $t("vat_quote") }} *
@@ -264,6 +274,7 @@
 							name="vat_quote"
 							class="form-control"
 							:class="{ 'border-danger': validate.vat_quote.$error }"
+							v-numeric-only
 						/>
 						<template v-if="validate.vat_quote.$error">
 							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
@@ -397,5 +408,21 @@
 		await getProviders();
 		await getProducts();
 	});
+
+	// Directiva personalizada para la máscara de entrada numérica
+	const vNumericOnly = {
+    beforeMount(el) {
+        el.addEventListener('input', (e) => {
+            const value = e.target.value;
+            // Permitir solo números, comas y puntos
+            const numericValue = value.replace(/[^\d.,]/g, '');
+            if (numericValue !== value) {
+                e.target.value = numericValue;
+                // Actualizar el v-model manualmente
+                el.dispatchEvent(new Event('input'));
+            }
+        });
+    }
+};
 
 </script>
