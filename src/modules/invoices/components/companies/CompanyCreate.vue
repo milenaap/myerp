@@ -342,7 +342,7 @@ const formData = reactive({
 	municipality: "",
 	email: "",
 	phone: "",
-	website: "",
+	website: "https://",
 	service_id: "",
 	code_ims: "",
 	code: "",

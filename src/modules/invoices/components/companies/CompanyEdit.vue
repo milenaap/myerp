@@ -213,7 +213,7 @@
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
 						<label for="website" class="form-label w-full">
-							{{ $t("website") }} *
+							{{ $t("website") }}
 						</label>
 						<input v-model.trim="validate.website.$model" id="website" type="text" name="website"
 							class="form-control" :class="{ 'border-danger': validate.website.$error }" />
@@ -314,13 +314,13 @@ const rules = {
 		required: helpers.withMessage(t("form.required"), required),
 	},
 	code_ims: {
-		required: helpers.withMessage(t("form.required"), required),
+		//required: helpers.withMessage(t("form.required"), required),
 	},
 	phone: {
-		required: helpers.withMessage(t("form.required"), required),
+		//required: helpers.withMessage(t("form.required"), required),
 	},
 	website: {
-		required: helpers.withMessage(t("form.required"), required),
+		//required: helpers.withMessage(t("form.required"), required),
 	},
 };
 
@@ -358,8 +358,9 @@ onMounted(async () => {
 		getCompany(props.companyId),
 		getServices()
 	])
-	
+
 	formData.country_id = company.value.country_id;
+	
 	formData.name = company.value.name;
 	formData.tax = company.value.tax;
 	formData.address = company.value.address;
@@ -369,6 +370,8 @@ onMounted(async () => {
 	formData.email = company.value.email;
 	formData.phone = company.value.phone;
 	formData.website = company.value.website;
+
+	formData.customer_id = company.value.customer.id;
 	formData.code = company.value.customer.code;
 	formData.code_ims = company.value.customer.code_ims;
 	formData.service_id = company.value.customer.service.id;

@@ -143,7 +143,7 @@
 
 		rows.value = await findData();
 
-		if(company.value){
+		if(company.value && customer.value){
 			await Toast(t("message.record_saved"), 'success');
 		}else{
 			await Toast(t("message.error"), 'error');
@@ -165,8 +165,14 @@
 	const updateCompanyForm = async (id, data) => {
 		isEdit.value = false;
 		div_table.style.display = 'block';
+		
+		//Update Company
 		await updateCompany(id, data);
-		rows.value = await findData();
+
+		//Update customer
+		await updateCustomer(data.customer_id, data)
+
+		rows.value = await findData()
 		await Toast(t("message.record_updated"), 'success');
 	}
 
