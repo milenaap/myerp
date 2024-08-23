@@ -138,6 +138,10 @@
 		
 		await storeCompany({ ...form });
 
+		if(!company.value){
+			await Toast(t("message.error"), 'error');
+		}
+
 		form.company_id = company.value.id;
 		await storeCustomer({...form});
 

@@ -70,6 +70,7 @@
   "errors":{
     "error_internal": "Error Interno"
   },
+  "error": "Error al procesar la información",
   "code": "Código",
   "address": "Dirección",
   "cif": "Código identificación fiscal",

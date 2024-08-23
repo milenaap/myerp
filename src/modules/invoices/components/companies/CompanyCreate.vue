@@ -226,8 +226,15 @@
 						<label for="website" class="form-label w-full">
 							{{ $t("website") }}
 						</label>
-						<input v-model.trim="validate.website.$model" id="website" type="text" name="website"
-							class="form-control" :class="{ 'border-danger': validate.website.$error }" />
+						<input 
+							v-model.trim="validate.website.$model" 
+							id="website" 
+							type="text" 
+							name="website"
+							class="form-control" 
+							:class="{ 'border-danger': validate.website.$error }"
+							placeholder="Ex. https://site.com" 
+						/>
 						<template v-if="validate.website.$error">
 							<div v-for="(error, index) in validate.website.$errors" :key="index"
 								class="text-danger mt-2">
@@ -342,7 +349,7 @@ const formData = reactive({
 	municipality: "",
 	email: "",
 	phone: "",
-	website: "https://",
+	website: "",
 	service_id: "",
 	code_ims: "",
 	code: "",
