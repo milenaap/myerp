@@ -157,8 +157,8 @@
 		}).then(async(result) => {
 			if (result.isConfirmed) {
 				await destroyProduct(id);
-		rows.value = await findData();
-				Swal.fire(t("message.record_deleted"), '', 'success');
+				rows.value = await findData();
+				await Toast(t("message.record_deleted"), 'success');
 			}
 
 		});

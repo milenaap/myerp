@@ -102,9 +102,9 @@
 	const companyId = ref(0);
 
 	const { t } = useI18n();
-	const { company, companies, getCompanies, storeCompany, updateCompany, destroyCompany} = useCompany();
+	const { company, companyErrors, companies, getCompanies, storeCompany, updateCompany, destroyCompany} = useCompany();
 
-	const { customer, storeCustomer, updateCustomer, destroyCustomer} = useCustomers();
+	const { customer, customerErrors, storeCustomer, updateCustomer, destroyCustomer} = useCustomers();
 
 
 
@@ -138,20 +138,26 @@
 		
 		await storeCompany({ ...form });
 
-		if(!company.value){
-			await Toast(t("message.error"), 'error');
-		}
+		if (companyErrors.value.length > 0) {
+			const errorMessages = companyErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+        }
+
 
 		form.company_id = company.value.id;
 		await storeCustomer({...form});
 
+		if (customerErrors.value.length > 0) {
+			const errorMessages = customerErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+        }
+
+		if (customerErrors.value.length === 0 && companyErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}
+
 		rows.value = await findData();
 
-		if(company.value && customer.value){
-			await Toast(t("message.record_saved"), 'success');
-		}else{
-			await Toast(t("message.error"), 'error');
-		}
 	}
 
 	//Edit
@@ -192,8 +198,8 @@
 		}).then(async(result) => {
 			if (result.isConfirmed) {
 				await destroyCompany(id);
-		rows.value = await findData();
-				Swal.fire(t("message.record_deleted"), '', 'success');
+				rows.value = await findData();
+				await Toast(t("message.record_deleted"), 'success');
 			}
 
 		});

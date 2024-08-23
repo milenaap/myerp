@@ -242,7 +242,7 @@ const showDeleteInvoiceHeader = async (id, description = '') => {
 		if (result.isConfirmed) {
 			await destroyInvoiceHeader(id);
 			rows.value = await findData();
-			Swal.fire(t("message.record_deleted"), '', 'success');
+			await Toast(t("message.record_deleted"), 'success');
 		}
 
 	});
