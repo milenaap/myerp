@@ -8,10 +8,64 @@
 			<!-- BEGIN: container -->
 			<div class="grid grid-cols-12 gap-6">
 
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="service_id" class="form-label w-full">
+							{{ $t("service") }} *
+						</label>
+
+						<v-select 
+							v-model="validate.service_id.$model" :options="services" label="name"
+							:reduce="item => item.id" :class="{ 'border-danger': validate.service_id.$error }"
+							disabled="disabled"
+						></v-select>
+
+						<template v-if="validate.service_id.$error">
+							<div v-for="(error, index) in validate.service.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="code" class="form-label w-full">
+							{{ $t("customer_code") }} *
+						</label>
+						<input v-model.trim="validate.code.$model" id="code" type="text" name="code"
+							class="form-control" :class="{ 'border-danger': validate.code.$error }" />
+						<template v-if="validate.code.$error">
+							<div v-for="(error, index) in validate.code.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+				
+				<div class="col-span-12 md:col-span-6 lg:col-span-4">
+					<div class="input-form">
+						<label for="code_ims" class="form-label w-full">
+							{{ $t("code_ims") }}
+						</label>
+						<input v-model.trim="validate.code_ims.$model" id="code_ims" type="text" name="code_ims"
+							class="form-control" :class="{ 'border-danger': validate.code_ims.$error }" />
+						<template v-if="validate.code_ims.$error">
+							<div v-for="(error, index) in validate.code_ims.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
 				<div class="col-span-12 md:col-span-8 lg:col-span-8">
 					<div class="input-form">
 						<label for="name" class="form-label w-full">
-							{{ $t("name") }} *
+							{{ $t("company_name") }} *
 						</label>
 						<input v-model.trim="validate.name.$model" id="name" type="text" name="name"
 							class="form-control" :class="{ 'border-danger': validate.name.$error }" />
@@ -172,53 +226,6 @@
 					</div>
 				</div>
 
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="code" class="form-label w-full">
-							{{ $t("code") }} *
-						</label>
-						<input v-model.trim="validate.code.$model" id="code" type="text" name="code"
-							class="form-control" :class="{ 'border-danger': validate.code.$error }" />
-						<template v-if="validate.code.$error">
-							<div v-for="(error, index) in validate.code.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="service_id" class="form-label w-full">
-							{{ $t("service_id") }} *
-						</label>
-						<input v-model.trim="validate.service_id.$model" id="service_id" type="text" name="service_id"
-							class="form-control" :class="{ 'border-danger': validate.service_id.$error }" />
-						<template v-if="validate.service_id.$error">
-							<div v-for="(error, index) in validate.service_id.$errors" :key="index"
-								class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
-				<div class="col-span-12 md:col-span-6 lg:col-span-4">
-					<div class="input-form">
-						<label for="code_ims" class="form-label w-full">
-							{{ $t("code_ims") }}
-						</label>
-						<input v-model.trim="validate.code_ims.$model" id="code_ims" type="text" name="code_ims"
-							class="form-control" :class="{ 'border-danger': validate.code_ims.$error }" />
-						<template v-if="validate.code_ims.$error">
-							<div v-for="(error, index) in validate.code_ims.$errors" :key="index"
-								class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
 
 				<!-- BEGIN: Buttons -->
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
@@ -260,6 +267,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { helpers } from '@vuelidate/validators';
 import { useI18n } from 'vue-i18n';
 import useCountry from "../../composables/countries";
+import useService from "../../composables/services";
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import IconSave from '@/components/icons/IconSave.vue';
@@ -267,6 +275,7 @@ import IconCancel from '@/components/icons/IconCancel.vue';
 
 
 const { countries, getCountries } = useCountry();
+const { services, getServices } = useService();
 
 const { company, getCompany } = useCompanies();
 const { t } = useI18n();
@@ -343,8 +352,13 @@ const save = () => {
 };
 
 onMounted(async () => {
-	await getCountries();
-	await getCompany(props.companyId);
+
+	await Promise.all([
+		getCountries(),
+		getCompany(props.companyId),
+		getServices()
+	])
+	
 	formData.country_id = company.value.country_id;
 	formData.name = company.value.name;
 	formData.tax = company.value.tax;
@@ -358,7 +372,7 @@ onMounted(async () => {
 	formData.code = company.value.customer.code;
 	formData.code_ims = company.value.customer.code_ims;
 	formData.service_id = company.value.customer.service.id;
-	console.log(company.value)
+
 });
 
 </script>

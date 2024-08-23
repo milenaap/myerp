@@ -10,14 +10,14 @@
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
-						<label for="service" class="form-label w-full">
-							{{ $t("service") }} *
+						<label for="service_id" class="form-label w-full">
+							{{ $t("service_id") }} *
 						</label>
 
-						<v-select v-model="validate.service.$model" :options="services" label="name"
-							:reduce="item => item.id" :class="{ 'border-danger': validate.service.$error }"></v-select>
+						<v-select v-model="validate.service_id.$model" :options="services" label="name"
+							:reduce="item => item.id" :class="{ 'border-danger': validate.service_id.$error }"></v-select>
 
-						<template v-if="validate.service.$error">
+						<template v-if="validate.service_id.$error">
 							<div v-for="(error, index) in validate.service.$errors" :key="index"
 								class="text-danger mt-2">
 								{{ error.$message }}
@@ -110,7 +110,7 @@ const { t } = useI18n();
 const emit = defineEmits(['cancelCreate', 'saveProviderForm']);
 
 const rules = {
-	service: {
+	service_id: {
 		required: helpers.withMessage(t("form.required"), required),
 	},
 	code: {
@@ -122,7 +122,7 @@ const rules = {
 };
 
 const formData = reactive({
-	service: "",
+	service_id: "",
 	code: "",
 	name: "",
 });

@@ -85,6 +85,7 @@
   "invoices": "Facturas",
   "invoice": "Factura",
   "company_id": "Compañia Id",
+  "company_name": "Razón social",
   "companies": "Compañias",
   "customer": "Cliente",
   "customers": "Clientes",
@@ -106,7 +107,7 @@
   "started_at": "Fecha Inicio",
   "finished_at": "Fecha Finalizado",
   "country_id": "País",
-  "tax": "CIF",
+  "tax": "NIF",
   "state": "Estado",
   "municipality": "Municipio",
   "zip_code": "Codigo Postal",
@@ -158,7 +159,8 @@
   "bank_name": "Nombre del banco",
   "account_holder": "Titular de la cuenta",
   "due_date_by_days": "A cuantos días",
-  "due_date_days": "Vencimiento el día"
+  "due_date_days": "Vencimiento el día",
+  "customer_code": "Código de cliente"
   
 
 }
