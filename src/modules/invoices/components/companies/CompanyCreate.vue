@@ -189,7 +189,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-4 lg:col-span-4">
+				<div class="col-span-12 md:col-span-5 lg:col-span-5">
 					<div class="input-form">
 						<label for="email" class="form-label w-full">
 							{{ $t("email") }} *
@@ -205,7 +205,7 @@
 				</div>
 
 
-				<div class="col-span-12 md:col-span-4 lg:col-span-4">
+				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="phone" class="form-label w-full">
 							{{ $t("phone") }}
