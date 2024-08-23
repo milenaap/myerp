@@ -178,21 +178,7 @@
 					</div>
 				</div>
 
-				<div class="col-span-12 md:col-span-4 lg:col-span-4">
-					<div class="input-form">
-						<label for="phone" class="form-label w-full">
-							{{ $t("phone") }} *
-						</label>
-						<input v-model.trim="validate.phone.$model" id="phone" type="text" name="phone"
-							class="form-control" :class="{ 'border-danger': validate.phone.$error }" />
-						<template v-if="validate.phone.$error">
-							<div v-for="(error, index) in validate.phone.$errors" :key="index" class="text-danger mt-2">
-								{{ error.$message }}
-							</div>
-						</template>
-					</div>
-				</div>
-
+				
 
 				<div class="col-span-12 md:col-span-6 lg:col-span-4">
 					<div class="input-form">
@@ -203,6 +189,22 @@
 							class="form-control" :class="{ 'border-danger': validate.email.$error }" />
 						<template v-if="validate.email.$error">
 							<div v-for="(error, index) in validate.email.$errors" :key="index" class="text-danger mt-2">
+								{{ error.$message }}
+							</div>
+						</template>
+					</div>
+				</div>
+
+
+				<div class="col-span-12 md:col-span-4 lg:col-span-4">
+					<div class="input-form">
+						<label for="phone" class="form-label w-full">
+							{{ $t("phone") }}
+						</label>
+						<input v-model.trim="validate.phone.$model" id="phone" type="text" name="phone"
+							class="form-control" :class="{ 'border-danger': validate.phone.$error }" />
+						<template v-if="validate.phone.$error">
+							<div v-for="(error, index) in validate.phone.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
