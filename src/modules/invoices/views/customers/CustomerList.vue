@@ -85,7 +85,14 @@
 	const customerId = ref(0);
 
 	const { t } = useI18n();
-	const { customers, getCustomers, storeCustomer, updateCustomer, destroyCustomer} = useCustomers();
+	const { 
+		customers, 
+		customerErrors, 
+		getCustomers, 
+		storeCustomer, 
+		updateCustomer, 
+		destroyCustomer
+	} = useCustomers();
 
 
 	const findData = async() => {
@@ -115,8 +122,15 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeCustomer({ ...form });
+
+		if (customerErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = customerErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
+
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -134,9 +148,18 @@
 	const updateCustomerForm = async (id, data) => {
 		isEdit.value = false;
 		div_table.style.display = 'block';
+		
 		await updateCustomer(id, data);
+
+		if (customerErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = customerErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
+
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
+
 	}
 
 	// Delete

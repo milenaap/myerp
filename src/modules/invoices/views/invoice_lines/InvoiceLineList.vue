@@ -85,7 +85,14 @@
 	const invoiceLineId = ref(0);
 
 	const { t } = useI18n();
-	const { invoiceLines, getInvoiceLines, storeInvoiceLine, updateInvoiceLine, destroyInvoiceLine} = useInvoiceLines();
+	const { 
+		invoiceLines, 
+		invoiceLineErrors, 
+		getInvoiceLines, 
+		storeInvoiceLine, 
+		updateInvoiceLine, 
+		destroyInvoiceLine
+	} = useInvoiceLines();
 
 
 	const findData = async() => {
@@ -117,8 +124,13 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeInvoiceLine({ ...form });
+		if (invoiceLineErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = invoiceLineErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -137,8 +149,13 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateInvoiceLine(id, data);
+		if (invoiceLineErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = invoiceLineErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
 	}
 
 	// Delete

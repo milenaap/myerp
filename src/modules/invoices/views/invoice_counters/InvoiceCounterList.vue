@@ -87,7 +87,14 @@
 	const invoiceCounterId = ref(0);
 
 	const { t } = useI18n();
-	const { invoiceCounters, getInvoiceCounters, storeInvoiceCounter, updateInvoiceCounter, destroyInvoiceCounter} = useInvoiceCounters();
+	const { 
+		invoiceCounters, 
+		invoiceCounterErrors, 
+		getInvoiceCounters, 
+		storeInvoiceCounter, 
+		updateInvoiceCounter, 
+		destroyInvoiceCounter
+	} = useInvoiceCounters();
 
 
 	const findData = async() => {
@@ -117,8 +124,13 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeInvoiceCounter({ ...form });
+		if (invoiceCounterErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = invoiceCounterErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -137,8 +149,13 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateInvoiceCounter(id, data);
+		if (invoiceCounterErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = invoiceCounterErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
 	}
 
 	// Delete

@@ -90,7 +90,14 @@
 	const invoiceFileId = ref(0);
 
 	const { t } = useI18n();
-	const { invoiceFiles, getInvoiceFiles, storeInvoiceFile, updateInvoiceFile, destroyInvoiceFile} = useInvoiceFile();
+	const { 
+		invoiceFiles, 
+		invoiceFileErrors, 
+		getInvoiceFiles, 
+		storeInvoiceFile,
+		updateInvoiceFile, 
+		destroyInvoiceFile
+	} = useInvoiceFile();
 
 
 	const findData = async() => {
@@ -119,8 +126,13 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeInvoiceFile({ ...form });
+		if (invoiceFileErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = invoiceFileErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -139,8 +151,13 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateInvoiceFile(id, data);
+		if (invoiceFileErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = invoiceFileErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
 	}
 
 	// Delete

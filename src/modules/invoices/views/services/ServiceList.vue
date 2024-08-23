@@ -89,7 +89,14 @@
 	const serviceId = ref(0);
 
 	const { t } = useI18n();
-	const { services, getServices, storeService, updateService, destroyService} = useService();
+	const { 
+		services, 
+		serviceErrors, 
+		getServices, 
+		storeService, 
+		updateService, 
+		destroyService
+	} = useService();
 
 
 	const findData = async() => {
@@ -117,8 +124,13 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeService({ ...form });
+		if (serviceErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = serviceErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -137,8 +149,13 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateService(id, data);
+		if (serviceErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = serviceErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
 	}
 
 	// Delete

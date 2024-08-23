@@ -139,6 +139,7 @@ const invoiceHeaderId = ref(0);
 const { t } = useI18n();
 const {
 	invoiceHeader,
+	invoiceHeaderErrors,
 	invoiceHeaders,
 	getInvoiceHeaders,
 	storeInvoiceHeader,
@@ -205,8 +206,13 @@ const saveInvoiceHeaderForm = async (form) => {
 	isCreate.value = false;
 	div_table.style.display = 'block';
 	await storeInvoiceHeader({ ...form });
+	if (invoiceHeaderErrors.value.length === 0) {
+		await Toast(t("message.record_saved"), 'success');
+	}else{
+		const errorMessages = invoiceHeaderErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+		await Toast(errorMessages, 'error');
+	}
 	rows.value = await findData();
-	await Toast(t("message.record_saved"), 'success');
 }
 
 //Edit
@@ -225,8 +231,13 @@ const updateInvoiceHeaderForm = async (id, data) => {
 	isEdit.value = false;
 	div_table.style.display = 'block';
 	await updateInvoiceHeader(id, data);
+	if (invoiceHeaderErrors.value.length === 0) {
+		await Toast(t("message.record_updated"), 'success');
+	}else{
+		const errorMessages = invoiceHeaderErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+		await Toast(errorMessages, 'error');
+	}
 	rows.value = await findData();
-	await Toast(t("message.record_updated"), 'success');
 }
 
 // Delete

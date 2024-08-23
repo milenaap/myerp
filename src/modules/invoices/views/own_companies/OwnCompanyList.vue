@@ -85,7 +85,14 @@
 	const ownCompanyId = ref(0);
 
 	const { t } = useI18n();
-	const { ownCompanies, getOwnCompanies, storeOwnCompany, updateOwnCompany, destroyOwnCompany} = useOwnCompanies();
+	const { 
+		ownCompanies, 
+		ownCompanyErrors, 
+		getOwnCompanies, 
+		storeOwnCompany, 
+		updateOwnCompany, 
+		destroyOwnCompany
+	} = useOwnCompanies();
 
 
 	const findData = async() => {
@@ -122,8 +129,13 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeOwnCompany({ ...form });
+		if (ownCompanyErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = ownCompanyErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -142,8 +154,13 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateOwnCompany(id, data);
+		if (ownCompanyErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = ownCompanyErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
 	}
 
 	// Delete

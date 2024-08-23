@@ -90,7 +90,14 @@
 	const productId = ref(0);
 
 	const { t } = useI18n();
-	const { products, getProducts, storeProduct, updateProduct, destroyProduct} = useProduct();
+	const { 
+		products, 
+		productErrors, 
+		getProducts, 
+		storeProduct, 
+		updateProduct, 
+		destroyProduct
+	} = useProduct();
 
 
 	const findData = async() => {
@@ -121,8 +128,13 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeProduct({ ...form });
+		if (productErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = productErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -141,8 +153,13 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateProduct(id, data);
+		if (productErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = productErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
 	}
 
 	// Delete

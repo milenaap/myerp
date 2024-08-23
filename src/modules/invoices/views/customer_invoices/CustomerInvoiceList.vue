@@ -90,7 +90,14 @@
 	const customerInvoiceId = ref(0);
 
 	const { t } = useI18n();
-	const { customerInvoices, getCustomerInvoices, storeCustomerInvoice, updateCustomerInvoice, destroyCustomerInvoice} = useCustomerInvoice();
+	const { 
+		customerInvoices, 
+		customerInvoiceErrors, 
+		getCustomerInvoices, 
+		storeCustomerInvoice, 
+		updateCustomerInvoice, 
+		destroyCustomerInvoice
+	} = useCustomerInvoice();
 
 
 	const findData = async() => {
@@ -119,9 +126,18 @@
 	const saveCustomerInvoiceForm = async (form) => {
 		isCreate.value = false;
 		div_table.style.display = 'block';
+
 		await storeCustomerInvoice({ ...form });
+
+		if (customerInvoiceErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = customerInvoiceErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
+		
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
+		
 	}
 
 	//Edit
@@ -140,8 +156,16 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateCustomerInvoice(id, data);
+
+		if (customerInvoiceErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = customerInvoiceErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
+
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
+
 	}
 
 	// Delete

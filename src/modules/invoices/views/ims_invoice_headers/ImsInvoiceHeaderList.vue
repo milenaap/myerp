@@ -90,7 +90,14 @@
 	const imsInvoiceHeaderId = ref(0);
 
 	const { t } = useI18n();
-	const { imsInvoiceHeaders, getImsInvoiceHeaders, storeImsInvoiceHeader, updateImsInvoiceHeader, destroyImsInvoiceHeader} = useImsInvoiceHeader();
+	const { 
+		imsInvoiceHeaders, 
+		imsInvoiceHeaderErrors, 
+		getImsInvoiceHeaders, 
+		storeImsInvoiceHeader, 
+		updateImsInvoiceHeader, 
+		destroyImsInvoiceHeader
+	} = useImsInvoiceHeader();
 
 
 	const findData = async() => {
@@ -122,8 +129,13 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeImsInvoiceHeader({ ...form });
+		if (imsInvoiceHeaderErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = imsInvoiceHeaderErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -142,8 +154,13 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateImsInvoiceHeader(id, data);
+		if (imsInvoiceHeaderErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = imsInvoiceHeaderErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
 	}
 
 	// Delete

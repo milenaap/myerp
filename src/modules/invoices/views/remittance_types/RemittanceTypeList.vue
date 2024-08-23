@@ -89,7 +89,14 @@
 	const remittanceTypeId = ref(0);
 
 	const { t } = useI18n();
-	const { remittanceTypes, getRemittanceTypes, storeRemittanceType, updateRemittanceType, destroyRemittanceType} = useRemittanceType();
+	const { 
+		remittanceTypes,
+		remittanceTypeErrors,
+		getRemittanceTypes, 
+		storeRemittanceType, 
+		updateRemittanceType, 
+		destroyRemittanceType
+	} = useRemittanceType();
 
 
 	const findData = async() => {
@@ -117,8 +124,13 @@
 		isCreate.value = false;
 		div_table.style.display = 'block';
 		await storeRemittanceType({ ...form });
+		if (remittanceTypeErrors.value.length === 0) {
+			await Toast(t("message.record_saved"), 'success');
+		}else{
+			const errorMessages = remittanceTypeErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_saved"), 'success');
 	}
 
 	//Edit
@@ -137,8 +149,13 @@
 		isEdit.value = false;
 		div_table.style.display = 'block';
 		await updateRemittanceType(id, data);
+		if (remittanceTypeErrors.value.length === 0) {
+			await Toast(t("message.record_updated"), 'success');
+		}else{
+			const errorMessages = remittanceTypeErrors.value.flatMap(errorObj => Object.values(errorObj).flat()).join(', ');
+			await Toast(errorMessages, 'error');
+		}
 		rows.value = await findData();
-		await Toast(t("message.record_updated"), 'success');
 	}
 
 	// Delete
