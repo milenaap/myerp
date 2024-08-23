@@ -101,7 +101,6 @@
 								<IconSave />
 								{{ $t("save") }}
 							</div>
-							
 						</button>
 						<button @click.prevent="emit('cancelCreate')" class="btn btn-danger">
 							<div class="flex">

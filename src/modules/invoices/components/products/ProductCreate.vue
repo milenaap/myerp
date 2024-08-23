@@ -13,14 +13,8 @@
 						<label for="name" class="form-label w-full">
 							{{ $t("name") }} *
 						</label>
-						<input
-							v-model.trim="validate.name.$model"
-							id="name"
-							type="text"
-							name="name"
-							class="form-control"
-							:class="{ 'border-danger': validate.name.$error }"
-						/>
+						<input v-model.trim="validate.name.$model" id="name" type="text" name="name"
+							class="form-control" :class="{ 'border-danger': validate.name.$error }" />
 						<template v-if="validate.name.$error">
 							<div v-for="(error, index) in validate.name.$errors" :key="index" class="text-danger mt-2">
 								{{ error.$message }}
@@ -34,151 +28,123 @@
 						<label for="vat_quote" class="form-label w-full">
 							{{ $t("vat_quote") }} *
 						</label>
-						<input
-							v-model.trim="validate.vat_quote.$model"
-							id="vat_quote"
-							type="text"
-							name="vat_quote"
-							class="form-control text-right"
-							:class="{ 'border-danger': validate.vat_quote.$error }"
-							placeholder="Ej. 0,00"
-						/>
+						<input v-model.trim="validate.vat_quote.$model" id="vat_quote" type="text" name="vat_quote"
+							class="form-control text-right" :class="{ 'border-danger': validate.vat_quote.$error }"
+							placeholder="Ej. 0,00" />
 						<template v-if="validate.vat_quote.$error">
-							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
+							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index"
+								class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
 					</div>
 				</div>
-
 
 				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="purchase_price_without_vat" class="form-label w-full">
 							{{ $t("purchase_price_without_vat") }} *
 						</label>
-						<input
-							v-model.trim="validate.purchase_price_without_vat.$model"
-							id="purchase_price_without_vat"
-							type="text"
-							name="purchase_price_without_vat"
-							class="form-control text-right"
+						<input v-model.trim="validate.purchase_price_without_vat.$model" id="purchase_price_without_vat"
+							type="text" name="purchase_price_without_vat" class="form-control text-right"
 							:class="{ 'border-danger': validate.purchase_price_without_vat.$error }"
-							placeholder="Ej. 0,00"
-						/>
+							placeholder="Ej. 0,00" />
 						<template v-if="validate.purchase_price_without_vat.$error">
-							<div v-for="(error, index) in validate.purchase_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+							<div v-for="(error, index) in validate.purchase_price_without_vat.$errors" :key="index"
+								class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
 					</div>
 				</div>
-
 
 				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="sale_price_without_vat" class="form-label w-full">
 							{{ $t("sale_price_without_vat") }} *
 						</label>
-						<input
-							v-model.trim="validate.sale_price_without_vat.$model"
-							id="sale_price_without_vat"
-							type="text"
-							name="sale_price_without_vat"
-							class="form-control text-right"
+						<input v-model.trim="validate.sale_price_without_vat.$model" id="sale_price_without_vat"
+							type="text" name="sale_price_without_vat" class="form-control text-right"
 							:class="{ 'border-danger': validate.sale_price_without_vat.$error }"
-							placeholder="Ej. 0,00"
-						/>
+							placeholder="Ej. 0,00" />
 						<template v-if="validate.sale_price_without_vat.$error">
-							<div v-for="(error, index) in validate.sale_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+							<div v-for="(error, index) in validate.sale_price_without_vat.$errors" :key="index"
+								class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
 					</div>
 				</div>
-
-
-				
-
-						
-
 
 				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="rental_price_without_vat" class="form-label w-full">
 							{{ $t("rental_price_without_vat") }} *
 						</label>
-						<input
-							v-model.trim="validate.rental_price_without_vat.$model"
-							id="rental_price_without_vat"
-							type="text"
-							name="rental_price_without_vat"
-							class="form-control text-right"
+						<input v-model.trim="validate.rental_price_without_vat.$model" id="rental_price_without_vat"
+							type="text" name="rental_price_without_vat" class="form-control text-right"
 							:class="{ 'border-danger': validate.rental_price_without_vat.$error }"
-							placeholder="Ej. 0,00"
-						/>
+							placeholder="Ej. 0,00" />
 						<template v-if="validate.rental_price_without_vat.$error">
-							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index"
+								class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
 					</div>
 				</div>
-
 
 				<div class="col-span-12 md:col-span-3 lg:col-span-3">
 					<div class="input-form">
 						<label for="provider_rental_price_without_vat" class="form-label w-full">
 							{{ $t("provider_rental_price_without_vat") }} *
 						</label>
-						<input
-							v-model.trim="validate.provider_rental_price_without_vat.$model"
-							id="provider_rental_price_without_vat"
-							type="text"
-							name="provider_rental_price_without_vat"
+						<input v-model.trim="validate.provider_rental_price_without_vat.$model"
+							id="provider_rental_price_without_vat" type="text" name="provider_rental_price_without_vat"
 							class="form-control text-right"
 							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }"
-							placeholder="Ej. 0,00"
-						/>
+							placeholder="Ej. 0,00" />
 						<template v-if="validate.provider_rental_price_without_vat.$error">
-							<div v-for="(error, index) in validate.provider_rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
+							<div v-for="(error, index) in validate.provider_rental_price_without_vat.$errors"
+								:key="index" class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
 					</div>
 				</div>
 
-				
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="input-form">
 						<label for="description" class="form-label w-full">
 							{{ $t("description") }}
 						</label>
-						<input
-							v-model.trim="validate.description.$model"
-							id="description"
-							type="text"
-							name="description"
-							class="form-control"
-							:class="{ 'border-danger': validate.description.$error }"
-						/>
+						<input v-model.trim="validate.description.$model" id="description" type="text"
+							name="description" class="form-control"
+							:class="{ 'border-danger': validate.description.$error }" />
 						<template v-if="validate.description.$error">
-							<div v-for="(error, index) in validate.description.$errors" :key="index" class="text-danger mt-2">
+							<div v-for="(error, index) in validate.description.$errors" :key="index"
+								class="text-danger mt-2">
 								{{ error.$message }}
 							</div>
 						</template>
 					</div>
-				</div>		
+				</div>
 
 
 				<!-- BEGIN: Buttons -->
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="flex justify-center">
 						<button type="submit" class="btn btn-primary mr-5">
-							{{ $t("save") }}
+							<div class="flex">
+								<IconSave />
+								{{ $t("save") }}
+							</div>
 						</button>
 						<button @click.prevent="emit('cancelCreate')" class="btn btn-danger">
-							{{ $t("cancel") }}
+							<div class="flex">
+								<IconCancel />
+								{{ $t("cancel") }}
+							</div>
 						</button>
 					</div>
 				</div>
@@ -198,99 +164,105 @@
 
 <script setup>
 
-	import { onMounted, reactive, toRefs } from 'vue';
-	import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
-	import { useVuelidate } from '@vuelidate/core';
-	import { helpers } from '@vuelidate/validators';
-	import { useI18n } from 'vue-i18n';
-
-	const { t } = useI18n();
-	const emit = defineEmits(['cancelCreate', 'saveProductForm']);
-
-	const rules = {
-		name: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		purchase_price_without_vat: {
-			required: helpers.withMessage(t("form.required"), required),
-			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
-		},
-		sale_price_without_vat: {
-			required: helpers.withMessage(t("form.required"), required),
-			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
-		},
-		rental_price_without_vat: {
-			required: helpers.withMessage(t("form.required"), required),
-			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
-		},
-		provider_rental_price_without_vat: {
-			required: helpers.withMessage(t("form.required"), required),
-			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
-		},
-		vat_quote: {
-			required: helpers.withMessage(t("form.required"), required),
-			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
-		},
-		description: {
-			//required: helpers.withMessage(t("form.required"), required),
-		},
-	};
-
-	const formData = reactive({
-		name: "",
-		purchase_price_without_vat: "",
-		sale_price_without_vat: "",
-		rental_price_without_vat: "",
-		provider_rental_price_without_vat: "",
-		vat_quote: "",
-		description: "",
-	});
-
-	const validate = useVuelidate(rules, toRefs(formData));
-
-	const save = () => {
-		validate.value.$touch();
-		if (validate.value.$invalid) {
-			//TODO
-		} else {
-
-			// Convertir todos los campos a formato de punto antes de enviar
-			formData.purchase_price_without_vat = formData.purchase_price_without_vat.replace(',', '.');
-			formData.sale_price_without_vat = formData.sale_price_without_vat.replace(',', '.');
-			formData.rental_price_without_vat = formData.rental_price_without_vat.replace(',', '.');
-			formData.provider_rental_price_without_vat = formData.provider_rental_price_without_vat.replace(',', '.');
-			formData.vat_quote = formData.vat_quote.replace(',', '.');
-			emit('saveProductForm', formData);
-		}
-	};
-
-
-	
+import { onMounted, reactive, toRefs } from 'vue';
+import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
+import { useVuelidate } from '@vuelidate/core';
+import { helpers } from '@vuelidate/validators';
+import { useI18n } from 'vue-i18n';
+import IconSave from '@/components/icons/IconSave.vue';
+import IconCancel from '@/components/icons/IconCancel.vue';
 
 
 
-	onMounted(async () => {
-		// TODO here implements...
-	});
+const { t } = useI18n();
+const emit = defineEmits(['cancelCreate', 'saveProductForm']);
+
+const rules = {
+	name: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	purchase_price_without_vat: {
+		required: helpers.withMessage(t("form.required"), required),
+		numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
+	},
+	sale_price_without_vat: {
+		required: helpers.withMessage(t("form.required"), required),
+		numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
+	},
+	rental_price_without_vat: {
+		required: helpers.withMessage(t("form.required"), required),
+		numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
+	},
+	provider_rental_price_without_vat: {
+		required: helpers.withMessage(t("form.required"), required),
+		numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
+	},
+	vat_quote: {
+		required: helpers.withMessage(t("form.required"), required),
+		numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
+	},
+	description: {
+		//required: helpers.withMessage(t("form.required"), required),
+	},
+};
+
+const formData = reactive({
+	name: "",
+	purchase_price_without_vat: "",
+	sale_price_without_vat: "",
+	rental_price_without_vat: "",
+	provider_rental_price_without_vat: "",
+	vat_quote: "",
+	description: "",
+});
+
+const validate = useVuelidate(rules, toRefs(formData));
+
+const save = () => {
+	validate.value.$touch();
+	if (validate.value.$invalid) {
+		//TODO
+	} else {
+
+		// Convertir todos los campos a formato de punto antes de enviar
+		formData.purchase_price_without_vat = formData.purchase_price_without_vat.replace(',', '.');
+		formData.sale_price_without_vat = formData.sale_price_without_vat.replace(',', '.');
+		formData.rental_price_without_vat = formData.rental_price_without_vat.replace(',', '.');
+		formData.provider_rental_price_without_vat = formData.provider_rental_price_without_vat.replace(',', '.');
+		formData.vat_quote = formData.vat_quote.replace(',', '.');
+		emit('saveProductForm', formData);
+	}
+};
+
+
+
+
+
+
+onMounted(async () => {
+	// TODO here implements...
+});
 
 </script>
 
 
 <style>
-
 input::placeholder {
-  color: #cdcdcd; /* Cambia el color del placeholder */
-  font-style: italic; /* Cambia el estilo de la fuente del placeholder */
+	color: #cdcdcd;
+	/* Cambia el color del placeholder */
+	font-style: italic;
+	/* Cambia el estilo de la fuente del placeholder */
 }
 
-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #888888;
-  font-style: italic;
+input:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #888888;
+	font-style: italic;
 }
 
-input::-ms-input-placeholder { /* Microsoft Edge */
-  color: #888888;
-  font-style: italic;
+input::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: #888888;
+	font-style: italic;
 }
-
 </style>
