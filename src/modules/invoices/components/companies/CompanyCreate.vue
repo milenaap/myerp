@@ -340,6 +340,23 @@ const rules = {
 	},
 };
 
+// const formData = reactive({
+// 	country_id: 64,
+// 	name: "Empresa com",
+// 	tax: "ES5566",
+// 	address: "Calle barcelona 3, 4-5",
+// 	zip_code: "08900",
+// 	state: "Barcelona",
+// 	municipality: "Barcelona",
+// 	email: "info@empresa.com",
+// 	phone: "88888888",
+// 	website: "",
+// 	service_id: "",
+// 	code_ims: "",
+// 	code: "430990000",
+// });
+
+
 const formData = reactive({
 	country_id: 64,
 	name: "",
@@ -362,7 +379,9 @@ const save = () => {
 	validate.value.$touch();
 	if (validate.value.$invalid) {
 		//TODO
+		console.log("Formulario inválido");
 	} else {
+		
 		emit('saveCompanyForm', formData);
 	}
 };
