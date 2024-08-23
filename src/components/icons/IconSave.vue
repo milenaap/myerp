@@ -1,9 +1,8 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" :class="[className]" viewBox="0 0 50 50">
-        <path fill="currentColor" d="M25 42c-9.4 0-17-7.6-17-17S15.6 8 25 8s17 7.6 17 17s-7.6 17-17 17m0-32c-8.3 0-15 6.7-15 15s6.7 15 15 15s15-6.7 15-15s-6.7-15-15-15" />
-        <path fill="currentColor" d="M16 24h18v2H16z" />
-        <path fill="currentColor" d="M24 16h2v18h-2z" />
-        <path fill="currentColor" d="M24 16h2v18h-2z" />
+    <svg xmlns="http://www.w3.org/2000/svg" :class="[className]" viewBox="0 0 16 16">
+        <rect width="16" height="16" fill="none" />
+        <path fill="#FFFFFF"
+            d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1V9.5A1.5 1.5 0 0 1 5.5 8h5A1.5 1.5 0 0 1 12 9.5V13a1 1 0 0 0 1-1V5.621a1 1 0 0 0-.293-.707l-1.621-1.621A1 1 0 0 0 10.379 3H10v1.5A1.5 1.5 0 0 1 8.5 6h-2A1.5 1.5 0 0 1 5 4.5V3zm2 0v1.5a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V3zm5 10V9.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0-.5.5V13zM2 4a2 2 0 0 1 2-2h6.379a2 2 0 0 1 1.414.586l1.621 1.621A2 2 0 0 1 14 5.621V12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z" />
     </svg>
 </template>
 

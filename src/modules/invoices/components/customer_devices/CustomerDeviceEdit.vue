@@ -13,16 +13,13 @@
 						<label for="customer_id" class="form-label w-full">
 							{{ $t("customer_id") }} *
 						</label>
-						<v-select
-							v-model="validate.customer_id.$model"
-							:options="customers"
-							label="code"
+						<v-select v-model="validate.customer_id.$model" :options="customers" label="code"
 							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.customer_id.$error }"
-						></v-select>
+							:class="{ 'border-danger': validate.customer_id.$error }"></v-select>
 						<template v-if="validate.customer_id.$error">
-							<div v-for="(error, index) in validate.customer_id.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.customer_id.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -34,16 +31,13 @@
 						<label for="provider_id" class="form-label w-full">
 							{{ $t("provider_id") }} *
 						</label>
-						<v-select
-							v-model="validate.provider_id.$model"
-							:options="providers"
-							label="name"
+						<v-select v-model="validate.provider_id.$model" :options="providers" label="name"
 							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.provider_id.$error }"
-						></v-select>
+							:class="{ 'border-danger': validate.provider_id.$error }"></v-select>
 						<template v-if="validate.provider_id.$error">
-							<div v-for="(error, index) in validate.provider_id.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.provider_id.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -55,16 +49,13 @@
 						<label for="product_id" class="form-label w-full">
 							{{ $t("product_id") }} *
 						</label>
-						<v-select
-							v-model="validate.product_id.$model"
-							:options="products"
-							label="name"
+						<v-select v-model="validate.product_id.$model" :options="products" label="name"
 							:reduce="item => item.id"
-							:class="{ 'border-danger': validate.product_id.$error }"
-						></v-select>
+							:class="{ 'border-danger': validate.product_id.$error }"></v-select>
 						<template v-if="validate.product_id.$error">
-							<div v-for="(error, index) in validate.product_id.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.product_id.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -76,17 +67,12 @@
 						<label for="number" class="form-label w-full">
 							{{ $t("number") }} *
 						</label>
-						<input
-							v-model.trim="validate.number.$model"
-							id="number"
-							type="text"
-							name="number"
-							class="form-control"
-							:class="{ 'border-danger': validate.number.$error }"
-						/>
+						<input v-model.trim="validate.number.$model" id="number" type="text" name="number"
+							class="form-control" :class="{ 'border-danger': validate.number.$error }" />
 						<template v-if="validate.number.$error">
-							<div v-for="(error, index) in validate.number.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.number.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -98,17 +84,11 @@
 						<label for="sim" class="form-label w-full">
 							{{ $t("sim") }} *
 						</label>
-						<input
-							v-model.trim="validate.sim.$model"
-							id="sim"
-							type="text"
-							name="sim"
-							class="form-control"
-							:class="{ 'border-danger': validate.sim.$error }"
-						/>
+						<input v-model.trim="validate.sim.$model" id="sim" type="text" name="sim" class="form-control"
+							:class="{ 'border-danger': validate.sim.$error }" />
 						<template v-if="validate.sim.$error">
 							<div v-for="(error, index) in validate.sim.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -120,17 +100,11 @@
 						<label for="plate" class="form-label w-full">
 							{{ $t("plate") }} *
 						</label>
-						<input
-							v-model.trim="validate.plate.$model"
-							id="plate"
-							type="text"
-							name="plate"
-							class="form-control"
-							:class="{ 'border-danger': validate.plate.$error }"
-						/>
+						<input v-model.trim="validate.plate.$model" id="plate" type="text" name="plate"
+							class="form-control" :class="{ 'border-danger': validate.plate.$error }" />
 						<template v-if="validate.plate.$error">
 							<div v-for="(error, index) in validate.plate.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -142,17 +116,13 @@
 						<label for="installed_at" class="form-label w-full">
 							{{ $t("installed_at") }} *
 						</label>
-						<input
-							v-model.trim="validate.installed_at.$model"
-							id="installed_at"
-							type="text"
-							name="installed_at"
-							class="form-control"
-							:class="{ 'border-danger': validate.installed_at.$error }"
-						/>
+						<input v-model.trim="validate.installed_at.$model" id="installed_at" type="text"
+							name="installed_at" class="form-control"
+							:class="{ 'border-danger': validate.installed_at.$error }" />
 						<template v-if="validate.installed_at.$error">
-							<div v-for="(error, index) in validate.installed_at.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.installed_at.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -164,17 +134,13 @@
 						<label for="purchase_price_without_vat" class="form-label w-full">
 							{{ $t("purchase_price_without_vat") }} *
 						</label>
-						<input
-							v-model.trim="validate.purchase_price_without_vat.$model"
-							id="purchase_price_without_vat"
-							type="text"
-							name="purchase_price_without_vat"
-							class="form-control"
-							:class="{ 'border-danger': validate.purchase_price_without_vat.$error }"
-						/>
+						<input v-model.trim="validate.purchase_price_without_vat.$model" id="purchase_price_without_vat"
+							type="text" name="purchase_price_without_vat" class="form-control"
+							:class="{ 'border-danger': validate.purchase_price_without_vat.$error }" />
 						<template v-if="validate.purchase_price_without_vat.$error">
-							<div v-for="(error, index) in validate.purchase_price_without_vat.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.purchase_price_without_vat.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -186,17 +152,13 @@
 						<label for="sale_price_without_vat" class="form-label w-full">
 							{{ $t("sale_price_without_vat") }} *
 						</label>
-						<input
-							v-model.trim="validate.sale_price_without_vat.$model"
-							id="sale_price_without_vat"
-							type="text"
-							name="sale_price_without_vat"
-							class="form-control"
-							:class="{ 'border-danger': validate.sale_price_without_vat.$error }"
-						/>
+						<input v-model.trim="validate.sale_price_without_vat.$model" id="sale_price_without_vat"
+							type="text" name="sale_price_without_vat" class="form-control"
+							:class="{ 'border-danger': validate.sale_price_without_vat.$error }" />
 						<template v-if="validate.sale_price_without_vat.$error">
-							<div v-for="(error, index) in validate.sale_price_without_vat.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.sale_price_without_vat.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -208,17 +170,13 @@
 						<label for="rental_price_without_vat" class="form-label w-full">
 							{{ $t("rental_price_without_vat") }} *
 						</label>
-						<input
-							v-model.trim="validate.rental_price_without_vat.$model"
-							id="rental_price_without_vat"
-							type="text"
-							name="rental_price_without_vat"
-							class="form-control"
-							:class="{ 'border-danger': validate.rental_price_without_vat.$error }"
-						/>
+						<input v-model.trim="validate.rental_price_without_vat.$model" id="rental_price_without_vat"
+							type="text" name="rental_price_without_vat" class="form-control"
+							:class="{ 'border-danger': validate.rental_price_without_vat.$error }" />
 						<template v-if="validate.rental_price_without_vat.$error">
-							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.rental_price_without_vat.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -230,17 +188,14 @@
 						<label for="provider_rental_price_without_vat" class="form-label w-full">
 							{{ $t("provider_rental_price_without_vat") }} *
 						</label>
-						<input
-							v-model.trim="validate.provider_rental_price_without_vat.$model"
-							id="provider_rental_price_without_vat"
-							type="text"
-							name="provider_rental_price_without_vat"
+						<input v-model.trim="validate.provider_rental_price_without_vat.$model"
+							id="provider_rental_price_without_vat" type="text" name="provider_rental_price_without_vat"
 							class="form-control"
-							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }"
-						/>
+							:class="{ 'border-danger': validate.provider_rental_price_without_vat.$error }" />
 						<template v-if="validate.provider_rental_price_without_vat.$error">
-							<div v-for="(error, index) in validate.provider_rental_price_without_vat.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.provider_rental_price_without_vat.$errors"
+								:key="index" class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -252,17 +207,12 @@
 						<label for="vat_quote" class="form-label w-full">
 							{{ $t("vat_quote") }} *
 						</label>
-						<input
-							v-model.trim="validate.vat_quote.$model"
-							id="vat_quote"
-							type="text"
-							name="vat_quote"
-							class="form-control"
-							:class="{ 'border-danger': validate.vat_quote.$error }"
-						/>
+						<input v-model.trim="validate.vat_quote.$model" id="vat_quote" type="text" name="vat_quote"
+							class="form-control" :class="{ 'border-danger': validate.vat_quote.$error }" />
 						<template v-if="validate.vat_quote.$error">
-							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index" class="text-danger mt-2">
-						{{ error.$message }}
+							<div v-for="(error, index) in validate.vat_quote.$errors" :key="index"
+								class="text-danger mt-2">
+								{{ error.$message }}
 							</div>
 						</template>
 					</div>
@@ -273,10 +223,16 @@
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="flex justify-center">
 						<button type="submit" class="btn btn-primary mr-5">
-							{{ $t("save") }}
+							<div class="flex">
+								<IconSave />
+								{{ $t("save") }}
+							</div>
 						</button>
 						<button @click.prevent="emit('cancelEdit')" class="btn btn-danger">
-							{{ $t("cancel") }}
+							<div class="flex">
+								<IconCancel />
+								{{ $t("cancel") }}
+							</div>
 						</button>
 					</div>
 				</div>
@@ -296,107 +252,110 @@
 
 <script setup>
 
-	import { onMounted, reactive, toRefs } from 'vue';
-	import useCustomerDevices from '../../composables/customer_devices';
-	import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
-	import { useVuelidate } from '@vuelidate/core';
-	import { helpers } from '@vuelidate/validators';
-	import { useI18n } from 'vue-i18n';
-	import useCustomer from "../../composables/customers";
-	import useProvider from "../../composables/providers";
-	import useProduct from "../../composables/products";
+import { onMounted, reactive, toRefs } from 'vue';
+import useCustomerDevices from '../../composables/customer_devices';
+import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
+import { useVuelidate } from '@vuelidate/core';
+import { helpers } from '@vuelidate/validators';
+import { useI18n } from 'vue-i18n';
+import useCustomer from "../../composables/customers";
+import useProvider from "../../composables/providers";
+import useProduct from "../../composables/products";
+import IconSave from '@/components/icons/IconSave.vue';
+import IconCancel from '@/components/icons/IconCancel.vue';
 
-	const { customerDevice, getCustomerDevice } = useCustomerDevices();
-	const {customers, getCustomers} = useCustomer();
-	const {providers, getProviders} = useProvider();
-	const {products, getProducts} = useProduct();
 
-	const { t } = useI18n();
-	const props = defineProps(['customerDeviceId']);
-	const emit = defineEmits(['cancelEdit', 'updateCustomerDeviceForm']);
+const { customerDevice, getCustomerDevice } = useCustomerDevices();
+const { customers, getCustomers } = useCustomer();
+const { providers, getProviders } = useProvider();
+const { products, getProducts } = useProduct();
 
-	const rules = {
-		customer_id: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		provider_id: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		product_id: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		number: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		sim: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		plate: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		installed_at: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		purchase_price_without_vat: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		sale_price_without_vat: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		rental_price_without_vat: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		provider_rental_price_without_vat: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-		vat_quote: {
-			required: helpers.withMessage(t("form.required"), required),
-		},
-	};
+const { t } = useI18n();
+const props = defineProps(['customerDeviceId']);
+const emit = defineEmits(['cancelEdit', 'updateCustomerDeviceForm']);
 
-	const formData = reactive({
-		customer_id: "",
-		provider_id: "",
-		product_id: "",
-		number: "",
-		sim: "",
-		plate: "",
-		installed_at: "",
-		purchase_price_without_vat: "",
-		sale_price_without_vat: "",
-		rental_price_without_vat: "",
-		provider_rental_price_without_vat: "",
-		vat_quote: "",
-	});
+const rules = {
+	customer_id: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	provider_id: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	product_id: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	number: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	sim: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	plate: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	installed_at: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	purchase_price_without_vat: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	sale_price_without_vat: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	rental_price_without_vat: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	provider_rental_price_without_vat: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+	vat_quote: {
+		required: helpers.withMessage(t("form.required"), required),
+	},
+};
 
-	const validate = useVuelidate(rules, toRefs(formData));
+const formData = reactive({
+	customer_id: "",
+	provider_id: "",
+	product_id: "",
+	number: "",
+	sim: "",
+	plate: "",
+	installed_at: "",
+	purchase_price_without_vat: "",
+	sale_price_without_vat: "",
+	rental_price_without_vat: "",
+	provider_rental_price_without_vat: "",
+	vat_quote: "",
+});
 
-	const save = () => {
-		validate.value.$touch();
-		if (validate.value.$invalid) {
-			//TODO
-		} else {
-			emit('updateCustomerDeviceForm', customerDevice.value.id, formData);
-		}
-	};
+const validate = useVuelidate(rules, toRefs(formData));
 
-	onMounted(async () => {
-		await getCustomers();
-		await getProviders();
-		await getProducts();
-		await getCustomerDevice(props.customerDeviceId);
-		formData.customer_id = customerDevice.value.customer_id;
-		formData.provider_id = customerDevice.value.provider_id;
-		formData.product_id = customerDevice.value.product_id;
-		formData.number = customerDevice.value.number;
-		formData.sim = customerDevice.value.sim;
-		formData.plate = customerDevice.value.plate;
-		formData.installed_at = customerDevice.value.installed_at;
-		formData.purchase_price_without_vat = customerDevice.value.purchase_price_without_vat;
-		formData.sale_price_without_vat = customerDevice.value.sale_price_without_vat;
-		formData.rental_price_without_vat = customerDevice.value.rental_price_without_vat;
-		formData.provider_rental_price_without_vat = customerDevice.value.provider_rental_price_without_vat;
-		formData.vat_quote = customerDevice.value.vat_quote;
-	});
+const save = () => {
+	validate.value.$touch();
+	if (validate.value.$invalid) {
+		//TODO
+	} else {
+		emit('updateCustomerDeviceForm', customerDevice.value.id, formData);
+	}
+};
+
+onMounted(async () => {
+	await getCustomers();
+	await getProviders();
+	await getProducts();
+	await getCustomerDevice(props.customerDeviceId);
+	formData.customer_id = customerDevice.value.customer_id;
+	formData.provider_id = customerDevice.value.provider_id;
+	formData.product_id = customerDevice.value.product_id;
+	formData.number = customerDevice.value.number;
+	formData.sim = customerDevice.value.sim;
+	formData.plate = customerDevice.value.plate;
+	formData.installed_at = customerDevice.value.installed_at;
+	formData.purchase_price_without_vat = customerDevice.value.purchase_price_without_vat;
+	formData.sale_price_without_vat = customerDevice.value.sale_price_without_vat;
+	formData.rental_price_without_vat = customerDevice.value.rental_price_without_vat;
+	formData.provider_rental_price_without_vat = customerDevice.value.provider_rental_price_without_vat;
+	formData.vat_quote = customerDevice.value.vat_quote;
+});
 
 </script>

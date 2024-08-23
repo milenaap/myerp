@@ -125,10 +125,16 @@
 				<div class="col-span-12 md:col-span-12 lg:col-span-12">
 					<div class="flex justify-center">
 						<button type="submit" class="btn btn-primary mr-5">
-							{{ $t("save") }}
+							<div class="flex">
+								<IconSave />
+								{{ $t("save") }}
+							</div>
 						</button>
 						<button @click.prevent="emit('cancelEdit')" class="btn btn-danger">
-							{{ $t("cancel") }}
+							<div class="flex">
+								<IconCancel />
+								{{ $t("cancel") }}	
+							</div>
 						</button>
 					</div>
 				</div>
@@ -154,6 +160,8 @@
 	import { useVuelidate } from '@vuelidate/core';
 	import { helpers } from '@vuelidate/validators';
 	import { useI18n } from 'vue-i18n';
+	import IconSave from '@/components/icons/IconSave.vue';
+	import IconCancel from '@/components/icons/IconCancel.vue';
 
 	const { imsInvoiceHeader, getImsInvoiceHeader } = useImsInvoiceHeaders();
 	const { t } = useI18n();
