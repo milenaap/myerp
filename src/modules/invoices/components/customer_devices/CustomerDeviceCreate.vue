@@ -362,18 +362,23 @@
 		},
 		purchase_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		sale_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		rental_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		provider_rental_price_without_vat: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 		vat_quote: {
 			required: helpers.withMessage(t("form.required"), required),
+			numeric: helpers.withMessage(t("form.must_be_number"), value => !isNaN(parseFloat(value.replace(',', '.')))),
 		},
 	};
 
@@ -399,6 +404,11 @@
 		if (validate.value.$invalid) {
 			//TODO
 		} else {
+			formData.purchase_price_without_vat = formData.purchase_price_without_vat.replace(',', '.');
+			formData.sale_price_without_vat = formData.sale_price_without_vat.replace(',', '.');
+			formData.rental_price_without_vat = formData.rental_price_without_vat.replace(',', '.');
+			formData.provider_rental_price_without_vat = formData.provider_rental_price_without_vat.replace(',', '.');
+			formData.vat_quote = formData.vat_quote.replace(',', '.');
 			emit('saveCustomerDeviceForm', formData);
 		}
 	};
