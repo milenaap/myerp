@@ -183,7 +183,7 @@ const columns = [
 	{ label: t("vat_quote"), field: 'vat_quote', formatFn: formatDecimal, tdClass: 'text-right', type: 'number', tdClass: 'vgt-right-align' },
 	{ label: t("total_without_vat"), field: 'total_without_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
 	{ label: t("total_with_vat"), field: 'total_with_vat', formatFn: formatDecimal, type: 'number', tdClass: 'vgt-right-align' },
-	{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px' },
+	{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '120px' },
 ];
 
 //Store
