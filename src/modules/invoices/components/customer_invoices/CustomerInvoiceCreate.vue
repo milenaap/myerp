@@ -16,8 +16,13 @@
 							{{ $t("customer") }} *
 						</label>
 
-						<v-select v-model="validate.customer_id.$model" :options="customers" label="code"
-							:reduce="item => item.id" :class="{ 'border-danger': validate.customer_id.$error }">
+						<v-select 
+							v-model="validate.customer_id.$model" 
+							:options="customerArr" 
+							label="code"
+							:reduce="item => item.id" 
+							:class="{ 'border-danger': validate.customer_id.$error }"
+						>
 
 							<!-- Personalización de cómo se muestra cada opción -->
 							<template #option="{ code, company }">
@@ -182,7 +187,7 @@
 
 <script setup>
 
-import { onMounted, reactive, toRefs } from 'vue';
+import { onMounted, reactive, toRefs, ref } from 'vue';
 import { required, minLength, maxLength, email, url, integer } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers } from '@vuelidate/validators';
@@ -198,6 +203,7 @@ import IconCancel from '@/components/icons/IconCancel.vue';
 
 
 
+const customerArr = ref([])
 
 
 
@@ -236,8 +242,8 @@ const formData = reactive({
 	bank_name: "",
 	bank_account: "",
 	account_holder: "",
-	due_date: "",
-	due_date_by_days: "",
+	due_date: "0",
+	due_date_by_days: "0",
 });
 
 const validate = useVuelidate(rules, toRefs(formData));
@@ -254,8 +260,13 @@ const save = () => {
 
 
 onMounted(async () => {
-	await getCustomers();
-	await getRemittanceTypes();
+	await Promise.all([
+		getCustomers(),
+		getRemittanceTypes(),
+	])
+
+	customerArr.value = customers.value.filter(customer => !customer.customer_invoice)
+
 });
 
 </script>
