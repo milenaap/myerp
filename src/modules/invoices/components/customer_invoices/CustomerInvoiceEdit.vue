@@ -207,13 +207,13 @@ const rules = {
 		required: helpers.withMessage(t("form.required"), required),
 	},
 	bank_name: {
-		required: helpers.withMessage(t("form.required"), required),
+		//required: helpers.withMessage(t("form.required"), required),
 	},
 	bank_account: {
-		required: helpers.withMessage(t("form.required"), required),
+		//required: helpers.withMessage(t("form.required"), required),
 	},
 	account_holder: {
-		required: helpers.withMessage(t("form.required"), required),
+		//required: helpers.withMessage(t("form.required"), required),
 	},
 	due_date: {
 		required: helpers.withMessage(t("form.required"), required),
@@ -246,10 +246,11 @@ const save = () => {
 
 onMounted(async () => {
 
-	await getRemittanceTypes();
-	await getCustomers();
-
-	await getCustomerInvoice(props.customerInvoiceId);
+	await Promise.all([
+		getRemittanceTypes(),
+		getCustomers(),
+		getCustomerInvoice(props.customerInvoiceId),
+	])
 
 	formData.customer_id = customerInvoice.value.customer_id;
 	formData.remittance_type_id = customerInvoice.value.remittance_type_id;
