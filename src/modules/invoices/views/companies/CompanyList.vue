@@ -28,13 +28,13 @@
 			
 
 			<div>
-
-				<!-- <button class="btn-secondary sm:w-auto mr-3" @click.prevent="showCreateCompany">
+				
+				<button class="btn-secondary sm:w-auto mr-3" @click.prevent="showCreateCompany">
 					<div class="flex flex-row">
 						<IconTransfer />
-						{{ $t("transpasar APP") }}
+						{{ $t("Transferir APP") }}
 					</div>
-				</button> -->
+				</button>
 
 				<button class="btn-primary sm:w-auto" @click.prevent="showCreateCompany">
 					<div class="flex flex-row">
