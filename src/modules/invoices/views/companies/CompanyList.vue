@@ -62,6 +62,9 @@
 							<IconDelete />
 						</button>
 						</span>
+
+						<span v-if="props.column.field === 'customer'" v-html="props.formattedRow[props.column.field]"></span>
+						<span v-else>{{ props.formattedRow[props.column.field] }}</span>
 					</template>
 				</VueGoodTable>
 			</div>
@@ -87,10 +90,6 @@
 	import Edit from "../../components/companies/CompanyEdit.vue";
 	
 
-	
-	
-
-	
 
 	// Tabulator
 	const rows = ref([]);
@@ -113,12 +112,57 @@
 		return toRaw(companies.value);
 	}
 
+
+	const findIcons = (value) => {
+
+		let icons = '';
+
+		if (value.customer_invoice) {
+			icons += `
+			<div style="display: flex; align-items: center; margin-right: 8px;" title="Facturación activa">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-3" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3v19l3-2l3 2l3-2l1.3.86c-.2-.58-.3-1.21-.3-1.86a6.005 6.005 0 0 1 8-5.66V3zm14 4v2H7V7zm-2 4v2H7v-2zm.5 8l2.75 3L23 17.23l-1.16-1.41l-3.59 3.59l-1.59-1.59z"/></svg>
+			</div>`;
+		}else{
+			icons += `
+			<div style="display: flex; align-items: center; margin-right: 8px;" title="Facturación no activa">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 mr-3" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3v19l3-2l3 2l3-2l1.3.86c-.2-.58-.3-1.21-.3-1.86a6.005 6.005 0 0 1 8-5.66V3zm14 4v2H7V7zm-2 4v2H7v-2zm4 6.6l-2.1-2.1l-1.4 1.4l2.1 2.1l-2.1 2.1l1.4 1.4l2.1-2.1l2.1 2.1l1.4-1.4l-2.1-2.1l2.1-2.1l-1.4-1.4z"/></svg>
+			</div>`;
+		}
+
+
+		if (value.customer_app_invoice) {
+			icons += `
+			<div style="display: flex; align-items: center; margin-right: 8px;" title="Aplicación activa">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-3" viewBox="0 0 24 24"><path fill="currentColor" d="M6.616 22q-.667 0-1.141-.475T5 20.386V3.615q0-.666.475-1.14T6.615 2h8.77q.666 0 1.14.475T17 3.614v3.308h-1V5.5H6v13h10v-1.423h1v3.298q0 .68-.475 1.153q-.474.472-1.14.472zm8.334-6.692l-3.558-3.558l.708-.708l2.85 2.85l5.689-5.688l.707.707z"/></svg>`;
+		}else{
+			icons += `
+			<div style="display: flex; align-items: center; margin-right: 8px;" title="Aplicación no activa">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 mr-3" viewBox="0 0 24 24"><path fill="currentColor" d="M20.846 22.762L1.008 2.923l.708-.708l19.838 19.839zM6 7.214l1 1V18.5h9.927L18 19.573v.812q0 .67-.472 1.143q-.472.472-1.143.472h-8.77q-.67 0-1.143-.472Q6 21.056 6 20.385zM7.402 5.5L6.034 4.108v-.654q.058-.613.507-1.034Q6.991 2 7.616 2h8.769q.69 0 1.152.463T18 3.616v12.073l-1-1V5.5z"/></svg>
+			</div>`;
+		}
+
+
+
+		if (!icons) {
+			icons = `
+			<div style="display: flex; align-items: center; margin-right: 8px;" title="Invoice Tooltip">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 text-red-500 mr-3" fill="currentColor">
+					<path d="M12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0ZM10.5 17H7.5V15H10.5V17ZM16.5 17H13.5V15H16.5V17ZM17.25 13.5H6.75V7.5H17.25V13.5Z"/>
+				</svg>
+				No hay servicios activos
+			</div>`;
+		}
+
+		return `<div style="display: flex; align-items: center; justify-content: center">${icons}</div>`;
+	}
+
+
 	
 	// Table
 	const columns = [
-		{ label: t("country_id"), field: 'country.common_name' },
 		{ label: t("name"), field: 'name' },
 		{ label: t("tax"), field: 'tax' },
+		{ label: t("Servicios Activos"), field: 'customer', formatFn: findIcons, width: '180px',},
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
 	];
 	//Store

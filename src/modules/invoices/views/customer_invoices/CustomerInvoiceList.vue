@@ -108,6 +108,7 @@
 	// Table
 	const columns = [
 		{ label: t("customer_id"), field: 'customer.company.name' },
+		{ label: t("customer_code"), field: 'customer.code' },
 		{ label: t("remittance_type_id"), field: 'remittance_type.name' },
 		{ label: t("bank_account"), field: 'bank_account' },		
 		{ label: t('actions'), field: 'actions', sortable: false, searchable: false, width: '100px',},
