@@ -1,7 +1,7 @@
 import numeral from 'numeral';
 
 
-export function randomNumbers(from, to, length) {
+function randomNumbers(from, to, length) {
     const numbers = [0];
     for (let i = 1; i < length; i++) {
         numbers.push(Math.ceil(Math.random() * (from - to) + to));
@@ -10,12 +10,12 @@ export function randomNumbers(from, to, length) {
 }
 
 
-export function delay(ms) {
+function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 
-export function formatDecimal(value) {
+function formatDecimal(value) {
     // Convertir el valor a string y separar la parte entera y la decimal
     let [integerPart, decimalPart] = value.toString().split('.');
 
@@ -34,12 +34,12 @@ export function formatDecimal(value) {
 /**
  * Formato YYYY-MM-DD
  */
-export function formatNowToDB() {
+function formatNowToDB() {
     const today = new Date();
     return today.toISOString().split('T')[0]; 
 }
 
-export function format30DaysFromNowToDB() {
+function format30DaysFromNowToDB() {
     const today = new Date();
     today.setDate(today.getDate() + 30);
     return today.toISOString().split('T')[0]; // Formato YYYY-MM-DD
@@ -48,8 +48,19 @@ export function format30DaysFromNowToDB() {
 
 
 
-export function formatNumber(number) {
+
+function formatNumber(number) {
 	let formattedNumber = numeral(number).format('0,0.00');
 	formattedNumber = formattedNumber.replace(/,/g, '#').replace(/\./g, ',').replace(/#/g, '.');
 	return formattedNumber;
+}
+
+
+export{
+    randomNumbers,
+    delay,
+    formatDecimal,
+    formatNowToDB,
+    format30DaysFromNowToDB,
+    formatNumber,
 }
